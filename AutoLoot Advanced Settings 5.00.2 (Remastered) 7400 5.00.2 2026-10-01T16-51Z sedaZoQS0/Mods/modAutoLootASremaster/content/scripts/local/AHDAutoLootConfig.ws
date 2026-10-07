@@ -253,7 +253,7 @@ class CAHDAutoLootConfig
 					|| ( filters.IsWeaponQ(container, itemID) && useIsWeapon )
 					|| ( filters.IsIngredientQ(container, itemID) && useIsIngredient )
 					|| ( filters.IsJunkQ(container, itemID) && useIsJunk )
-					|| ( ((filters.IsReadable(container, itemID) && useIsReadable) || (filters.IsAlreadyRead(container, itemID) && useIsAlreadyRead)) && (useIsReadable || useIsAlreadyRead) )
+					|| ( (filters.IsReadable(container, itemID) && useIsReadable) || (filters.IsAlreadyRead(container, itemID) && useIsAlreadyRead) )
 					|| ( filters.IsCurrency(container, itemID) && useIsMoney )
 					|| ( filters.IsFood(container, itemID) && useIsFood )
 					|| ( filters.IsUpgrade(container, itemID) && useIsUpgrade )
