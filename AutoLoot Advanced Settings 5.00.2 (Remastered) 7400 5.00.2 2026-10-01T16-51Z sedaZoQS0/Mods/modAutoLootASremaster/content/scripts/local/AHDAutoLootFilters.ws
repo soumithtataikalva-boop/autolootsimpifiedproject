@@ -145,9 +145,6 @@ class CAHDAutoLootFilters
 				if( IsWeapon(container, invItemList[i]) && AutoLootConfig.UseWeaponFilter()
 					&& !IsWeaponQ(container, invItemList[i]) )
 					continue;
-				if( IsIngredient(container, invItemList[i]) && AutoLootConfig.UseIngredientFilter()
-					&& !IsIngredientQ(container, invItemList[i]) )
-					continue;
 				if( IsJunk(container, invItemList[i]) && AutoLootConfig.UseJunkFilter()
 					&& !IsJunkQ(container, invItemList[i]) )
 					continue;
@@ -395,26 +392,6 @@ class CAHDAutoLootFilters
 		return false;
 	}
 	
-	//Checks if the item is an ingredient (with Quality setting)
-	public function IsIngredientQ(container : W3Container, itemID : SItemUniqueId) : bool
-	{
-		//Only category and quality affect eligibility; item value is unrestricted.
-		if( !IsIngredient(container, itemID) )
-			return false;
-		if( AutoLootConfig.ChosenIngredientQuality() == 0 )
-			return true;
-		if( AutoLootConfig.ChosenIngredientQuality() >= 1 && AutoLootConfig.ChosenIngredientQuality() <= 4 )
-			return container.GetInventory().GetItemQuality(itemID) == AutoLootConfig.ChosenIngredientQuality();
-		if( AutoLootConfig.ChosenIngredientQuality() == 5 )
-			return container.GetInventory().GetItemQuality(itemID) <= 2;
-		if( AutoLootConfig.ChosenIngredientQuality() == 6 )
-			return container.GetInventory().GetItemQuality(itemID) <= 3;
-		if( AutoLootConfig.ChosenIngredientQuality() == 7 )
-			return container.GetInventory().GetItemQuality(itemID) >= 2;
-		if( AutoLootConfig.ChosenIngredientQuality() == 8 )
-			return container.GetInventory().GetItemQuality(itemID) >= 3;
-		return false;
-	}
 	
 	//Checks if the item is a junk ONLY
 	public function IsJunk(container : W3Container, itemID : SItemUniqueId) : bool

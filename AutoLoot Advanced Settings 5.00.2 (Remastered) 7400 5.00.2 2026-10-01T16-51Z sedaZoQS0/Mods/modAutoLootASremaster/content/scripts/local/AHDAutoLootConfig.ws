@@ -43,7 +43,6 @@ class CAHDAutoLootConfig
 	
 	private var		chosenArmorQuality,
 					chosenWeaponQuality,
-					chosenIngredientQuality,
 					chosenJunkQuality : int;
 	
 	
@@ -146,7 +145,6 @@ class CAHDAutoLootConfig
 		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'useIsWeapon', "false" );
 		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'chosenWeaponQuality', 0 );
 		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'useIsIngredient', "false" );
-		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'chosenIngredientQuality', 0 );
 		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'useIsJunk', "false" );
 		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'chosenJunkQuality', 0 );
 		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'useIsReadable', "false" );
@@ -251,7 +249,7 @@ class CAHDAutoLootConfig
 				return ( (( filters.IsHerb(container, itemID) )
 					|| ( filters.IsArmorQ(container, itemID) && useIsArmor )
 					|| ( filters.IsWeaponQ(container, itemID) && useIsWeapon )
-					|| ( filters.IsIngredientQ(container, itemID) && useIsIngredient )
+					|| ( filters.IsIngredient(container, itemID) && useIsIngredient )
 					|| ( filters.IsJunkQ(container, itemID) && useIsJunk )
 					|| ( (filters.IsReadable(container, itemID) && useIsReadable) || (filters.IsAlreadyRead(container, itemID) && useIsAlreadyRead) )
 					|| ( filters.IsCurrency(container, itemID) && useIsMoney )
@@ -349,7 +347,6 @@ class CAHDAutoLootConfig
 	public function UseWeaponFilter() : bool { return SettingEnabled( 'AHDAutoLoot_filters', 'useIsWeapon' ); }
 	public function ChosenWeaponQuality() : int { return GetSettingAsInt( 'AHDAutoLoot_filters', 'chosenWeaponQuality' ); }
 	public function UseIngredientFilter() : bool { return SettingEnabled( 'AHDAutoLoot_filters', 'useIsIngredient' ); }
-	public function ChosenIngredientQuality() : int { return GetSettingAsInt( 'AHDAutoLoot_filters', 'chosenIngredientQuality' ); }
 	public function UseJunkFilter() : bool { return SettingEnabled( 'AHDAutoLoot_filters', 'useIsJunk' ); }
 	public function ChosenJunkQuality() : int { return GetSettingAsInt( 'AHDAutoLoot_filters', 'chosenJunkQuality' ); }
 	public function UseReadableFilter() : bool { return SettingEnabled( 'AHDAutoLoot_filters', 'useIsReadable' ); }

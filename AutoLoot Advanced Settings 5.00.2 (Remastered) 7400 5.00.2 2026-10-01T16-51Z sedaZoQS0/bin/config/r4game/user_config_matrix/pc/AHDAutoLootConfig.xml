@@ -69,7 +69,6 @@
 				<Entry varId="useIsWeapon" value="false"/>
 				<Entry varId="chosenWeaponQuality" value="0"/>
 				<Entry varId="useIsIngredient" value="false"/>
-				<Entry varId="chosenIngredientQuality" value="0"/>
 				<Entry varId="useIsJunk" value="false"/>
 				<Entry varId="chosenJunkQuality" value="0"/>
 				<Entry varId="useIsReadable" value="false"/>
@@ -91,7 +90,6 @@
 				<Entry varId="useIsWeapon" value="true"/>
 				<Entry varId="chosenWeaponQuality" value="0"/>
 				<Entry varId="useIsIngredient" value="true"/>
-				<Entry varId="chosenIngredientQuality" value="0"/>
 				<Entry varId="useIsJunk" value="true"/>
 				<Entry varId="chosenJunkQuality" value="0"/>
 				<Entry varId="useIsReadable" value="true"/>
@@ -113,7 +111,6 @@
 				<Entry varId="useIsWeapon" value="true"/>
 				<Entry varId="chosenWeaponQuality" value="9"/>
 				<Entry varId="useIsIngredient" value="true"/>
-				<Entry varId="chosenIngredientQuality" value="0"/>
 				<Entry varId="useIsJunk" value="true"/>
 				<Entry varId="chosenJunkQuality" value="0"/>
 				<Entry varId="useIsReadable" value="true"/>
@@ -230,37 +227,6 @@
 			<Var id="useIsMoney" displayName="ahdal_moneyToggle" displayType="TOGGLE" />
 			<Var id="Separator" displayName="" displayType="SUBTLE_SEPARATOR"/>
 			<Var id="useIsIngredient" displayName="ahdal_ingredientToggle" displayType="TOGGLE" />
-			<Var id="chosenIngredientQuality" displayName="generalQuality" displayType="OPTIONS" >
-				<OptionsArray>
-					<Option id="0" displayName="generalOff">
-						<Entry varId="IQualityLogic" value="0"/>
-					</Option>
-					<Option id="1" displayName="equalQualityCommon">
-						<Entry varId="IQualityLogic" value="1"/>
-					</Option>
-					<Option id="2" displayName="equalQualityMaster">
-						<Entry varId="IQualityLogic" value="2"/>
-					</Option>
-					<Option id="3" displayName="equalQualityMagic">
-						<Entry varId="IQualityLogic" value="3"/>
-					</Option>
-					<Option id="4" displayName="equalQualityRelic">
-						<Entry varId="IQualityLogic" value="4"/>
-					</Option>
-					<Option id="5" displayName="lessQualityMaster">
-						<Entry varId="IQualityLogic" value="5"/>
-					</Option>
-					<Option id="6" displayName="lessQualityMagic">
-						<Entry varId="IQualityLogic" value="6"/>
-					</Option>
-					<Option id="7" displayName="greaterQualityMaster">
-						<Entry varId="IQualityLogic" value="7"/>
-					</Option>
-					<Option id="8" displayName="greaterQualityMagic">
-						<Entry varId="IQualityLogic" value="8"/>
-					</Option>
-				</OptionsArray>
-			</Var>
 			<Var id="Separator" displayName="" displayType="SUBTLE_SEPARATOR"/>
 			<Var id="useIsJunk" displayName="ahdal_junkToggle" displayType="TOGGLE" />
 			<Var id="chosenJunkQuality" displayName="generalQuality" displayType="OPTIONS" >
