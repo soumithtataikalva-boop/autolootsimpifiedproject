@@ -54,19 +54,6 @@ Quest containers, Gwent-card containers, locks, decorations, and certain story-s
 - The option to globally disable stealing reactions and warnings.
 - Junk price and currency quantity popup thresholds.
 
-## Repository layout
-
-The original package directory contains:
-
-- `Mods/modAutoLootASremaster/content/scripts/local/`: mod logic and console commands.
-- `Mods/modAutoLootASremaster/content/scripts/game/`: game-script integration.
-- `bin/config/r4game/user_config_matrix/pc/AHDAutoLootConfig.xml`: menu controls and presets.
-- The existing bundled content and metadata.
-
-## Validation
-
-Changes have received static script/reference checks, XML parsing, and boolean-equivalence checks for the simplified conditions. These checks do not replace in-game compilation and gameplay testing. This repository does not include the game runtime or a WitcherScript compiler.
-
 ## Credits
 
 Based on AutoLoot Advanced Settings by jerry18, with code credited to AeroHD and original AutoLoot code by JupiterTheGod. Original source attribution remains in the scripts.
