@@ -122,7 +122,7 @@ class CAHDAutoLootConfig
 	private function LoadDefaultSettings()
 	{
 		UserSettings.SetVarValue( 'AHDAutoLoot_settings', 'useAutoLoot', "true" );
-		UserSettings.SetVarValue( 'AHDAutoLoot_settings', 'useNoAccidentalStealing', "false" );
+		UserSettings.SetVarValue( 'AHDAutoLoot_settings', 'useNoAccidentalStealing', "true" );
 		UserSettings.SetVarValue( 'AHDAutoLoot_settings', 'enableOnKillLoot', "true" );
 		UserSettings.SetVarValue( 'AHDAutoLoot_settings', 'lootOnKillMaxDistance', 10 );
 		UserSettings.SetVarValue( 'AHDAutoLoot_settings', 'questItemWarningMsg', "true" );
@@ -131,14 +131,14 @@ class CAHDAutoLootConfig
 		
 		UserSettings.SetVarValue( 'AHDAutoLoot_filters_global', 'noWitcherSchematics', "true" );
 		UserSettings.SetVarValue( 'AHDAutoLoot_filters_global', 'noSpecialContainers', "false" );
-		UserSettings.SetVarValue( 'AHDAutoLoot_filters_global', 'noTrophies', "false" );
+		UserSettings.SetVarValue( 'AHDAutoLoot_filters_global', 'noTrophies', "true" );
 		UserSettings.SetVarValue( 'AHDAutoLoot_filters_global', 'noHerbsCorvoBianco', "false" );
 		UserSettings.SetVarValue( 'AHDAutoLoot_filters_global', 'noBeehives', "false" );
-		UserSettings.SetVarValue( 'AHDAutoLoot_filters_global', 'noDropItems', "false" );
+		UserSettings.SetVarValue( 'AHDAutoLoot_filters_global', 'noDropItems', "true" );
 		UserSettings.SetVarValue( 'AHDAutoLoot_filters_global', 'noHorseLoot', "false" );
 		
 		
-		UserSettings.SetVarValue( 'AHDAutoLoot_settings', 'interactionKey_lootLogic', 0 );
+		UserSettings.SetVarValue( 'AHDAutoLoot_settings', 'interactionKey_lootLogic', 2 );
 		
 		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'useFilters', "false" );
 		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'useIsArmor', "false" );

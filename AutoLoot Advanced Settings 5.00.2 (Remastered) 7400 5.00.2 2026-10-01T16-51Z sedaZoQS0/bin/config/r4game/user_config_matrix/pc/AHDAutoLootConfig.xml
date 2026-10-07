@@ -4,8 +4,8 @@
 		<PresetsArray>
 			<Preset id="0" displayName="ahdal_default">
 				<Entry varId="useAutoLoot" value="true"/>
-				<Entry varId="interactionKey_lootLogic" value="0"/>
-				<Entry varId="useNoAccidentalStealing" value="false"/>
+				<Entry varId="interactionKey_lootLogic" value="2"/>
+				<Entry varId="useNoAccidentalStealing" value="true"/>
 				<Entry varId="enableOnKillLoot" value="true"/>
 				<Entry varId="lootOnKillMaxDistance" value="10"/>
 				<Entry varId="questItemWarningMsg" value="true"/>
@@ -27,10 +27,10 @@
 					</Option>
 				</OptionsArray>
 			</Var>
-			<Var id="useNoAccidentalStealing" displayName="ahdal_noStealing" displayType="TOGGLE" />
 			<Var id="enableOnKillLoot" displayName="ahdal_autoLootOnKill" displayType="TOGGLE" />
 			<!-- Distance applies only to loot-on-kill, not interaction looting. -->
 			<Var id="lootOnKillMaxDistance" displayName="ahdal_distance" displayType="SLIDER;1;30;29" />
+			<Var id="useNoAccidentalStealing" displayName="ahdal_noStealing" displayType="TOGGLE" />
 			<Var id="questItemWarningMsg" displayName="ahdal_questItemWarningMsg" displayType="TOGGLE" />
 			<Var id="fullReset" displayName="ahdal_fullReset" displayType="TOGGLE" />
 <!-- [CURRENT MOD VERSION]                                                                            *****       **** -->
@@ -43,10 +43,10 @@
 			<Preset id="0" displayName="ahdal_default">
 				<Entry varId="noWitcherSchematics" value="true"/>
 				<Entry varId="noSpecialContainers" value="false"/>
-				<Entry varId="noTrophies" value="false"/>
+				<Entry varId="noTrophies" value="true"/>
 				<Entry varId="noHerbsCorvoBianco" value="false"/>
 				<Entry varId="noBeehives" value="false"/>
-				<Entry varId="noDropItems" value="false"/>
+				<Entry varId="noDropItems" value="true"/>
 				<Entry varId="noHorseLoot" value="false"/>
 			</Preset>
 		</PresetsArray>
@@ -54,10 +54,10 @@
 			<Var id="noWitcherSchematics" displayName="ahdal_noWitcherSchematics" displayType="TOGGLE" />
 			<Var id="noSpecialContainers" displayName="ahdal_noSpecialContainers" displayType="TOGGLE" />
 			<Var id="noTrophies" displayName="ahdal_noTrophies" displayType="TOGGLE" />
-			<Var id="noHerbsCorvoBianco" displayName="ahdal_noHerbsCorvoBianco" displayType="TOGGLE" />
-			<Var id="noBeehives" displayName="ahdal_noBeehives" displayType="TOGGLE" />
-			<Var id="noDropItems" displayName="ahdal_noDropItems" displayType="TOGGLE" />
 			<Var id="noHorseLoot" displayName="ahdal_noHorseLoot" displayType="TOGGLE" />
+			<Var id="noBeehives" displayName="ahdal_noBeehives" displayType="TOGGLE" />
+			<Var id="noHerbsCorvoBianco" displayName="ahdal_noHerbsCorvoBianco" displayType="TOGGLE" />
+			<Var id="noDropItems" displayName="ahdal_noDropItems" displayType="TOGGLE" />
 		</VisibleVars>
 	</Group>
 	<Group id="AHDAutoLoot_filters" displayName="Mods.ahdal_modName.ahdal_itemFilters">
@@ -216,6 +216,18 @@
 				</OptionsArray>
 			</Var>
 			<Var id="Separator" displayName="" displayType="SUBTLE_SEPARATOR"/>
+			<Var id="useIsUpgrade" displayName="ahdal_upgradeToggle" displayType="TOGGLE" />
+			<Var id="Separator" displayName="" displayType="SUBTLE_SEPARATOR"/>
+			<Var id="useIsTool" displayName="ahdal_toolToggle" displayType="TOGGLE" />
+			<Var id="Separator" displayName="" displayType="SUBTLE_SEPARATOR"/>
+			<Var id="useIsHorse" displayName="ahdal_horseToggle" displayType="TOGGLE" />
+			<Var id="Separator" displayName="" displayType="SUBTLE_SEPARATOR"/>
+			<Var id="useIsTrophy" displayName="ahdal_trophyToggle" displayType="TOGGLE" />
+			<Var id="Separator" displayName="" displayType="SUBTLE_SEPARATOR"/>
+			<Var id="useIsFood" displayName="ahdal_foodToggle" displayType="TOGGLE" />
+			<Var id="Separator" displayName="" displayType="SUBTLE_SEPARATOR"/>
+			<Var id="useIsMoney" displayName="ahdal_moneyToggle" displayType="TOGGLE" />
+			<Var id="Separator" displayName="" displayType="SUBTLE_SEPARATOR"/>
 			<Var id="useIsIngredient" displayName="ahdal_ingredientToggle" displayType="TOGGLE" />
 			<Var id="chosenIngredientQuality" displayName="generalQuality" displayType="OPTIONS" >
 				<OptionsArray>
@@ -282,28 +294,16 @@
 				</OptionsArray>
 			</Var>
 			<Var id="Separator" displayName="" displayType="SUBTLE_SEPARATOR"/>
+			<Var id="useIsFormula" displayName="ahdal_formulaToggle" displayType="TOGGLE" />
+			<Var id="Separator" displayName="" displayType="SUBTLE_SEPARATOR"/>
 			<Var id="useIsReadable" displayName="ahdal_readableToggle" displayType="TOGGLE" />
 			<Var id="useIsAlreadyRead" displayName="ahdal_alreadyReadToggle" displayType="TOGGLE" />
 			<Var id="Separator" displayName="" displayType="SUBTLE_SEPARATOR"/>
-			<Var id="useIsMoney" displayName="ahdal_moneyToggle" displayType="TOGGLE" />
-			<Var id="Separator" displayName="" displayType="SUBTLE_SEPARATOR"/>
-			<Var id="useIsFood" displayName="ahdal_foodToggle" displayType="TOGGLE" />
-			<Var id="Separator" displayName="" displayType="SUBTLE_SEPARATOR"/>
-			<Var id="useIsUpgrade" displayName="ahdal_upgradeToggle" displayType="TOGGLE" />
-			<Var id="Separator" displayName="" displayType="SUBTLE_SEPARATOR"/>
-			<Var id="useIsHorse" displayName="ahdal_horseToggle" displayType="TOGGLE" />
-			<Var id="Separator" displayName="" displayType="SUBTLE_SEPARATOR"/>
-			<Var id="useIsTrophy" displayName="ahdal_trophyToggle" displayType="TOGGLE" />
-			<Var id="Separator" displayName="" displayType="SUBTLE_SEPARATOR"/>
-			<Var id="useIsTool" displayName="ahdal_toolToggle" displayType="TOGGLE" />
+			<Var id="useIsKey" displayName="ahdal_keyToggle" displayType="TOGGLE" />
+			<Var id="useIsMask" displayName="ahdal_maskToggle" displayType="TOGGLE" />
 			<Var id="Separator" displayName="" displayType="SUBTLE_SEPARATOR"/>
 			<Var id="useIsOther" displayName="ahdal_otherToggle" displayType="TOGGLE" />
 			<Var id="Separator" displayName="" displayType="SUBTLE_SEPARATOR"/>
-			<Var id="useIsFormula" displayName="ahdal_formulaToggle" displayType="TOGGLE" />
-			<Var id="Separator" displayName="" displayType="SUBTLE_SEPARATOR"/>
-			<Var id="useIsMask" displayName="ahdal_maskToggle" displayType="TOGGLE" />
-			<Var id="Separator" displayName="" displayType="SUBTLE_SEPARATOR"/>
-			<Var id="useIsKey" displayName="ahdal_keyToggle" displayType="TOGGLE" />
 		</VisibleVars>
 	</Group>
 	<Group id="AHDAutoLoot_notifications" displayName="Mods.ahdal_modName.ahdal_notifications">
