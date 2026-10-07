@@ -111,21 +111,12 @@
 		<PresetsArray>
 			<Preset id="0" displayName="ahdal_default">
 				<Entry varId="interactionKey_lootLogic" value="0"/>
-				<Entry varId="interactionKeyMaxDistance" value="5"/>
-				<Entry varId="interactionKeyMaxDistanceHerbs" value="15"/>
-				<Entry varId="interactionKeyMaxContainers" value="25"/>
 			</Preset>
 			<Preset id="1" displayName="ahdal_normal">
 				<Entry varId="interactionKey_lootLogic" value="1"/>
-				<Entry varId="interactionKeyMaxDistance" value="10"/>
-				<Entry varId="interactionKeyMaxDistanceHerbs" value="30"/>
-				<Entry varId="interactionKeyMaxContainers" value="25"/>
 			</Preset>
 			<Preset id="2" displayName="ahdal_ultra">
 				<Entry varId="interactionKey_lootLogic" value="2"/>
-				<Entry varId="interactionKeyMaxDistance" value="15"/>
-				<Entry varId="interactionKeyMaxDistanceHerbs" value="50"/>
-				<Entry varId="interactionKeyMaxContainers" value="75"/>
 			</Preset>
 		</PresetsArray>
 		<VisibleVars>
@@ -142,9 +133,6 @@
 					</Option>
 				</OptionsArray>
 			</Var>
-			<Var id="interactionKeyMaxDistance" displayName="ahdal_interactionKeyDistance" displayType="SLIDER;1;30;29" />
-			<Var id="interactionKeyMaxDistanceHerbs" displayName="ahdal_interactionKeyDistanceHerbs" displayType="SLIDER;1;50;49" />
-			<Var id="interactionKeyMaxContainers" displayName="ahdal_maxContainers" displayType="SLIDER;1;100;99" />
 		</VisibleVars>
 	</Group>
 	<Group id="AHDAutoLoot_filters" displayName="Mods.ahdal_modName.ahdal_itemFilters">

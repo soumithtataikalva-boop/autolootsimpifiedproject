@@ -46,7 +46,7 @@ class CAHDAutoLootActions
 		
 		if( !container.mergeNotification )
 		{
-			//let TryAreaLooting handle popup creation/merging when 'E' is pressed - needed (at least) for herbs and common containers ("Take" ones) due to engine behavior alternating with each game launch
+			//The interaction handler displays the captured target's merged loot notification.
 			if( !AutoLootConfig.GetFeatureManager().WasInteractionKeyPressed() || AutoLootConfig.GetFeatureManager().GetInteractionKeyContainerType() == 3 )
 				AutoLootConfig.GetNotifications().ShowNotification();
 		}

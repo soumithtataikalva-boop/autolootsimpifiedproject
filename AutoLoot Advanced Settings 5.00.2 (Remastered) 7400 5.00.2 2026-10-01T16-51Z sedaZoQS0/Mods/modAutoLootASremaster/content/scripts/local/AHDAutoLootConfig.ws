@@ -180,9 +180,6 @@ class CAHDAutoLootConfig
 		UserSettings.SetVarValue( 'AHDAutoLoot_containers', 'Virtual_quantityLogic', 0 );
 		
 		UserSettings.SetVarValue( 'InteractionKey', 'interactionKey_lootLogic', 0 );
-		UserSettings.SetVarValue( 'InteractionKey', 'interactionKeyMaxDistance', 5 );
-		UserSettings.SetVarValue( 'InteractionKey', 'interactionKeyMaxDistanceHerbs', 15 );
-		UserSettings.SetVarValue( 'InteractionKey', 'interactionKeyMaxContainers', 25 );
 		
 		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'useFilters', "false" );
 		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'useIsHerb', "false" );
@@ -545,9 +542,6 @@ class CAHDAutoLootConfig
 	public function ChosenQuantityLogic() : int { return GetSettingAsInt( 'AHDAutoLoot_containers', 'Virtual_quantityLogic' ); }
 	
 	public function GetEkeyLogic() : int { return GetSettingAsInt( 'InteractionKey', 'interactionKey_lootLogic' ); }
-	public function GetInteractionKeyDistance() : float { return GetSettingAsFloat( 'InteractionKey', 'interactionKeyMaxDistance' ); }
-	public function GetInteractionKeyDistanceHerbs() : float { return GetSettingAsFloat( 'InteractionKey', 'interactionKeyMaxDistanceHerbs' ); }
-	public function GetInteractionKeyMaxContainers() : int { return GetSettingAsInt( 'InteractionKey', 'interactionKeyMaxContainers' ); }
 	
 	public function FiltersEnabled() : bool { return SettingEnabled( 'AHDAutoLoot_filters', 'useFilters' ); }
 	public function UseHerbFilter() : bool { return SettingEnabled( 'AHDAutoLoot_filters', 'useIsHerb' ); }

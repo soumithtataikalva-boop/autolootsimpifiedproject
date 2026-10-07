@@ -13,9 +13,7 @@ class CAHDAutoLootFeatureManager
 	private var AutoLootConfig : CAHDAutoLootConfig;
 	private var currentLootTriggerType : int; //0 = Auto/Silent, 1 = Container, 2 = GatherHerbs, 3 = Unique Container (Quest/(Un)Locked etc)
 	
-	private var AHDAL_INTERACT_LOOT : string;
 				
-		default AHDAL_INTERACT_LOOT = "interact_loot";
 	
 	//Registers the keybinding listeners
 	public function Init() : void
@@ -157,149 +155,50 @@ class CAHDAutoLootFeatureManager
 		return 0;
 	}
 	
-	//Handling the default Interaction key ('E' on PC) for looting items
+	//Interaction looting processes only the displayed target; it never scans nearby entities.
 	public final function OnDefaultInteractKey(action : SInputAction) : void
 	{
-		var displayTarget : CGameplayEntity;
+		var containerType, E_KEY_Logic : int;
 		var targetContainer : W3Container;
-		var targetHerb : W3Herb;
-		var E_KEY_Logic, containerType : int;
-		var actualActionName : string;
-		
-		if( AutoLootConfig.ModEnabled() && IsPressed(action) )
+
+		if( !isInitialized || !AutoLootConfig.ModEnabled() || !IsPressed(action) )
+			return;
+
+		targetContainer = (W3Container)thePlayer.GetDisplayTarget();
+		containerType = GetInteractionKeyContainerType();
+		if( !targetContainer || containerType == 0 )
+			return;
+
+		E_KEY_Logic = AutoLootConfig.GetEkeyLogic();
+		//Leave special containers to normal game handling in modes 0 and 1.
+		if( containerType == 3 && (E_KEY_Logic == 0 || E_KEY_Logic == 1) )
 		{
-			containerType = GetInteractionKeyContainerType();
-			E_KEY_Logic = AutoLootConfig.GetEkeyLogic();
-			
-			if( containerType == 0 )
-				return;
-			
-			//Store the trigger type for the entire looting cycle
-			SetCurrentLootTriggerType(containerType);
-			
-			if( containerType == 3 )
-			{
-				if( E_KEY_Logic == 0 || E_KEY_Logic == 1 )
-				{
-					ResetLootTriggerType(); //Reset state on early exit
-					return;
-				}
-				
-				if( E_KEY_Logic == 2 )
-				{
-					displayTarget = thePlayer.GetDisplayTarget();
-					targetContainer = (W3Container)displayTarget;
-					targetHerb = (W3Herb)displayTarget;
-					
-					if( targetContainer && !targetContainer.IsEmpty() )
-					{
-						if( targetHerb )
-							actualActionName = "GatherHerbs";
-						else
-							actualActionName = "Container";
-						
-						targetContainer.mergeNotification = true;
-						targetContainer.OnInteraction(actualActionName, thePlayer);
-						targetContainer.mergeNotification = false;
-						
-						AutoLootConfig.GetNotifications().ShowNotification();
-					}
-					ResetLootTriggerType(); //Reset state on exit
-					return;
-				}
-			}
-			
-			if( containerType == 2 )
-			{
-				TryAreaLooting( AHDAL_INTERACT_LOOT, containerType );
-				return;
-			}
-			
-			TryAreaLooting( AHDAL_INTERACT_LOOT, containerType );
+			ResetLootTriggerType();
+			return;
 		}
+
+		SetCurrentLootTriggerType(containerType);
+		TryTargetLooting(targetContainer);
+		ResetLootTriggerType();
 	}
-	
-	//Tries to loot all containers in the area based on the specified mode
-	public function TryAreaLooting(mode : string, optional contType : int) : void
+
+	//Use the captured interaction target for both containers and herbs.
+	//Protections and item rules are still enforced by the existing processing path.
+	private function TryTargetLooting(container : W3Container) : void
 	{
-		var i, containerListSize, maxContainers : int;
-		var distance : float;
-		var enabled, allowInCombat : bool;
-		var container, targetContainer : W3Container;
-		var containerList : array<CGameplayEntity>;
 		var actualActionName : string;
-		
-		
-		if( !isInitialized || !AutoLootConfig.ModEnabled() )
+		if( !container || container.IsEmpty() || AutoLootConfig.GetFilters().IsContainerProtected(container) )
 			return;
-		
-		if( mode == AHDAL_INTERACT_LOOT && contType != 0 )
-		{
-			enabled = true;
-			allowInCombat = true; //Force true here since Player can't loot containers in combat with Interaction key
-			
-			if( contType == 2 )
-				distance = AutoLootConfig.GetInteractionKeyDistanceHerbs();
-			else
-				distance = AutoLootConfig.GetInteractionKeyDistance();
-			
-			maxContainers = AutoLootConfig.GetInteractionKeyMaxContainers();
-		}
+
+		if( (W3Herb)container )
+			actualActionName = "GatherHerbs";
 		else
-			enabled = false;
-		
-		if( !enabled || (thePlayer.IsInCombat() && !allowInCombat) )
-			return;
-		
-		FindGameplayEntitiesInRange( containerList, thePlayer, distance, maxContainers, , FLAG_ExcludePlayer, , 'W3Container' );
-		
-		//Fix: When pressing 'E' at 'Distance for Containers'=1-2 while player is too far (but within HUD text range)
-		//(Vanilla popup could open instead of autoloot one, or targeted container items were missing from autoloot popup)
-		if( mode == AHDAL_INTERACT_LOOT && contType != 0 )
-		{
-			targetContainer = (W3Container)thePlayer.GetDisplayTarget();
-			if( targetContainer && !containerList.Contains(targetContainer) )
-			{
-				//Use only if issues occur: Only insert if target type matches currently looted type
-				//if( (contType == 1 && !((W3Herb)targetContainer)) || (contType == 2 && (W3Herb)targetContainer) )
-				//{
-					containerList.Insert(0, targetContainer);
-				//}
-			}
-		}
-		
-		containerListSize = containerList.Size();
-		
-		for( i = 0; i < containerListSize; i += 1 )
-		{
-			container = (W3Container) containerList[i];
-			
-			if( mode == AHDAL_INTERACT_LOOT )
-			{
-				//When pressed E on Container, loot only Containers in container-radius
-				if( contType == 1 && (W3Herb)container )
-					continue;
-				
-				//When pressed E on Herb, loot only Herbs in herb-radius
-				if( contType == 2 && !((W3Herb)container) )
-					continue;
-			}
-			
-			if( !AutoLootConfig.GetFilters().IsContainerProtected(container) && !container.IsEmpty() )
-			{
-				if( (W3Herb)container )
-					actualActionName = "GatherHerbs";
-				else
-					actualActionName = "Container";
-				
-				container.mergeNotification = true;
-				container.OnInteraction(actualActionName, thePlayer);
-				container.mergeNotification = false;
-			}
-		}
-		
+			actualActionName = "Container";
+
+		//Merge this target's notification without opening additional container interactions.
+		container.mergeNotification = true;
+		container.OnInteraction(actualActionName, thePlayer);
+		container.mergeNotification = false;
 		AutoLootConfig.GetNotifications().ShowNotification();
-		
-		ResetLootTriggerType(); //Reset the stored trigger state after the full loop finishes
 	}
 }
