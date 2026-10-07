@@ -493,6 +493,9 @@ class CAHDAutoLootNotificationManager
 					PlayItemEquipSound('generic');
 			}
 		}
+		//Sound categories belong to this pickup, not later notifications.
+		//Clearing them prevents previous loot from changing a herb pickup to generic.
+		soundCategories.Clear();
 	}
 	
 	//Checks if the time delay from the last loot popup has passed
