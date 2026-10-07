@@ -623,13 +623,16 @@ class CBTTaskDropLoot extends IBehTreeTask
 			if( loot.usedByCiri == true ) return;
 			if( GetWitcherPlayer().GetAutoLootConfig().GetFilters().IsContainerProtected(loot) ) return;
 			if( !GetWitcherPlayer().GetAutoLootConfig().LootOnKillEnabled() ) return;
+			//Loot-on-kill processes this enemy's dropped loot, not a scan of nearby containers.
+			//It currently shares the radius-looting distance setting. Before removing that
+			//setting, give loot-on-kill its own distance so this range check remains valid.
 			if( GetWitcherPlayer().GetAutoLootConfig().ModEnabled() )
 			{
 				distance = GetWitcherPlayer().GetAutoLootConfig().GetRadiusLootDistance();
 			}
 			else
 			{
-				distance = 15.f; //fallback
+				distance = 15.f; //Fallback range when the mod is disabled; existing behavior retained.
 			}
 			if( VecDistance( loot.GetWorldPosition(), thePlayer.GetWorldPosition() ) >= distance ) return;
 			if( owner.HasAbility('mon_forktail') ) return; //not sure if we need these exceptions...
