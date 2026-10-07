@@ -10,7 +10,6 @@
 				<Entry varId="enableOnKillLoot" value="true"/>
 				<Entry varId="lootOnKillMaxDistance" value="10"/>
 				<Entry varId="questItemWarningMsg" value="true"/>
-				<Entry varId="forceQuestLoot" value="false"/>
 				<Entry varId="fullReset" value="false"/>
 			</Preset>
 		</PresetsArray>
@@ -35,7 +34,6 @@
 			<!-- Distance applies only to loot-on-kill, not interaction looting. -->
 			<Var id="lootOnKillMaxDistance" displayName="ahdal_distance" displayType="SLIDER;1;30;29" />
 			<Var id="questItemWarningMsg" displayName="ahdal_questItemWarningMsg" displayType="TOGGLE" />
-			<Var id="forceQuestLoot" displayName="ahdal_forceQuestLoot" displayType="TOGGLE" />
 			<Var id="fullReset" displayName="ahdal_fullReset" displayType="TOGGLE" />
 <!-- [CURRENT MOD VERSION]                                                                            *****       **** -->
 			<Var id="modVersionUserSettings" displayName="modVersionUserSettings" displayType="SLIDER;5001;10000;4999" visibilityCondition="hideAlways" />

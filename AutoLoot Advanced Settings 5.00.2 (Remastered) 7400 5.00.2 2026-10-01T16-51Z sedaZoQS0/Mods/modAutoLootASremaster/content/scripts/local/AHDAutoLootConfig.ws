@@ -129,7 +129,6 @@ class CAHDAutoLootConfig
 		UserSettings.SetVarValue( 'AHDAutoLoot_settings', 'enableOnKillLoot', "true" );
 		UserSettings.SetVarValue( 'AHDAutoLoot_settings', 'lootOnKillMaxDistance', 10 );
 		UserSettings.SetVarValue( 'AHDAutoLoot_settings', 'questItemWarningMsg', "true" );
-		UserSettings.SetVarValue( 'AHDAutoLoot_settings', 'forceQuestLoot', "false" );
 		UserSettings.SetVarValue( 'AHDAutoLoot_settings', 'fullReset', "false" );
 		UserSettings.SetVarValue( 'AHDAutoLoot_settings', 'modVersionUserSettings', currentModVersion );
 		
@@ -330,7 +329,6 @@ class CAHDAutoLootConfig
 		return distance;
 	}
 	public function QuestItemWarningMsg() : bool { return SettingEnabled( 'AHDAutoLoot_settings', 'questItemWarningMsg' ); }
-	public function ForceQuestLoot() : bool { return SettingEnabled( 'AHDAutoLoot_settings', 'forceQuestLoot' ); }
 	public function EnableFullReset() : bool { return SettingEnabled( 'AHDAutoLoot_settings', 'fullReset' ); }
 	public function ModVersionSettings() : int { return GetSettingAsInt( 'AHDAutoLoot_settings', 'modVersionUserSettings' ); }
 	

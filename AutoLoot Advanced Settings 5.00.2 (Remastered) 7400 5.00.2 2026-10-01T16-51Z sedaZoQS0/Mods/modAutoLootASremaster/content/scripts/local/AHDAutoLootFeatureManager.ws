@@ -108,11 +108,7 @@ class CAHDAutoLootFeatureManager
 					{
 						if( targetContainer.factOnContainerOpened != "" || targetContainer.focusModeHighlight == FMV_Clue )
 						{
-							if( !AutoLootConfig.ForceQuestLoot() )
-							{
-								//GetWitcherPlayer().DisplayHudMessage("'E' pressed on Unique container (cache, treasure etc); (Type=3)");
-								return 3;
-							}
+							return 3; //Protected special containers use the unique-container interaction path.
 						}
 					}
 					

@@ -111,7 +111,7 @@ class CAHDAutoLootFilters
 			if( StrFindFirst((string)container,"quest_files\q002_emhyr\entities\q001_clothes_rack")>=0 )
 				return true;
 			
-			//exclude Grandmaster Manticore Gear chests (BaW) ...rather here to not allowed to loot even when "Force Quest..." option is enabled
+			//Exclude Grandmaster Manticore Gear chests (BaW).
 			if( StrFindFirst((string)container,"quests\minor_quests\quest_files\th700_red_wolf\entities\th700_prison_loose_brick.w2ent")>=0
 				|| StrFindFirst((string)container,"quests\minor_quests\quest_files\th700_red_wolf\entities\th700_crypt_chest.w2ent")>=0
 				|| StrFindFirst((string)container,"quests\minor_quests\quest_files\th700_red_wolf\entities\th700_vault_chest.w2ent")>=0
@@ -164,14 +164,10 @@ class CAHDAutoLootFilters
 					return true;
 			}
 			
-			//quest containers - note: if e.g. trophies (or stands etc.) protection (see "if's" above this) would be below this function...
-			//...then trophies could be looted even if they were protected while "Force Quest..." option was enabled
+			//Protect quest containers and containers holding Gwent cards.
 			if( isQuestContainer(container) || cInv.ItemHasTag(invItemList[i], 'GwintCard') )
 			{
-				if( AutoLootConfig.ForceQuestLoot() )
-					return false;
-				else
-					return true;
+				return true;
 			}
 			
 			//special containers with facts/clues (Bandit camp/Guarded treasure/Hidden treasure/Smugglers' cache/Spoils of war)
@@ -179,10 +175,7 @@ class CAHDAutoLootFilters
 			{
 				if( container.factOnContainerOpened != "" || container.focusModeHighlight == FMV_Clue )
 				{
-					if( AutoLootConfig.ForceQuestLoot() )
-						return false;
-					else
-						return true;
+					return true;
 				}
 			}
 			
