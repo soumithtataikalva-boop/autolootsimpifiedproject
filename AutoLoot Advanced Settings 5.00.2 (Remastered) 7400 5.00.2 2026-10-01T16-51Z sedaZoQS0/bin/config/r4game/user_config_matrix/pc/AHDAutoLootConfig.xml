@@ -63,6 +63,7 @@
 	<Group id="AHDAutoLoot_filters" displayName="Mods.ahdal_modName.ahdal_itemFilters">
 		<PresetsArray>
 			<Preset id="0" displayName="ahdal_default">
+				<Entry varId="useFilters" value="false"/>
 				<Entry varId="useIsArmor" value="false"/>
 				<Entry varId="chosenArmorQuality" value="0"/>
 				<Entry varId="useIsWeapon" value="false"/>

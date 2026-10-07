@@ -391,7 +391,7 @@ class CAHDAutoLootNotificationManager
 		var temp : string;
 		temp = "";
 		
-		if( AutoLootConfig.EnableNotificationDescription() && (itemDescriptions[index] != "" || itemDescriptions[index] != " ") )
+		if( AutoLootConfig.EnableNotificationDescription() && (itemDescriptions[index] != "" && itemDescriptions[index] != " ") )
 		{
 			if( AutoLootConfig.EnableColors() )
 			{

@@ -23,17 +23,13 @@ exec function aas_clearnotifications()
 	temp = GetWitcherPlayer().GetAutoLootConfig().GetNotifications().DebugReset();
 	
 	msg += "AutoLoot DEBUG: Clearing notification manager...<br/>";
-	msg += "- Names Cleared (1. popup): " + FloatToString(temp[0]) + "<br/>";
-	msg += "- Names Cleared (2. popup): " + FloatToString(temp[1]) + "<br/>";
-	msg += "- Quantites Cleared (1. popup): " + FloatToString(temp[2]) + "<br/>";
-	msg += "- Quantites Cleared (2. popup): " + FloatToString(temp[3]) + "<br/>";
-	msg += "- Icons Cleared (1. popup): " + FloatToString(temp[4]) + "<br/>";
-	msg += "- Icons Cleared (2. popup): " + FloatToString(temp[5]) + "<br/>";
-	msg += "- Descriptions Cleared (1. popup): " + FloatToString(temp[6]) + "<br/>";
-	msg += "- Descriptions Cleared (2. popup): " + FloatToString(temp[7]) + "<br/>";
-	msg += "- Sounds Cleared: " + FloatToString(temp[8]) + "<br/>";
-	msg += "- Items Looted Before Reset: " + FloatToString(temp[9]) + "<br/>";
-	msg += "- Helper for 2. loot popup: " + FloatToString(temp[10]);
+	msg += "- Names Cleared: " + FloatToString(temp[0]) + "<br/>";
+	msg += "- Quantities Cleared: " + FloatToString(temp[1]) + "<br/>";
+	msg += "- Icons Cleared: " + FloatToString(temp[2]) + "<br/>";
+	msg += "- Descriptions Cleared: " + FloatToString(temp[3]) + "<br/>";
+	msg += "- Sound Categories Cleared: " + FloatToString(temp[4]) + "<br/>";
+	msg += "- Total Unique Items Before Reset: " + FloatToString(temp[5]) + "<br/>";
+	msg += "- Popup Queue State Before Reset: " + FloatToString(temp[6]);
 	
 	theGame.GetGuiManager().ShowNotification( msg, 10000.0 );
 }
