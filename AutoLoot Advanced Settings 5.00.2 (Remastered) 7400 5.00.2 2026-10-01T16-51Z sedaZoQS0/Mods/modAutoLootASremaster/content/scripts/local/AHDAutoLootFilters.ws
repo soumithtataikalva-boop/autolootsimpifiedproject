@@ -214,178 +214,17 @@ class CAHDAutoLootFilters
 					}
 				}
 				
-				if( IsIngredient(container, invItemList[i]) && AutoLootConfig.UseIngredientFilter() )
-				{
-					if( AutoLootConfig.ChosenIngredientQuality() >= 1 && AutoLootConfig.ChosenIngredientValue() == 0 && AutoLootConfig.ChosenIngredientQuantity() == 0 )
-					{
-						if( ( AutoLootConfig.ChosenIngredientQuality() <= 4 && cInv.GetItemQuality(invItemList[i]) != AutoLootConfig.ChosenIngredientQuality() )
-							|| ( AutoLootConfig.ChosenIngredientQuality() == 5 && cInv.GetItemQuality(invItemList[i]) > 2 )
-							|| ( AutoLootConfig.ChosenIngredientQuality() == 6 && cInv.GetItemQuality(invItemList[i]) > 3 )
-							|| ( AutoLootConfig.ChosenIngredientQuality() == 7 && cInv.GetItemQuality(invItemList[i]) < 2 )
-							|| ( AutoLootConfig.ChosenIngredientQuality() == 8 && cInv.GetItemQuality(invItemList[i]) < 3 ) )
-							continue;
-					}
-					else if( AutoLootConfig.ChosenIngredientQuality() == 0 && AutoLootConfig.ChosenIngredientValue() >= 1 && AutoLootConfig.ChosenIngredientQuantity() == 0 )
-					{
-						if( cInv.GetItemPrice(invItemList[i]) < AutoLootConfig.ChosenIngredientValue() )
-							continue;
-					}
-					else if( AutoLootConfig.ChosenIngredientQuality() == 0 && AutoLootConfig.ChosenIngredientValue() == 0 && AutoLootConfig.ChosenIngredientQuantity() >= 1 )
-					{
-						if( (thePlayer.GetInventory().GetItemQuantityByName(itemName) + cInv.GetItemQuantity(invItemList[i])) > AutoLootConfig.ChosenIngredientQuantity() )
-							continue;
-					}
-					else if( AutoLootConfig.ChosenIngredientQuality() >= 1 && AutoLootConfig.ChosenIngredientValue() >= 1 && AutoLootConfig.ChosenIngredientQuantity() == 0 )
-					{
-						if( cInv.GetItemPrice(invItemList[i]) < AutoLootConfig.ChosenIngredientValue() )
-							continue;
-						else if( ( AutoLootConfig.ChosenIngredientQuality() <= 4 && cInv.GetItemQuality(invItemList[i]) != AutoLootConfig.ChosenIngredientQuality() )
-							|| ( AutoLootConfig.ChosenIngredientQuality() == 5 && cInv.GetItemQuality(invItemList[i]) > 2 )
-							|| ( AutoLootConfig.ChosenIngredientQuality() == 6 && cInv.GetItemQuality(invItemList[i]) > 3 )
-							|| ( AutoLootConfig.ChosenIngredientQuality() == 7 && cInv.GetItemQuality(invItemList[i]) < 2 )
-							|| ( AutoLootConfig.ChosenIngredientQuality() == 8 && cInv.GetItemQuality(invItemList[i]) < 3 ) )
-							continue;
-					}
-					else if( AutoLootConfig.ChosenIngredientQuality() >= 1 && AutoLootConfig.ChosenIngredientValue() == 0 && AutoLootConfig.ChosenIngredientQuantity() >= 1 )
-					{
-						if( (thePlayer.GetInventory().GetItemQuantityByName(itemName) + cInv.GetItemQuantity(invItemList[i])) > AutoLootConfig.ChosenIngredientQuantity() )
-							continue;
-						else if( ( AutoLootConfig.ChosenIngredientQuality() <= 4 && cInv.GetItemQuality(invItemList[i]) != AutoLootConfig.ChosenIngredientQuality() )
-							|| ( AutoLootConfig.ChosenIngredientQuality() == 5 && cInv.GetItemQuality(invItemList[i]) > 2 )
-							|| ( AutoLootConfig.ChosenIngredientQuality() == 6 && cInv.GetItemQuality(invItemList[i]) > 3 )
-							|| ( AutoLootConfig.ChosenIngredientQuality() == 7 && cInv.GetItemQuality(invItemList[i]) < 2 )
-							|| ( AutoLootConfig.ChosenIngredientQuality() == 8 && cInv.GetItemQuality(invItemList[i]) < 3 ) )
-							continue;
-					}
-					else if( AutoLootConfig.ChosenIngredientQuality() == 0 && AutoLootConfig.ChosenIngredientValue() >= 1 && AutoLootConfig.ChosenIngredientQuantity() >= 1 )
-					{
-						if( cInv.GetItemPrice(invItemList[i]) < AutoLootConfig.ChosenIngredientValue() )
-							continue;
-						else if( (thePlayer.GetInventory().GetItemQuantityByName(itemName) + cInv.GetItemQuantity(invItemList[i])) > AutoLootConfig.ChosenIngredientQuantity() )
-							continue;
-					}
-					else if( AutoLootConfig.ChosenIngredientQuality() >= 1 && AutoLootConfig.ChosenIngredientValue() >= 1 && AutoLootConfig.ChosenIngredientQuantity() >= 1 )
-					{
-						if( cInv.GetItemPrice(invItemList[i]) < AutoLootConfig.ChosenIngredientValue() )
-							continue;
-						else if( (thePlayer.GetInventory().GetItemQuantityByName(itemName) + cInv.GetItemQuantity(invItemList[i])) > AutoLootConfig.ChosenIngredientQuantity() )
-							continue;
-						else if( ( AutoLootConfig.ChosenIngredientQuality() <= 4 && cInv.GetItemQuality(invItemList[i]) != AutoLootConfig.ChosenIngredientQuality() )
-							|| ( AutoLootConfig.ChosenIngredientQuality() == 5 && cInv.GetItemQuality(invItemList[i]) > 2 )
-							|| ( AutoLootConfig.ChosenIngredientQuality() == 6 && cInv.GetItemQuality(invItemList[i]) > 3 )
-							|| ( AutoLootConfig.ChosenIngredientQuality() == 7 && cInv.GetItemQuality(invItemList[i]) < 2 )
-							|| ( AutoLootConfig.ChosenIngredientQuality() == 8 && cInv.GetItemQuality(invItemList[i]) < 3 ) )
-							continue;		
-					}
-				}
-				
-				if( IsJunk(container, invItemList[i]) && AutoLootConfig.UseJunkFilter() )
-				{
-					if( AutoLootConfig.ChosenJunkQuality() >= 1 && AutoLootConfig.ChosenJunkValue() == 0 && AutoLootConfig.ChosenJunkQuantity() == 0 )
-					{
-						if( ( AutoLootConfig.ChosenJunkQuality() <= 4 && cInv.GetItemQuality(invItemList[i]) != AutoLootConfig.ChosenJunkQuality() )
-							|| ( AutoLootConfig.ChosenJunkQuality() == 5 && cInv.GetItemQuality(invItemList[i]) > 2 )
-							|| ( AutoLootConfig.ChosenJunkQuality() == 6 && cInv.GetItemQuality(invItemList[i]) > 3 )
-							|| ( AutoLootConfig.ChosenJunkQuality() == 7 && cInv.GetItemQuality(invItemList[i]) < 2 )
-							|| ( AutoLootConfig.ChosenJunkQuality() == 8 && cInv.GetItemQuality(invItemList[i]) < 3 ) )
-							continue;
-					}
-					else if( AutoLootConfig.ChosenJunkQuality() == 0 && AutoLootConfig.ChosenJunkValue() >= 1 && AutoLootConfig.ChosenJunkQuantity() == 0 )
-					{
-						if( cInv.GetItemPrice(invItemList[i]) < AutoLootConfig.ChosenJunkValue() )
-							continue;
-					}
-					else if( AutoLootConfig.ChosenJunkQuality() == 0 && AutoLootConfig.ChosenJunkValue() == 0 && AutoLootConfig.ChosenJunkQuantity() >= 1 )
-					{
-						if( (thePlayer.GetInventory().GetItemQuantityByName(itemName) + cInv.GetItemQuantity(invItemList[i])) > AutoLootConfig.ChosenJunkQuantity() )
-							continue;
-					}
-					else if( AutoLootConfig.ChosenJunkQuality() >= 1 && AutoLootConfig.ChosenJunkValue() >= 1 && AutoLootConfig.ChosenJunkQuantity() == 0 )
-					{
-						if( cInv.GetItemPrice(invItemList[i]) < AutoLootConfig.ChosenJunkValue() )
-							continue;
-						else if( ( AutoLootConfig.ChosenJunkQuality() <= 4 && cInv.GetItemQuality(invItemList[i]) != AutoLootConfig.ChosenJunkQuality() )
-							|| ( AutoLootConfig.ChosenJunkQuality() == 5 && cInv.GetItemQuality(invItemList[i]) > 2 )
-							|| ( AutoLootConfig.ChosenJunkQuality() == 6 && cInv.GetItemQuality(invItemList[i]) > 3 )
-							|| ( AutoLootConfig.ChosenJunkQuality() == 7 && cInv.GetItemQuality(invItemList[i]) < 2 )
-							|| ( AutoLootConfig.ChosenJunkQuality() == 8 && cInv.GetItemQuality(invItemList[i]) < 3 ) )
-							continue;
-					}
-					else if( AutoLootConfig.ChosenJunkQuality() >= 1 && AutoLootConfig.ChosenJunkValue() == 0 && AutoLootConfig.ChosenJunkQuantity() >= 1 )
-					{
-						if( (thePlayer.GetInventory().GetItemQuantityByName(itemName) + cInv.GetItemQuantity(invItemList[i])) > AutoLootConfig.ChosenJunkQuantity() )
-							continue;
-						else if( ( AutoLootConfig.ChosenJunkQuality() <= 4 && cInv.GetItemQuality(invItemList[i]) != AutoLootConfig.ChosenJunkQuality() )
-							|| ( AutoLootConfig.ChosenJunkQuality() == 5 && cInv.GetItemQuality(invItemList[i]) > 2 )
-							|| ( AutoLootConfig.ChosenJunkQuality() == 6 && cInv.GetItemQuality(invItemList[i]) > 3 )
-							|| ( AutoLootConfig.ChosenJunkQuality() == 7 && cInv.GetItemQuality(invItemList[i]) < 2 )
-							|| ( AutoLootConfig.ChosenJunkQuality() == 8 && cInv.GetItemQuality(invItemList[i]) < 3 ) )
-							continue;
-					}
-					else if( AutoLootConfig.ChosenJunkQuality() == 0 && AutoLootConfig.ChosenJunkValue() >= 1 && AutoLootConfig.ChosenJunkQuantity() >= 1 )
-					{
-						if( cInv.GetItemPrice(invItemList[i]) < AutoLootConfig.ChosenJunkValue() )
-							continue;
-						else if( (thePlayer.GetInventory().GetItemQuantityByName(itemName) + cInv.GetItemQuantity(invItemList[i])) > AutoLootConfig.ChosenJunkQuantity() )
-							continue;
-					}
-					else if( AutoLootConfig.ChosenJunkQuality() >= 1 && AutoLootConfig.ChosenJunkValue() >= 1 && AutoLootConfig.ChosenJunkQuantity() >= 1 )
-					{
-						if( cInv.GetItemPrice(invItemList[i]) < AutoLootConfig.ChosenJunkValue() )
-							continue;
-						else if( (thePlayer.GetInventory().GetItemQuantityByName(itemName) + cInv.GetItemQuantity(invItemList[i])) > AutoLootConfig.ChosenJunkQuantity() )
-							continue;
-						else if( ( AutoLootConfig.ChosenJunkQuality() <= 4 && cInv.GetItemQuality(invItemList[i]) != AutoLootConfig.ChosenJunkQuality() )
-							|| ( AutoLootConfig.ChosenJunkQuality() == 5 && cInv.GetItemQuality(invItemList[i]) > 2 )
-							|| ( AutoLootConfig.ChosenJunkQuality() == 6 && cInv.GetItemQuality(invItemList[i]) > 3 )
-							|| ( AutoLootConfig.ChosenJunkQuality() == 7 && cInv.GetItemQuality(invItemList[i]) < 2 )
-							|| ( AutoLootConfig.ChosenJunkQuality() == 8 && cInv.GetItemQuality(invItemList[i]) < 3 ) )
-							continue;		
-					}
-				}
-				
-				if( IsHerb(container, invItemList[i]) && AutoLootConfig.UseHerbFilter() && AutoLootConfig.ChosenHerbQuantity() >= 1 )
-				{
-					if( (thePlayer.GetInventory().GetItemQuantityByName(itemName) + cInv.GetItemQuantity(invItemList[i])) > AutoLootConfig.ChosenHerbQuantity() )
-						continue;
-				}
-				
-				if( AutoLootConfig.UseReadableFilter() || AutoLootConfig.UseAlreadyReadFilter() )
-				{
-					if( (IsReadable(container, invItemList[i]) || IsAlreadyRead(container, invItemList[i])) && AutoLootConfig.ChosenBookQuantity() >= 1
-						&& thePlayer.GetInventory().GetItemQuantityByName(itemName) != 0 )
-					{
-						if( (thePlayer.GetInventory().GetItemQuantityByName(itemName) + cInv.GetItemQuantity(invItemList[i])) > AutoLootConfig.ChosenBookQuantity() )
-							continue;
-					}
-				}
-				
-				if( IsCurrency(container, invItemList[i]) && AutoLootConfig.UseCurrencyFilter() && AutoLootConfig.ChosenCurrencyQuantity() >= 1 )
-				{
-					if( cInv.GetItemQuantity(invItemList[i]) < AutoLootConfig.ChosenCurrencyQuantity() )
-						continue;
-				}
-				
-				if( IsFood(container, invItemList[i]) )
-				{
-					if( AutoLootConfig.ChosenFoodValue() >= 1 && AutoLootConfig.ChosenFoodQuantity() == 0 )
-					{
-						if( cInv.GetItemPrice(invItemList[i]) < AutoLootConfig.ChosenFoodValue() )
-							continue;
-					}
-					else if( AutoLootConfig.ChosenFoodValue() == 0 && AutoLootConfig.ChosenFoodQuantity() >= 1 )
-					{
-						if( (thePlayer.GetInventory().GetItemQuantityByName(itemName) + cInv.GetItemQuantity(invItemList[i])) > AutoLootConfig.ChosenFoodQuantity() )
-							continue;
-					}
-					else if( AutoLootConfig.ChosenFoodValue() >= 1 && AutoLootConfig.ChosenFoodQuantity() >= 1 )
-					{
-						if( cInv.GetItemPrice(invItemList[i]) < AutoLootConfig.ChosenFoodValue()
-						&& ((thePlayer.GetInventory().GetItemQuantityByName(itemName) + cInv.GetItemQuantity(invItemList[i])) > AutoLootConfig.ChosenFoodQuantity()) )
-							continue;
-					}
-				}
-				
+				//Category eligibility uses quality/value rules only; stack quantities are unrestricted.
+				if( IsIngredient(container, invItemList[i]) && AutoLootConfig.UseIngredientFilter()
+					&& !IsIngredientQV(container, invItemList[i]) )
+					continue;
+				if( IsJunk(container, invItemList[i]) && AutoLootConfig.UseJunkFilter()
+					&& !IsJunkQV(container, invItemList[i]) )
+					continue;
+				if( IsFood(container, invItemList[i]) && AutoLootConfig.UseFoodFilter()
+					&& !IsFoodV(container, invItemList[i]) )
+					continue;
+
 				if( IsUpgrade(container, invItemList[i]) && AutoLootConfig.UseUpgradeFilter() && AutoLootConfig.ChosenUpgradeValue() >= 1 )
 				{
 					if( cInv.GetItemPrice(invItemList[i]) < AutoLootConfig.ChosenUpgradeValue() )
@@ -606,21 +445,6 @@ class CAHDAutoLootFilters
 		return false;
 	}
 	
-	//Checks if the container is a plant, or if the item in the container is a plant (with Quantity setting)
-	public function IsHerbQt(container : W3Container, itemID : SItemUniqueId) : bool
-	{
-		itemName = container.GetInventory().GetItemName(itemID);
-		
-		if( IsHerb(container, itemID) )
-		{
-			if( AutoLootConfig.ChosenHerbQuantity() == 0 )
-				return true;
-			else if( AutoLootConfig.ChosenHerbQuantity() >= 1 )
-				return (thePlayer.GetInventory().GetItemQuantityByName(itemName) + container.GetInventory().GetItemQuantity(itemID)) <= AutoLootConfig.ChosenHerbQuantity();
-		}
-		
-		return false;
-	}
 	
 	//Checks if the item is armor
 	public function IsArmor(container : W3Container, itemID : SItemUniqueId) : bool
@@ -733,16 +557,15 @@ class CAHDAutoLootFilters
 		return false;
 	}
 	
-	//Checks if the item is an ingredient (with Quality / Value / Quantity setting)
-	public function IsIngredientQVQt(container : W3Container, itemID : SItemUniqueId) : bool
+	//Checks if the item is an ingredient (with Quality / Value settings)
+	public function IsIngredientQV(container : W3Container, itemID : SItemUniqueId) : bool
 	{
-		itemName = container.GetInventory().GetItemName(itemID);
 		
 		if( IsIngredient(container, itemID) )
 		{
-			if( AutoLootConfig.ChosenIngredientQuality() == 0 && AutoLootConfig.ChosenIngredientValue() == 0 && AutoLootConfig.ChosenIngredientQuantity() == 0 )
+			if( AutoLootConfig.ChosenIngredientQuality() == 0 && AutoLootConfig.ChosenIngredientValue() == 0 )
 				return true;
-			else if( AutoLootConfig.ChosenIngredientQuality() >= 1 && AutoLootConfig.ChosenIngredientValue() == 0 && AutoLootConfig.ChosenIngredientQuantity() == 0 )
+			else if( AutoLootConfig.ChosenIngredientQuality() >= 1 && AutoLootConfig.ChosenIngredientValue() == 0 )
 			{
 				if( AutoLootConfig.ChosenIngredientQuality() <= 4 )
 					return container.GetInventory().GetItemQuality(itemID) == AutoLootConfig.ChosenIngredientQuality();
@@ -755,11 +578,9 @@ class CAHDAutoLootFilters
 				else if( AutoLootConfig.ChosenIngredientQuality() == 8 )
 					return container.GetInventory().GetItemQuality(itemID) >= 3;
 			}
-			else if( AutoLootConfig.ChosenIngredientQuality() == 0 && AutoLootConfig.ChosenIngredientValue() >= 1 && AutoLootConfig.ChosenIngredientQuantity() == 0 )
+			else if( AutoLootConfig.ChosenIngredientQuality() == 0 && AutoLootConfig.ChosenIngredientValue() >= 1 )
 				return container.GetInventory().GetItemPrice(itemID) >= AutoLootConfig.ChosenIngredientValue();
-			else if( AutoLootConfig.ChosenIngredientQuality() == 0 && AutoLootConfig.ChosenIngredientValue() == 0 && AutoLootConfig.ChosenIngredientQuantity() >= 1 )
-				return (thePlayer.GetInventory().GetItemQuantityByName(itemName) + container.GetInventory().GetItemQuantity(itemID)) <= AutoLootConfig.ChosenIngredientQuantity();
-			else if( AutoLootConfig.ChosenIngredientQuality() >= 1 && AutoLootConfig.ChosenIngredientValue() >= 1 && AutoLootConfig.ChosenIngredientQuantity() == 0 )
+			else if( AutoLootConfig.ChosenIngredientQuality() >= 1 && AutoLootConfig.ChosenIngredientValue() >= 1 )
 			{
 				if( AutoLootConfig.ChosenIngredientQuality() <= 4 )
 					return container.GetInventory().GetItemQuality(itemID) == AutoLootConfig.ChosenIngredientQuality()
@@ -776,52 +597,6 @@ class CAHDAutoLootFilters
 				else if( AutoLootConfig.ChosenIngredientQuality() == 8 )
 					return container.GetInventory().GetItemQuality(itemID) >= 3
 						&& container.GetInventory().GetItemPrice(itemID) >= AutoLootConfig.ChosenIngredientValue();
-			}
-			else if( AutoLootConfig.ChosenIngredientQuality() >= 1 && AutoLootConfig.ChosenIngredientValue() == 0 && AutoLootConfig.ChosenIngredientQuantity() >= 1 )
-			{
-				if( AutoLootConfig.ChosenIngredientQuality() <= 4 )
-					return container.GetInventory().GetItemQuality(itemID) == AutoLootConfig.ChosenIngredientQuality()
-						&& (thePlayer.GetInventory().GetItemQuantityByName(itemName) + container.GetInventory().GetItemQuantity(itemID)) <= AutoLootConfig.ChosenIngredientQuantity();
-				else if( AutoLootConfig.ChosenIngredientQuality() == 5 )
-					return container.GetInventory().GetItemQuality(itemID) <= 2
-						&& (thePlayer.GetInventory().GetItemQuantityByName(itemName) + container.GetInventory().GetItemQuantity(itemID)) <= AutoLootConfig.ChosenIngredientQuantity();
-				else if( AutoLootConfig.ChosenIngredientQuality() == 6 )
-					return container.GetInventory().GetItemQuality(itemID) <= 3
-						&& (thePlayer.GetInventory().GetItemQuantityByName(itemName) + container.GetInventory().GetItemQuantity(itemID)) <= AutoLootConfig.ChosenIngredientQuantity();
-				else if( AutoLootConfig.ChosenIngredientQuality() == 7 )
-					return container.GetInventory().GetItemQuality(itemID) >= 2
-						&& (thePlayer.GetInventory().GetItemQuantityByName(itemName) + container.GetInventory().GetItemQuantity(itemID)) <= AutoLootConfig.ChosenIngredientQuantity();
-				else if( AutoLootConfig.ChosenIngredientQuality() == 8 )
-					return container.GetInventory().GetItemQuality(itemID) >= 3
-						&& (thePlayer.GetInventory().GetItemQuantityByName(itemName) + container.GetInventory().GetItemQuantity(itemID)) <= AutoLootConfig.ChosenIngredientQuantity();
-			}
-			else if( AutoLootConfig.ChosenIngredientQuality() == 0 && AutoLootConfig.ChosenIngredientValue() >= 1 && AutoLootConfig.ChosenIngredientQuantity() >= 1 )
-			{
-				return container.GetInventory().GetItemPrice(itemID) >= AutoLootConfig.ChosenIngredientValue()
-					&& (thePlayer.GetInventory().GetItemQuantityByName(itemName) + container.GetInventory().GetItemQuantity(itemID)) <= AutoLootConfig.ChosenIngredientQuantity();
-			}
-			else if( AutoLootConfig.ChosenIngredientQuality() >= 1 && AutoLootConfig.ChosenIngredientValue() >= 1 && AutoLootConfig.ChosenIngredientQuantity() >= 1 )
-			{
-				if( AutoLootConfig.ChosenIngredientQuality() <= 4 )
-					return container.GetInventory().GetItemQuality(itemID) == AutoLootConfig.ChosenIngredientQuality()
-						&& container.GetInventory().GetItemPrice(itemID) >= AutoLootConfig.ChosenIngredientValue()
-						&& (thePlayer.GetInventory().GetItemQuantityByName(itemName) + container.GetInventory().GetItemQuantity(itemID)) <= AutoLootConfig.ChosenIngredientQuantity();
-				else if( AutoLootConfig.ChosenIngredientQuality() == 5 )
-					return container.GetInventory().GetItemQuality(itemID) <= 2
-						&& container.GetInventory().GetItemPrice(itemID) >= AutoLootConfig.ChosenIngredientValue()
-						&& (thePlayer.GetInventory().GetItemQuantityByName(itemName) + container.GetInventory().GetItemQuantity(itemID)) <= AutoLootConfig.ChosenIngredientQuantity();
-				else if( AutoLootConfig.ChosenIngredientQuality() == 6 )
-					return container.GetInventory().GetItemQuality(itemID) <= 3
-						&& container.GetInventory().GetItemPrice(itemID) >= AutoLootConfig.ChosenIngredientValue()
-						&& (thePlayer.GetInventory().GetItemQuantityByName(itemName) + container.GetInventory().GetItemQuantity(itemID)) <= AutoLootConfig.ChosenIngredientQuantity();
-				else if( AutoLootConfig.ChosenIngredientQuality() == 7 )
-					return container.GetInventory().GetItemQuality(itemID) >= 2
-						&& container.GetInventory().GetItemPrice(itemID) >= AutoLootConfig.ChosenIngredientValue()
-						&& (thePlayer.GetInventory().GetItemQuantityByName(itemName) + container.GetInventory().GetItemQuantity(itemID)) <= AutoLootConfig.ChosenIngredientQuantity();
-				else if( AutoLootConfig.ChosenIngredientQuality() == 8 )
-					return container.GetInventory().GetItemQuality(itemID) >= 3
-						&& container.GetInventory().GetItemPrice(itemID) >= AutoLootConfig.ChosenIngredientValue()
-						&& (thePlayer.GetInventory().GetItemQuantityByName(itemName) + container.GetInventory().GetItemQuantity(itemID)) <= AutoLootConfig.ChosenIngredientQuantity();
 			}
 		}
 		
@@ -837,16 +612,15 @@ class CAHDAutoLootFilters
 		return false;
 	}
 	
-	//Checks if the item is a junk (with Quality / Value / Quantity setting)
-	public function IsJunkQVQt(container : W3Container, itemID : SItemUniqueId) : bool
+	//Checks if the item is a junk (with Quality / Value settings)
+	public function IsJunkQV(container : W3Container, itemID : SItemUniqueId) : bool
 	{
-		itemName = container.GetInventory().GetItemName(itemID);
 		
 		if( IsJunk(container, itemID) )
 		{
-			if( AutoLootConfig.ChosenJunkQuality() == 0 && AutoLootConfig.ChosenJunkValue() == 0 && AutoLootConfig.ChosenJunkQuantity() == 0 )
+			if( AutoLootConfig.ChosenJunkQuality() == 0 && AutoLootConfig.ChosenJunkValue() == 0 )
 				return true;
-			else if( AutoLootConfig.ChosenJunkQuality() >= 1 && AutoLootConfig.ChosenJunkValue() == 0 && AutoLootConfig.ChosenJunkQuantity() == 0 )
+			else if( AutoLootConfig.ChosenJunkQuality() >= 1 && AutoLootConfig.ChosenJunkValue() == 0 )
 			{
 				if( AutoLootConfig.ChosenJunkQuality() <= 4 )
 					return container.GetInventory().GetItemQuality(itemID) == AutoLootConfig.ChosenJunkQuality();
@@ -859,11 +633,9 @@ class CAHDAutoLootFilters
 				else if( AutoLootConfig.ChosenJunkQuality() == 8 )
 					return container.GetInventory().GetItemQuality(itemID) >= 3;
 			}
-			else if( AutoLootConfig.ChosenJunkQuality() == 0 && AutoLootConfig.ChosenJunkValue() >= 1 && AutoLootConfig.ChosenJunkQuantity() == 0 )
+			else if( AutoLootConfig.ChosenJunkQuality() == 0 && AutoLootConfig.ChosenJunkValue() >= 1 )
 				return container.GetInventory().GetItemPrice(itemID) >= AutoLootConfig.ChosenJunkValue();
-			else if( AutoLootConfig.ChosenJunkQuality() == 0 && AutoLootConfig.ChosenJunkValue() == 0 && AutoLootConfig.ChosenJunkQuantity() >= 1 )
-				return (thePlayer.GetInventory().GetItemQuantityByName(itemName) + container.GetInventory().GetItemQuantity(itemID)) <= AutoLootConfig.ChosenJunkQuantity();
-			else if( AutoLootConfig.ChosenJunkQuality() >= 1 && AutoLootConfig.ChosenJunkValue() >= 1 && AutoLootConfig.ChosenJunkQuantity() == 0 )
+			else if( AutoLootConfig.ChosenJunkQuality() >= 1 && AutoLootConfig.ChosenJunkValue() >= 1 )
 			{
 				if( AutoLootConfig.ChosenJunkQuality() <= 4 )
 					return container.GetInventory().GetItemQuality(itemID) == AutoLootConfig.ChosenJunkQuality()
@@ -880,52 +652,6 @@ class CAHDAutoLootFilters
 				else if( AutoLootConfig.ChosenJunkQuality() == 8 )
 					return container.GetInventory().GetItemQuality(itemID) >= 3
 						&& container.GetInventory().GetItemPrice(itemID) >= AutoLootConfig.ChosenJunkValue();
-			}
-			else if( AutoLootConfig.ChosenJunkQuality() >= 1 && AutoLootConfig.ChosenJunkValue() == 0 && AutoLootConfig.ChosenJunkQuantity() >= 1 )
-			{
-				if( AutoLootConfig.ChosenJunkQuality() <= 4 )
-					return container.GetInventory().GetItemQuality(itemID) == AutoLootConfig.ChosenJunkQuality()
-						&& (thePlayer.GetInventory().GetItemQuantityByName(itemName) + container.GetInventory().GetItemQuantity(itemID)) <= AutoLootConfig.ChosenJunkQuantity();
-				else if( AutoLootConfig.ChosenJunkQuality() == 5 )
-					return container.GetInventory().GetItemQuality(itemID) <= 2
-						&& (thePlayer.GetInventory().GetItemQuantityByName(itemName) + container.GetInventory().GetItemQuantity(itemID)) <= AutoLootConfig.ChosenJunkQuantity();
-				else if( AutoLootConfig.ChosenJunkQuality() == 6 )
-					return container.GetInventory().GetItemQuality(itemID) <= 3
-						&& (thePlayer.GetInventory().GetItemQuantityByName(itemName) + container.GetInventory().GetItemQuantity(itemID)) <= AutoLootConfig.ChosenJunkQuantity();
-				else if( AutoLootConfig.ChosenJunkQuality() == 7 )
-					return container.GetInventory().GetItemQuality(itemID) >= 2
-						&& (thePlayer.GetInventory().GetItemQuantityByName(itemName) + container.GetInventory().GetItemQuantity(itemID)) <= AutoLootConfig.ChosenJunkQuantity();
-				else if( AutoLootConfig.ChosenJunkQuality() == 8 )
-					return container.GetInventory().GetItemQuality(itemID) >= 3
-						&& (thePlayer.GetInventory().GetItemQuantityByName(itemName) + container.GetInventory().GetItemQuantity(itemID)) <= AutoLootConfig.ChosenJunkQuantity();
-			}
-			else if( AutoLootConfig.ChosenJunkQuality() == 0 && AutoLootConfig.ChosenJunkValue() >= 1 && AutoLootConfig.ChosenJunkQuantity() >= 1 )
-			{
-				return container.GetInventory().GetItemPrice(itemID) >= AutoLootConfig.ChosenJunkValue()
-					&& (thePlayer.GetInventory().GetItemQuantityByName(itemName) + container.GetInventory().GetItemQuantity(itemID)) <= AutoLootConfig.ChosenJunkQuantity();
-			}
-			else if( AutoLootConfig.ChosenJunkQuality() >= 1 && AutoLootConfig.ChosenJunkValue() >= 1 && AutoLootConfig.ChosenJunkQuantity() >= 1 )
-			{
-				if( AutoLootConfig.ChosenJunkQuality() <= 4 )
-					return container.GetInventory().GetItemQuality(itemID) == AutoLootConfig.ChosenJunkQuality()
-						&& container.GetInventory().GetItemPrice(itemID) >= AutoLootConfig.ChosenJunkValue()
-						&& (thePlayer.GetInventory().GetItemQuantityByName(itemName) + container.GetInventory().GetItemQuantity(itemID)) <= AutoLootConfig.ChosenJunkQuantity();
-				else if( AutoLootConfig.ChosenJunkQuality() == 5 )
-					return container.GetInventory().GetItemQuality(itemID) <= 2
-						&& container.GetInventory().GetItemPrice(itemID) >= AutoLootConfig.ChosenJunkValue()
-						&& (thePlayer.GetInventory().GetItemQuantityByName(itemName) + container.GetInventory().GetItemQuantity(itemID)) <= AutoLootConfig.ChosenJunkQuantity();
-				else if( AutoLootConfig.ChosenJunkQuality() == 6 )
-					return container.GetInventory().GetItemQuality(itemID) <= 3
-						&& container.GetInventory().GetItemPrice(itemID) >= AutoLootConfig.ChosenJunkValue()
-						&& (thePlayer.GetInventory().GetItemQuantityByName(itemName) + container.GetInventory().GetItemQuantity(itemID)) <= AutoLootConfig.ChosenJunkQuantity();
-				else if( AutoLootConfig.ChosenJunkQuality() == 7 )
-					return container.GetInventory().GetItemQuality(itemID) >= 2
-						&& container.GetInventory().GetItemPrice(itemID) >= AutoLootConfig.ChosenJunkValue()
-						&& (thePlayer.GetInventory().GetItemQuantityByName(itemName) + container.GetInventory().GetItemQuantity(itemID)) <= AutoLootConfig.ChosenJunkQuantity();
-				else if( AutoLootConfig.ChosenJunkQuality() == 8 )
-					return container.GetInventory().GetItemQuality(itemID) >= 3
-						&& container.GetInventory().GetItemPrice(itemID) >= AutoLootConfig.ChosenJunkValue()
-						&& (thePlayer.GetInventory().GetItemQuantityByName(itemName) + container.GetInventory().GetItemQuantity(itemID)) <= AutoLootConfig.ChosenJunkQuantity();
 			}
 		}
 		
@@ -960,21 +686,6 @@ class CAHDAutoLootFilters
 		return false;
 	}
 	
-	//Checks if the item can be read (UNREAD and READ with Quantity setting)
-	public function IsBookQt(container : W3Container, itemID : SItemUniqueId) : bool
-	{
-		itemName = container.GetInventory().GetItemName(itemID);
-		
-		if( (IsReadable(container, itemID) && AutoLootConfig.UseReadableFilter()) || (IsAlreadyRead(container, itemID) && AutoLootConfig.UseAlreadyReadFilter()) )
-		{
-			if( AutoLootConfig.ChosenBookQuantity() == 0 || thePlayer.GetInventory().GetItemQuantityByName(itemName) == 0 )
-				return true;
-			else if( AutoLootConfig.ChosenBookQuantity() >= 1 )
-				return (thePlayer.GetInventory().GetItemQuantityByName(itemName) + container.GetInventory().GetItemQuantity(itemID)) <= AutoLootConfig.ChosenBookQuantity();
-		}
-		
-		return false;
-	}
 	
 	//Checks if the item is a form of currency
 	public function IsCurrency(container : W3Container, itemID : SItemUniqueId) : bool
@@ -991,19 +702,6 @@ class CAHDAutoLootFilters
 		return false;
 	}
 	
-	//Checks if the item is a form of currency (with Quantity setting)
-	public function IsCurrencyQt(container : W3Container, itemID : SItemUniqueId) : bool
-	{
-		if( IsCurrency(container, itemID) )
-		{
-			if( AutoLootConfig.ChosenCurrencyQuantity() == 0 )
-				return true;
-			else if( AutoLootConfig.ChosenCurrencyQuantity() >= 1 )
-				return container.GetInventory().GetItemQuantity(itemID) >= AutoLootConfig.ChosenCurrencyQuantity();
-		}
-		
-		return false;
-	}
 	
 	//Checks if the item is food/drink
 	public function IsFood(container : W3Container, itemID : SItemUniqueId) : bool
@@ -1014,25 +712,11 @@ class CAHDAutoLootFilters
 		return false;
 	}
 	
-	//Checks if the item is a food/drink (with Value / Quantity setting)
-	public function IsFoodVQt(container : W3Container, itemID : SItemUniqueId) : bool
+	//Checks if the item is a food/drink (with Value setting)
+	public function IsFoodV(container : W3Container, itemID : SItemUniqueId) : bool
 	{
-		itemName = container.GetInventory().GetItemName(itemID);
-		
-		if( IsFood(container, itemID) )
-		{
-			if( AutoLootConfig.ChosenFoodValue() == 0 && AutoLootConfig.ChosenFoodQuantity() == 0 )
-				return true;
-			else if( AutoLootConfig.ChosenFoodValue() >= 1 && AutoLootConfig.ChosenFoodQuantity() == 0 )
-				return container.GetInventory().GetItemPrice(itemID) >= AutoLootConfig.ChosenFoodValue();
-			else if( AutoLootConfig.ChosenFoodValue() == 0 && AutoLootConfig.ChosenFoodQuantity() >= 1 )
-				return (thePlayer.GetInventory().GetItemQuantityByName(itemName) + container.GetInventory().GetItemQuantity(itemID)) <= AutoLootConfig.ChosenFoodQuantity();
-			else if( AutoLootConfig.ChosenFoodValue() >= 1 && AutoLootConfig.ChosenFoodQuantity() >= 1 )
-				return container.GetInventory().GetItemPrice(itemID) >= AutoLootConfig.ChosenFoodValue()
-					&& ((thePlayer.GetInventory().GetItemQuantityByName(itemName) + container.GetInventory().GetItemQuantity(itemID)) <= AutoLootConfig.ChosenFoodQuantity());
-		}
-		
-		return false;
+		return IsFood(container, itemID) && (AutoLootConfig.ChosenFoodValue() == 0
+			|| container.GetInventory().GetItemPrice(itemID) >= AutoLootConfig.ChosenFoodValue());
 	}
 	
 	//Checks if the item is a glyph/runestone/mutagen

@@ -47,21 +47,15 @@ class CAHDAutoLootConfig
 					
 	
 	private var		DestroyWhiteWALogic,
-					chosenHerbQuantity,
 					chosenArmorQuality,
 					chosenArmorValue,
 					chosenWeaponQuality,
 					chosenWeaponValue,
 					chosenIngredientQuality,
 					chosenIngredientValue,
-					chosenIngredientQuantity,
 					chosenJunkQuality,
 					chosenJunkValue,
-					chosenJunkQuantity,
-					chosenBookQuantity,
-					chosenCurrencyQuantity,
 					chosenFoodValue,
-					chosenFoodQuantity,
 					chosenUpgradeValue,
 					chosenHorseValue,
 					chosenTrophyValue,
@@ -183,7 +177,6 @@ class CAHDAutoLootConfig
 		
 		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'useFilters', "false" );
 		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'useIsHerb', "false" );
-		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'chosenHerbQuantity', 0 );
 		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'useIsArmor', "false" );
 		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'chosenArmorQuality', 0 );
 		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'chosenArmorValue', 0 );
@@ -193,18 +186,13 @@ class CAHDAutoLootConfig
 		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'useIsIngredient', "false" );
 		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'chosenIngredientQuality', 0 );
 		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'chosenIngredientValue', 0 );
-		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'chosenIngredientQuantity', 0 );
 		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'useIsJunk', "false" );
 		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'chosenJunkQuality', 0 );
 		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'chosenJunkValue', 0 );
-		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'chosenJunkQuantity', 0 );
 		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'useIsReadable', "false" );
 		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'useIsAlreadyRead', "false" );
-		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'chosenBookQuantity', 0 );
 		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'useIsMoney', "false" );
-		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'chosenCurrencyQuantity', 0 );
 		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'useIsFood', "false" );
-		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'chosenFoodQuantity', 0 );
 		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'chosenFoodValue', 0 );
 		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'useIsUpgrade', "false" );
 		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'chosenUpgradeValue', 0 );
@@ -367,14 +355,14 @@ class CAHDAutoLootConfig
 					&& ( !useIsDropped || !filters.IsDropped(container) )
 					&& !useQuantity )
 				{
-					return ( (( filters.IsHerbQt(container, itemID) && useIsHerb )
+					return ( (( filters.IsHerb(container, itemID) && useIsHerb )
 						|| ( filters.IsArmorQV(container, itemID) && useIsArmor )
 						|| ( filters.IsWeaponQV(container, itemID) && useIsWeapon )
-						|| ( filters.IsIngredientQVQt(container, itemID) && useIsIngredient )
-						|| ( filters.IsJunkQVQt(container, itemID) && useIsJunk )
-						|| ( filters.IsBookQt(container, itemID) && (useIsReadable || useIsAlreadyRead) )
-						|| ( filters.IsCurrencyQt(container, itemID) && useIsMoney )
-						|| ( filters.IsFoodVQt(container, itemID) && useIsFood )
+						|| ( filters.IsIngredientQV(container, itemID) && useIsIngredient )
+						|| ( filters.IsJunkQV(container, itemID) && useIsJunk )
+						|| ( ((filters.IsReadable(container, itemID) && useIsReadable) || (filters.IsAlreadyRead(container, itemID) && useIsAlreadyRead)) && (useIsReadable || useIsAlreadyRead) )
+						|| ( filters.IsCurrency(container, itemID) && useIsMoney )
+						|| ( filters.IsFoodV(container, itemID) && useIsFood )
 						|| ( filters.IsUpgradeV(container, itemID) && useIsUpgrade )
 						|| ( filters.IsHorseV(container, itemID) && useIsHorse )
 						|| ( filters.IsTrophyV(container, itemID) && useIsTrophy )
@@ -390,14 +378,14 @@ class CAHDAutoLootConfig
 					&& !useQuantity )
 				{
 					return ( ( GetContainerLogic(container)
-						|| ( filters.IsHerbQt(container, itemID) && useIsHerb )
+						|| ( filters.IsHerb(container, itemID) && useIsHerb )
 						|| ( filters.IsArmorQV(container, itemID) && useIsArmor )
 						|| ( filters.IsWeaponQV(container, itemID) && useIsWeapon )
-						|| ( filters.IsIngredientQVQt(container, itemID) && useIsIngredient )
-						|| ( filters.IsJunkQVQt(container, itemID) && useIsJunk )
-						|| ( filters.IsBookQt(container, itemID) && (useIsReadable || useIsAlreadyRead) )
-						|| ( filters.IsCurrencyQt(container, itemID) && useIsMoney )
-						|| ( filters.IsFoodVQt(container, itemID) && useIsFood )
+						|| ( filters.IsIngredientQV(container, itemID) && useIsIngredient )
+						|| ( filters.IsJunkQV(container, itemID) && useIsJunk )
+						|| ( ((filters.IsReadable(container, itemID) && useIsReadable) || (filters.IsAlreadyRead(container, itemID) && useIsAlreadyRead)) && (useIsReadable || useIsAlreadyRead) )
+						|| ( filters.IsCurrency(container, itemID) && useIsMoney )
+						|| ( filters.IsFoodV(container, itemID) && useIsFood )
 						|| ( filters.IsUpgradeV(container, itemID) && useIsUpgrade )
 						|| ( filters.IsHorseV(container, itemID) && useIsHorse )
 						|| ( filters.IsTrophyV(container, itemID) && useIsTrophy )
@@ -414,14 +402,14 @@ class CAHDAutoLootConfig
 				{
 					return ( ( GetContainerLogic(container)
 						|| GetQuantityLogic(count)
-						|| ( filters.IsHerbQt(container, itemID) && useIsHerb )
+						|| ( filters.IsHerb(container, itemID) && useIsHerb )
 						|| ( filters.IsArmorQV(container, itemID) && useIsArmor )
 						|| ( filters.IsWeaponQV(container, itemID) && useIsWeapon )
-						|| ( filters.IsIngredientQVQt(container, itemID) && useIsIngredient )
-						|| ( filters.IsJunkQVQt(container, itemID) && useIsJunk )
-						|| ( filters.IsBookQt(container, itemID) && (useIsReadable || useIsAlreadyRead) )
-						|| ( filters.IsCurrencyQt(container, itemID) && useIsMoney )
-						|| ( filters.IsFoodVQt(container, itemID) && useIsFood )
+						|| ( filters.IsIngredientQV(container, itemID) && useIsIngredient )
+						|| ( filters.IsJunkQV(container, itemID) && useIsJunk )
+						|| ( ((filters.IsReadable(container, itemID) && useIsReadable) || (filters.IsAlreadyRead(container, itemID) && useIsAlreadyRead)) && (useIsReadable || useIsAlreadyRead) )
+						|| ( filters.IsCurrency(container, itemID) && useIsMoney )
+						|| ( filters.IsFoodV(container, itemID) && useIsFood )
 						|| ( filters.IsUpgradeV(container, itemID) && useIsUpgrade )
 						|| ( filters.IsHorseV(container, itemID) && useIsHorse )
 						|| ( filters.IsTrophyV(container, itemID) && useIsTrophy )
@@ -437,14 +425,14 @@ class CAHDAutoLootConfig
 					&& useQuantity )
 				{
 					return ( ( GetQuantityLogic(count)
-						|| ( filters.IsHerbQt(container, itemID) && useIsHerb )
+						|| ( filters.IsHerb(container, itemID) && useIsHerb )
 						|| ( filters.IsArmorQV(container, itemID) && useIsArmor )
 						|| ( filters.IsWeaponQV(container, itemID) && useIsWeapon )
-						|| ( filters.IsIngredientQVQt(container, itemID) && useIsIngredient )
-						|| ( filters.IsJunkQVQt(container, itemID) && useIsJunk )
-						|| ( filters.IsBookQt(container, itemID) && (useIsReadable || useIsAlreadyRead) )
-						|| ( filters.IsCurrencyQt(container, itemID) && useIsMoney )
-						|| ( filters.IsFoodVQt(container, itemID) && useIsFood )
+						|| ( filters.IsIngredientQV(container, itemID) && useIsIngredient )
+						|| ( filters.IsJunkQV(container, itemID) && useIsJunk )
+						|| ( ((filters.IsReadable(container, itemID) && useIsReadable) || (filters.IsAlreadyRead(container, itemID) && useIsAlreadyRead)) && (useIsReadable || useIsAlreadyRead) )
+						|| ( filters.IsCurrency(container, itemID) && useIsMoney )
+						|| ( filters.IsFoodV(container, itemID) && useIsFood )
 						|| ( filters.IsUpgradeV(container, itemID) && useIsUpgrade )
 						|| ( filters.IsHorseV(container, itemID) && useIsHorse )
 						|| ( filters.IsTrophyV(container, itemID) && useIsTrophy )
@@ -545,7 +533,6 @@ class CAHDAutoLootConfig
 	
 	public function FiltersEnabled() : bool { return SettingEnabled( 'AHDAutoLoot_filters', 'useFilters' ); }
 	public function UseHerbFilter() : bool { return SettingEnabled( 'AHDAutoLoot_filters', 'useIsHerb' ); }
-	public function ChosenHerbQuantity() : int { return GetSettingAsInt( 'AHDAutoLoot_filters', 'chosenHerbQuantity' ); }
 	public function UseArmorFilter() : bool { return SettingEnabled( 'AHDAutoLoot_filters', 'useIsArmor' ); }
 	public function ChosenArmorQuality() : int { return GetSettingAsInt( 'AHDAutoLoot_filters', 'chosenArmorQuality' ); }
 	public function ChosenArmorValue() : int { return GetSettingAsInt( 'AHDAutoLoot_filters', 'chosenArmorValue' ); }
@@ -555,19 +542,14 @@ class CAHDAutoLootConfig
 	public function UseIngredientFilter() : bool { return SettingEnabled( 'AHDAutoLoot_filters', 'useIsIngredient' ); }
 	public function ChosenIngredientQuality() : int { return GetSettingAsInt( 'AHDAutoLoot_filters', 'chosenIngredientQuality' ); }
 	public function ChosenIngredientValue() : int { return GetSettingAsInt( 'AHDAutoLoot_filters', 'chosenIngredientValue' ); }
-	public function ChosenIngredientQuantity() : int { return GetSettingAsInt( 'AHDAutoLoot_filters', 'chosenIngredientQuantity' ); }
 	public function UseJunkFilter() : bool { return SettingEnabled( 'AHDAutoLoot_filters', 'useIsJunk' ); }
 	public function ChosenJunkQuality() : int { return GetSettingAsInt( 'AHDAutoLoot_filters', 'chosenJunkQuality' ); }
 	public function ChosenJunkValue() : int { return GetSettingAsInt( 'AHDAutoLoot_filters', 'chosenJunkValue' ); }
-	public function ChosenJunkQuantity() : int { return GetSettingAsInt( 'AHDAutoLoot_filters', 'chosenJunkQuantity' ); }
-	public function ChosenBookQuantity() : int { return GetSettingAsInt( 'AHDAutoLoot_filters', 'chosenBookQuantity' ); }
 	public function UseReadableFilter() : bool { return SettingEnabled( 'AHDAutoLoot_filters', 'useIsReadable' ); }
 	public function UseAlreadyReadFilter() : bool { return SettingEnabled( 'AHDAutoLoot_filters', 'useIsAlreadyRead' ); }
 	public function UseCurrencyFilter() : bool { return SettingEnabled( 'AHDAutoLoot_filters', 'useIsMoney' ); }
-	public function ChosenCurrencyQuantity() : int { return GetSettingAsInt( 'AHDAutoLoot_filters', 'chosenCurrencyQuantity' ); }
 	public function UseFoodFilter() : bool { return SettingEnabled( 'AHDAutoLoot_filters', 'useIsFood' ); }
 	public function ChosenFoodValue() : int { return GetSettingAsInt( 'AHDAutoLoot_filters', 'chosenFoodValue' ); }
-	public function ChosenFoodQuantity() : int { return GetSettingAsInt( 'AHDAutoLoot_filters', 'chosenFoodQuantity' ); }
 	public function UseUpgradeFilter() : bool { return SettingEnabled( 'AHDAutoLoot_filters', 'useIsUpgrade' ); }
 	public function ChosenUpgradeValue() : int { return GetSettingAsInt( 'AHDAutoLoot_filters', 'chosenUpgradeValue' ); }
 	public function UseHorseFilter() : bool { return SettingEnabled( 'AHDAutoLoot_filters', 'useIsHorse' ); }

@@ -139,7 +139,6 @@
 		<PresetsArray>
 			<Preset id="0" displayName="ahdal_default">
 				<Entry varId="useIsHerb" value="false"/>
-				<Entry varId="chosenHerbQuantity" value="0"/>
 				<Entry varId="useIsArmor" value="false"/>
 				<Entry varId="chosenArmorQuality" value="0"/>
 				<Entry varId="chosenArmorValue" value="0"/>
@@ -149,19 +148,14 @@
 				<Entry varId="useIsIngredient" value="false"/>
 				<Entry varId="chosenIngredientQuality" value="0"/>
 				<Entry varId="chosenIngredientValue" value="0"/>
-				<Entry varId="chosenIngredientQuantity" value="0"/>
 				<Entry varId="useIsJunk" value="false"/>
 				<Entry varId="chosenJunkQuality" value="0"/>
 				<Entry varId="chosenJunkValue" value="0"/>
-				<Entry varId="chosenJunkQuantity" value="0"/>
 				<Entry varId="useIsReadable" value="false"/>
 				<Entry varId="useIsAlreadyRead" value="false"/>
-				<Entry varId="chosenBookQuantity" value="0"/>
 				<Entry varId="useIsMoney" value="false"/>
-				<Entry varId="chosenCurrencyQuantity" value="0"/>
 				<Entry varId="useIsFood" value="false"/>
 				<Entry varId="chosenFoodValue" value="0"/>
-				<Entry varId="chosenFoodQuantity" value="0"/>
 				<Entry varId="useIsUpgrade" value="false"/>
 				<Entry varId="chosenUpgradeValue" value="0"/>
 				<Entry varId="useIsHorse" value="false"/>
@@ -178,7 +172,6 @@
 			</Preset>
 			<Preset id="1" displayName="ahdal_presetAll">
 				<Entry varId="useIsHerb" value="true"/>
-				<Entry varId="chosenHerbQuantity" value="0"/>
 				<Entry varId="useIsArmor" value="true"/>
 				<Entry varId="chosenArmorQuality" value="0"/>
 				<Entry varId="chosenArmorValue" value="0"/>
@@ -188,19 +181,14 @@
 				<Entry varId="useIsIngredient" value="true"/>
 				<Entry varId="chosenIngredientQuality" value="0"/>
 				<Entry varId="chosenIngredientValue" value="0"/>
-				<Entry varId="chosenIngredientQuantity" value="0"/>
 				<Entry varId="useIsJunk" value="true"/>
 				<Entry varId="chosenJunkQuality" value="0"/>
 				<Entry varId="chosenJunkValue" value="0"/>
-				<Entry varId="chosenJunkQuantity" value="0"/>
 				<Entry varId="useIsReadable" value="true"/>
 				<Entry varId="useIsAlreadyRead" value="true"/>
-				<Entry varId="chosenBookQuantity" value="0"/>
 				<Entry varId="useIsMoney" value="true"/>
-				<Entry varId="chosenCurrencyQuantity" value="0"/>
 				<Entry varId="useIsFood" value="true"/>
 				<Entry varId="chosenFoodValue" value="0"/>
-				<Entry varId="chosenFoodQuantity" value="0"/>
 				<Entry varId="useIsUpgrade" value="true"/>
 				<Entry varId="chosenUpgradeValue" value="0"/>
 				<Entry varId="useIsHorse" value="true"/>
@@ -217,7 +205,6 @@
 			</Preset>
 			<Preset id="2" displayName="ahdal_presetskipWhite">
 				<Entry varId="useIsHerb" value="true"/>
-				<Entry varId="chosenHerbQuantity" value="0"/>
 				<Entry varId="useIsArmor" value="true"/>
 				<Entry varId="chosenArmorQuality" value="9"/>
 				<Entry varId="chosenArmorValue" value="0"/>
@@ -227,19 +214,14 @@
 				<Entry varId="useIsIngredient" value="true"/>
 				<Entry varId="chosenIngredientQuality" value="0"/>
 				<Entry varId="chosenIngredientValue" value="0"/>
-				<Entry varId="chosenIngredientQuantity" value="0"/>
 				<Entry varId="useIsJunk" value="true"/>
 				<Entry varId="chosenJunkQuality" value="0"/>
 				<Entry varId="chosenJunkValue" value="0"/>
-				<Entry varId="chosenJunkQuantity" value="0"/>
 				<Entry varId="useIsReadable" value="true"/>
 				<Entry varId="useIsAlreadyRead" value="true"/>
-				<Entry varId="chosenBookQuantity" value="0"/>
 				<Entry varId="useIsMoney" value="true"/>
-				<Entry varId="chosenCurrencyQuantity" value="0"/>
 				<Entry varId="useIsFood" value="true"/>
 				<Entry varId="chosenFoodValue" value="0"/>
-				<Entry varId="chosenFoodQuantity" value="0"/>
 				<Entry varId="useIsUpgrade" value="true"/>
 				<Entry varId="chosenUpgradeValue" value="0"/>
 				<Entry varId="useIsHorse" value="true"/>
@@ -259,7 +241,6 @@
 			<Var id="useFilters" displayName="ahdal_filterToggle" displayType="TOGGLE" />
 			<Var id="Separator" displayName="" displayType="SUBTLE_SEPARATOR"/>
 			<Var id="useIsHerb" displayName="ahdal_herbToggle" displayType="TOGGLE" />
-			<Var id="chosenHerbQuantity" displayName="generalQuantityLimit" displayType="SLIDER;0;1000;1000" />
 			<Var id="Separator" displayName="" displayType="SUBTLE_SEPARATOR"/>
 			<Var id="useIsArmor" displayName="ahdal_armorToggle" displayType="TOGGLE" />
 			<Var id="chosenArmorQuality" displayName="generalQuality" displayType="OPTIONS" >
@@ -380,7 +361,6 @@
 				</OptionsArray>
 			</Var>
 			<Var id="chosenIngredientValue" displayName="generalValue" displayType="SLIDER;0;1000;1000" />
-			<Var id="chosenIngredientQuantity" displayName="generalQuantityLimit" displayType="SLIDER;0;1000;1000" />
 			<Var id="Separator" displayName="" displayType="SUBTLE_SEPARATOR"/>
 			<Var id="useIsJunk" displayName="ahdal_junkToggle" displayType="TOGGLE" />
 			<Var id="chosenJunkQuality" displayName="generalQuality" displayType="OPTIONS" >
@@ -415,18 +395,14 @@
 				</OptionsArray>
 			</Var>
 			<Var id="chosenJunkValue" displayName="generalValue" displayType="SLIDER;0;500;500" />
-			<Var id="chosenJunkQuantity" displayName="generalQuantityLimit" displayType="SLIDER;0;1000;1000" />
 			<Var id="Separator" displayName="" displayType="SUBTLE_SEPARATOR"/>
 			<Var id="useIsReadable" displayName="ahdal_readableToggle" displayType="TOGGLE" />
 			<Var id="useIsAlreadyRead" displayName="ahdal_alreadyReadToggle" displayType="TOGGLE" />
-			<Var id="chosenBookQuantity" displayName="readableQuantityLimit" displayType="SLIDER;0;99;99" />
 			<Var id="Separator" displayName="" displayType="SUBTLE_SEPARATOR"/>
 			<Var id="useIsMoney" displayName="ahdal_moneyToggle" displayType="TOGGLE" />
-			<Var id="chosenCurrencyQuantity" displayName="ahdal_CurrencyQuantity" displayType="SLIDER;0;5000;5000" />
 			<Var id="Separator" displayName="" displayType="SUBTLE_SEPARATOR"/>
 			<Var id="useIsFood" displayName="ahdal_foodToggle" displayType="TOGGLE" />
 			<Var id="chosenFoodValue" displayName="generalValue" displayType="SLIDER;0;50;50" />
-			<Var id="chosenFoodQuantity" displayName="generalQuantityLimit" displayType="SLIDER;0;1000;1000" />
 			<Var id="Separator" displayName="" displayType="SUBTLE_SEPARATOR"/>
 			<Var id="useIsUpgrade" displayName="ahdal_upgradeToggle" displayType="TOGGLE" />
 			<Var id="chosenUpgradeValue" displayName="generalValue" displayType="SLIDER;0;1000;1000" />
