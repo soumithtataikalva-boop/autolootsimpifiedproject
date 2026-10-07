@@ -4,6 +4,7 @@
 		<PresetsArray>
 			<Preset id="0" displayName="ahdal_default">
 				<Entry varId="useAutoLoot" value="true"/>
+				<Entry varId="interactionKey_lootLogic" value="0"/>
 				<Entry varId="useNoAccidentalStealing" value="false"/>
 				<Entry varId="disableStealing" value="false"/>
 				<Entry varId="enableOnKillLoot" value="true"/>
@@ -15,6 +16,19 @@
 		</PresetsArray>
 		<VisibleVars>
 			<Var id="useAutoLoot" displayName="ahdal_modToggle" displayType="TOGGLE" />
+			<Var id="interactionKey_lootLogic" displayName="ahdal_interactionKeyLogic" displayType="OPTIONS" >
+				<OptionsArray>
+					<Option id="0" displayName="interactionKey_Off">
+						<Entry varId="interactionKey_lootLogic" value="0"/>
+					</Option>
+					<Option id="1" displayName="interactionKey_UniqueContainers">
+						<Entry varId="interactionKey_lootLogic" value="1"/>
+					</Option>
+					<Option id="2" displayName="interactionKey_On">
+						<Entry varId="interactionKey_lootLogic" value="2"/>
+					</Option>
+				</OptionsArray>
+			</Var>
 			<Var id="useNoAccidentalStealing" displayName="ahdal_noStealing" displayType="TOGGLE" />
 			<Var id="disableStealing" displayName="ahdal_disableStealing" displayType="TOGGLE" />
 			<Var id="enableOnKillLoot" displayName="ahdal_autoLootOnKill" displayType="TOGGLE" />
@@ -102,34 +116,6 @@
 					</Option>
 					<Option id="2" displayName="ahdal_slidersGreater">
 						<Entry varId="quantityLogic" value="2"/>
-					</Option>
-				</OptionsArray>
-			</Var>
-		</VisibleVars>
-	</Group>
-	<Group id="InteractionKey" displayName="Mods.ahdal_modName.ahdal_interactionKey">
-		<PresetsArray>
-			<Preset id="0" displayName="ahdal_default">
-				<Entry varId="interactionKey_lootLogic" value="0"/>
-			</Preset>
-			<Preset id="1" displayName="ahdal_normal">
-				<Entry varId="interactionKey_lootLogic" value="1"/>
-			</Preset>
-			<Preset id="2" displayName="ahdal_ultra">
-				<Entry varId="interactionKey_lootLogic" value="2"/>
-			</Preset>
-		</PresetsArray>
-		<VisibleVars>
-			<Var id="interactionKey_lootLogic" displayName="ahdal_interactionKeyLogic" displayType="OPTIONS" >
-				<OptionsArray>
-					<Option id="0" displayName="interactionKey_Off">
-						<Entry varId="interactionKeyLogic" value="0"/>
-					</Option>
-					<Option id="1" displayName="interactionKey_UniqueContainers">
-						<Entry varId="interactionKeyLogic" value="1"/>
-					</Option>
-					<Option id="2" displayName="interactionKey_On">
-						<Entry varId="interactionKeyLogic" value="2"/>
 					</Option>
 				</OptionsArray>
 			</Var>

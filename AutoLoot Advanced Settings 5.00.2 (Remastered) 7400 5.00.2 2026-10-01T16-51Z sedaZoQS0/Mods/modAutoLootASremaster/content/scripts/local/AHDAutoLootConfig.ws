@@ -163,7 +163,7 @@ class CAHDAutoLootConfig
 		UserSettings.SetVarValue( 'AHDAutoLoot_containers', 'quantityAmount', 15 );
 		UserSettings.SetVarValue( 'AHDAutoLoot_containers', 'Virtual_quantityLogic', 0 );
 		
-		UserSettings.SetVarValue( 'InteractionKey', 'interactionKey_lootLogic', 0 );
+		UserSettings.SetVarValue( 'AHDAutoLoot_settings', 'interactionKey_lootLogic', 0 );
 		
 		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'useFilters', "false" );
 		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'useIsHerb', "false" );
@@ -509,7 +509,15 @@ class CAHDAutoLootConfig
 	public function ChosenQuantity() : int { return GetSettingAsInt( 'AHDAutoLoot_containers', 'quantityAmount' ); }
 	public function ChosenQuantityLogic() : int { return GetSettingAsInt( 'AHDAutoLoot_containers', 'Virtual_quantityLogic' ); }
 	
-	public function GetEkeyLogic() : int { return GetSettingAsInt( 'InteractionKey', 'interactionKey_lootLogic' ); }
+	public function GetEkeyLogic() : int
+	{
+		var mode : string;
+		mode = UserSettings.GetVarValue( 'AHDAutoLoot_settings', 'interactionKey_lootLogic' );
+		//Read older saved settings until a mode is stored in General Settings.
+		if( mode == "" )
+			return GetSettingAsInt( 'InteractionKey', 'interactionKey_lootLogic' );
+		return StringToInt(mode);
+	}
 	
 	public function FiltersEnabled() : bool { return SettingEnabled( 'AHDAutoLoot_filters', 'useFilters' ); }
 	public function UseHerbFilter() : bool { return SettingEnabled( 'AHDAutoLoot_filters', 'useIsHerb' ); }
