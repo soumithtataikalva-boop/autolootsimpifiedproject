@@ -52,7 +52,6 @@
 				<Entry varId="noBeehives" value="false"/>
 				<Entry varId="noDropItems" value="false"/>
 				<Entry varId="noHorseLoot" value="false"/>
-				<Entry varId="DestroyWhiteLogicWA" value="0"/>
 			</Preset>
 		</PresetsArray>
 		<VisibleVars>
@@ -63,19 +62,6 @@
 			<Var id="noBeehives" displayName="ahdal_noBeehives" displayType="TOGGLE" />
 			<Var id="noDropItems" displayName="ahdal_noDropItems" displayType="TOGGLE" />
 			<Var id="noHorseLoot" displayName="ahdal_noHorseLoot" displayType="TOGGLE" />
-			<Var id="DestroyWhiteLogicWA" displayName="ahdal_DestroyWhiteLogicWA" displayType="OPTIONS" >
-				<OptionsArray>
-					<Option id="0" displayName="generalOff">
-						<Entry varId="WADestroyLogic" value="0"/>
-					</Option>
-					<Option id="1" displayName="ahdal_DestroyWhiteWAONplus">
-						<Entry varId="WADestroyLogic" value="1"/>
-					</Option>
-					<Option id="2" displayName="generalOn">
-						<Entry varId="WADestroyLogic" value="2"/>
-					</Option>
-				</OptionsArray>
-			</Var>
 		</VisibleVars>
 	</Group>
 	<Group id="AHDAutoLoot_filters" displayName="Mods.ahdal_modName.ahdal_itemFilters">

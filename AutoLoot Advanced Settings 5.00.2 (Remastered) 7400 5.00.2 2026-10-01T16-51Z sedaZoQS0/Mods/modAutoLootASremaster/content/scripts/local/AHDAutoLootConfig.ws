@@ -42,8 +42,7 @@ class CAHDAutoLootConfig
 					useIsKey : bool;
 					
 	
-	private var		DestroyWhiteWALogic,
-					chosenArmorQuality,
+	private var		chosenArmorQuality,
 					chosenWeaponQuality,
 					chosenIngredientQuality,
 					chosenJunkQuality : int;
@@ -141,7 +140,6 @@ class CAHDAutoLootConfig
 		UserSettings.SetVarValue( 'AHDAutoLoot_filters_global', 'noBeehives', "false" );
 		UserSettings.SetVarValue( 'AHDAutoLoot_filters_global', 'noDropItems', "false" );
 		UserSettings.SetVarValue( 'AHDAutoLoot_filters_global', 'noHorseLoot', "false" );
-		UserSettings.SetVarValue( 'AHDAutoLoot_filters_global', 'DestroyWhiteLogicWA', 0 );
 		
 		
 		UserSettings.SetVarValue( 'AHDAutoLoot_settings', 'interactionKey_lootLogic', 0 );
@@ -248,39 +246,12 @@ class CAHDAutoLootConfig
 	//Returns if the specified item can be looted from the container based on menu configuration
 	public function AutoLootLogic(container : W3Container, itemID : SItemUniqueId) : bool
 	{
-		var itemName : name;
 		
-		itemName = container.GetInventory().GetItemName(itemID);
 		
 		GetAutoLootSettings();
 		
 		if( modEnabled )
 		{
-			//Added new option to hide=destroy white quality Weapons/Armors (EXPERIMENTAL!)
-			if( DestroyWhiteWALogic == 1 || DestroyWhiteWALogic == 2 )
-			{
-				if( (container.GetInventory().IsItemWeapon(itemID) || container.GetInventory().IsItemAnyArmor(itemID)) &&
-					(container.GetInventory().GetItemQuality(itemID) == 1)
-					//Below are FIXED white Weapons/Armors excluded from "Destroy..." function
-					&& !StrContains(NameToString(itemName), "Witcher Silver Sword") //Starting silver sword (Witcher Silver Sword)
-					&& !StrContains(NameToString(itemName), "Starting Armor") //Starting Armor (Kaer Morhen armor)
-					&& !StrContains(NameToString(itemName), "Geralt Shirt") //Shirt (part of crafting recipes)
-					&& !StrContains(NameToString(itemName), "Casual") ) //this line should be (only?) story related white Weapons/Armors items
-				{
-				//A) "Destroy..." function = ON with exceptions (Optional white Weapons/Armors are excluded from "Destroy..." function)
-					if( DestroyWhiteWALogic == 1)
-					{
-						if( !container.GetInventory().ItemHasTag(itemID, 'crossbow') ) //Crossbows (OPTIONAL)
-							container.GetInventory().AddItemTag(itemID, theGame.params.TAG_DONT_SHOW);
-					}
-				//B) "Destroy..." function = ON (Optional white Weapons/Armors are destroyed too by "Destroy..." function)
-					else //no need: if( DestroyWhiteWALogic == 2)
-					{
-						container.GetInventory().AddItemTag(itemID, theGame.params.TAG_DONT_SHOW);
-					}
-				}
-			}
-			
 			if( useFilters
 				&& (GetFeatureManager().GetInteractionKeyContainerType() <= 0 || GetEkeyLogic() == 2) ) //Mode 2 applies filters to interaction loot; modes 0/1 retain their bypass.
 			{
@@ -316,7 +287,6 @@ class CAHDAutoLootConfig
 		useNoAccidentalStealing		= UserSettings.GetVarValue( 'AHDAutoLoot_settings', 'useNoAccidentalStealing' );
 		disableStealing				= UserSettings.GetVarValue( 'AHDAutoLoot_settings', 'disableStealing' );
 		
-		DestroyWhiteWALogic			= StringToInt(UserSettings.GetVarValue( 'AHDAutoLoot_filters_global', 'DestroyWhiteLogicWA' ));
 		
 		
 		useFilters					= UserSettings.GetVarValue( 'AHDAutoLoot_filters', 'useFilters' );
@@ -371,7 +341,6 @@ class CAHDAutoLootConfig
 	public function ProtectBeehives() : bool { return SettingEnabled( 'AHDAutoLoot_filters_global', 'noBeehives' ); }
 	public function ProtectDroppedItems() : bool { return SettingEnabled( 'AHDAutoLoot_filters_global', 'noDropItems' ); }
 	public function NoHorseLooting() : bool { return SettingEnabled( 'AHDAutoLoot_filters_global', 'noHorseLoot' ); }
-	//public function GetWhiteWADestructionLogic() : int { return GetSettingAsInt( 'AHDAutoLoot_filters_global', 'DestroyWhiteLogicWA' ); }
 	
 	
 	public function GetEkeyLogic() : int

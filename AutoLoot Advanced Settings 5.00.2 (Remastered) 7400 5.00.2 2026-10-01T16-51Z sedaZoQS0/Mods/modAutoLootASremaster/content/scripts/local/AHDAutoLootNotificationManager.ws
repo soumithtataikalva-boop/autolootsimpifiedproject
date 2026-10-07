@@ -117,7 +117,7 @@ class CAHDAutoLootNotificationManager
 		var itemName : string;
 		var soundName : name;
 		
-		//FIX for rare occasions where empty loot window (or its part) could appear and also hides popups with white items destroyed by Destroy function (which rather shouldn't be used at all)
+		//Exclude hidden or non-droppable items from notifications unless explicitly marked Lootable.
 		if( container.GetInventory().ItemHasTag(itemID, 'Lootable' )
 			|| !container.GetInventory().ItemHasTag(itemID, 'NoDrop')
 			&& !container.GetInventory().ItemHasTag(itemID, theGame.params.TAG_DONT_SHOW) )
