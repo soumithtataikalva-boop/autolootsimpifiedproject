@@ -557,10 +557,6 @@ class CR4LootPopup extends CR4PopupBase
 	
 	protected function SignalLootingReactionEvent()
 	{
-		//AutoLoot +A.S.: Disable stealing
-		if( GetWitcherPlayer().GetAutoLootConfig().StealingDisabled() )
-			return;
-		
 		if ( _container.disableStealing )
 			return;
 		if ( _container.HasQuestItem() )
@@ -577,10 +573,6 @@ class CR4LootPopup extends CR4PopupBase
 	
 	protected function SignalStealingReactionEvent()
 	{
-		//AutoLoot +A.S.: Disable stealing
-		if( GetWitcherPlayer().GetAutoLootConfig().StealingDisabled() )
-			return;
-		
 		if ( _container.disableStealing || _container.HasQuestItem() || (W3Herb)_container || (W3ActorRemains)_container )
 			return;
 		
@@ -590,10 +582,6 @@ class CR4LootPopup extends CR4PopupBase
 	protected function SignalContainerClosedEvent()
 	{
 		theGame.ReleaseNoSaveLock(safeLock);
-		
-		//AutoLoot +A.S.: Disable stealing
-		if( GetWitcherPlayer().GetAutoLootConfig().StealingDisabled() )
-			return;
 		
 		if ( _container.disableStealing || _container.HasQuestItem() || (W3Herb)_container || (W3ActorRemains)_container )
 			return;

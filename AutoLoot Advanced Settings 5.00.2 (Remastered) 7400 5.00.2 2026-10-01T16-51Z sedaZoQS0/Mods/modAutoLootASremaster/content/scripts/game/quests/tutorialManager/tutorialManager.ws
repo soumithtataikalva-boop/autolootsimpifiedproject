@@ -1175,11 +1175,6 @@ import class CR4TutorialSystem extends IGameSystem
 	
 	public function OnGuardLootingWarning()
 	{
-		//AutoLoot +A.S.--
-		if( GetWitcherPlayer().GetAutoLootConfig().StealingDisabled() )
-			return;
-		//--AutoLoot +A.S.
-		
 		thePlayer.DisplayHudMessage( GetLocStringByKeyExt("guards_stealing_message") );
 		if(!HasSeenTutorial('TutorialStealing'))
 			FactsAdd("tut_stealing");

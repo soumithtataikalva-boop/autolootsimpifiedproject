@@ -22,7 +22,6 @@ class CAHDAutoLootConfig
 	
 	private var		modEnabled,
 					useNoAccidentalStealing,
-					disableStealing,
 					useFilters,
 					useIsArmor,
 					useIsWeapon,
@@ -125,7 +124,6 @@ class CAHDAutoLootConfig
 	{
 		UserSettings.SetVarValue( 'AHDAutoLoot_settings', 'useAutoLoot', "true" );
 		UserSettings.SetVarValue( 'AHDAutoLoot_settings', 'useNoAccidentalStealing', "false" );
-		UserSettings.SetVarValue( 'AHDAutoLoot_settings', 'disableStealing', "false" );
 		UserSettings.SetVarValue( 'AHDAutoLoot_settings', 'enableOnKillLoot', "true" );
 		UserSettings.SetVarValue( 'AHDAutoLoot_settings', 'lootOnKillMaxDistance', 10 );
 		UserSettings.SetVarValue( 'AHDAutoLoot_settings', 'questItemWarningMsg', "true" );
@@ -234,7 +232,6 @@ class CAHDAutoLootConfig
 	//Checks if we can loot the container based on stealing options
 	private function GetStealingLogic(container : W3Container) : bool
 	{
-		if( disableStealing )			{ return true; }
 		if( useNoAccidentalStealing )	{ return filters.IsNotStealing(container); }
 		
 		return true;
@@ -284,7 +281,6 @@ class CAHDAutoLootConfig
 	{
 		modEnabled					= UserSettings.GetVarValue( 'AHDAutoLoot_settings', 'useAutoLoot' );
 		useNoAccidentalStealing		= UserSettings.GetVarValue( 'AHDAutoLoot_settings', 'useNoAccidentalStealing' );
-		disableStealing				= UserSettings.GetVarValue( 'AHDAutoLoot_settings', 'disableStealing' );
 		
 		
 		
@@ -315,8 +311,7 @@ class CAHDAutoLootConfig
 	//public function GetShortcuts() : AutoLootShortcuts { return shortcuts; }
 	
 	public function ModEnabled() : bool { return SettingEnabled( 'AHDAutoLoot_settings', 'useAutoLoot' ); }
-	public function NoAccidentalStealingEnabled() : bool { if( SettingEnabled( 'AHDAutoLoot_settings', 'disableStealing' ) ) return false; return SettingEnabled( 'AHDAutoLoot_settings', 'useNoAccidentalStealing' ); }
-	public function StealingDisabled() : bool { return SettingEnabled( 'AHDAutoLoot_settings', 'disableStealing' ); }
+	public function NoAccidentalStealingEnabled() : bool { return SettingEnabled( 'AHDAutoLoot_settings', 'useNoAccidentalStealing' ); }
 	public function LootOnKillEnabled() : bool { return SettingEnabled( 'AHDAutoLoot_settings', 'enableOnKillLoot' ); }
 	//Loot-on-kill has its own range after removal of the radius-looting feature.
 	//Existing settings without this value use the previous default of 10 metres.

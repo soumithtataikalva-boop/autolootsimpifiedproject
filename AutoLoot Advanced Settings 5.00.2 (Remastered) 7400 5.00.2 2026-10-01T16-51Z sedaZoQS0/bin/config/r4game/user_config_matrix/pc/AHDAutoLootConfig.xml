@@ -6,7 +6,6 @@
 				<Entry varId="useAutoLoot" value="true"/>
 				<Entry varId="interactionKey_lootLogic" value="0"/>
 				<Entry varId="useNoAccidentalStealing" value="false"/>
-				<Entry varId="disableStealing" value="false"/>
 				<Entry varId="enableOnKillLoot" value="true"/>
 				<Entry varId="lootOnKillMaxDistance" value="10"/>
 				<Entry varId="questItemWarningMsg" value="true"/>
@@ -29,7 +28,6 @@
 				</OptionsArray>
 			</Var>
 			<Var id="useNoAccidentalStealing" displayName="ahdal_noStealing" displayType="TOGGLE" />
-			<Var id="disableStealing" displayName="ahdal_disableStealing" displayType="TOGGLE" />
 			<Var id="enableOnKillLoot" displayName="ahdal_autoLootOnKill" displayType="TOGGLE" />
 			<!-- Distance applies only to loot-on-kill, not interaction looting. -->
 			<Var id="lootOnKillMaxDistance" displayName="ahdal_distance" displayType="SLIDER;1;30;29" />
