@@ -29,8 +29,7 @@ Enable filters activates category selection for loot-on-kill and mode 2 interact
 Available categories, in menu order:
 
 - Armor and weapons, each with an optional quality selector.
-- Upgrades, tools, horse equipment, trophies, food, and currency.
-- Ingredients, with no loot quality selector.
+- Upgrades, tools, horse equipment, trophies, food, currency, and ingredients
 - Junk, with an optional quality selector.
 - Formulas, unread readable items, already-read items, keys, masks, and other items.
 
