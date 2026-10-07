@@ -44,12 +44,10 @@ class CAHDAutoLootActions
 		
 		wasLooted = LootContainer(container);
 		
+		//Direct game interactions (including herbs) must display their queued loot.
+		//Only defer when the target-looting handler owns notification merging.
 		if( !container.mergeNotification )
-		{
-			//The interaction handler displays the captured target's merged loot notification.
-			if( !AutoLootConfig.GetFeatureManager().WasInteractionKeyPressed() || AutoLootConfig.GetFeatureManager().GetInteractionKeyContainerType() == 3 )
-				AutoLootConfig.GetNotifications().ShowNotification();
-		}
+			AutoLootConfig.GetNotifications().ShowNotification();
 		
 		CleanAndFix(container, wasLooted);
 		
