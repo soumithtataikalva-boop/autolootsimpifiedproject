@@ -361,7 +361,7 @@ class CAHDAutoLootConfig
 			}
 			
 			if( useFilters
-				&& GetFeatureManager().GetInteractionKeyContainerType() <= 0 ) //excludes Filters when E is pressed
+				&& (GetFeatureManager().GetInteractionKeyContainerType() <= 0 || GetEkeyLogic() == 2) ) //Mode 2 applies filters to interaction loot; modes 0/1 retain their bypass.
 			{
 				if( ( !useIsCorpse || !filters.IsCorpse(container) )
 					&& ( !useIsDropped || !filters.IsDropped(container) )

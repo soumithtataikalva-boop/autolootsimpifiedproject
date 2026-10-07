@@ -121,7 +121,7 @@ class CAHDAutoLootFilters
 			
 			//check for individual filters (excludes not used filters from Autoloot check to eliminate stutter)
 			if( AutoLootConfig.FiltersEnabled()
-				&& AutoLootConfig.GetFeatureManager().GetInteractionKeyContainerType() <= 0 //excludes Filters when E is pressed (i.e. values 1-3)
+				&& (AutoLootConfig.GetFeatureManager().GetInteractionKeyContainerType() <= 0 || E_KEY_Logic == 2) //Match item filtering: mode 2 applies filters during interaction looting.
 				&& ( !AutoLootConfig.UseCorpseFilter() || !IsCorpse(container) )
 				&& ( !AutoLootConfig.UseDroppedFilter() || !IsDropped(container) )
 				&& ( !AutoLootConfig.UseQuantityFilter()
