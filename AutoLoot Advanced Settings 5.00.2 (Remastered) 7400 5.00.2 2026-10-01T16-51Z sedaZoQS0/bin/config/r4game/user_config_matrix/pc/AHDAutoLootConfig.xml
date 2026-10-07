@@ -1,0 +1,1090 @@
+<?xml version="1.0" encoding="UTF-16"?>
+<UserConfig>
+	<Group id="AHDAutoLoot_settings" displayName="Mods.ahdal_modName.ahdal_settings">
+		<PresetsArray>
+			<Preset id="0" displayName="ahdal_default">
+				<Entry varId="useAutoLoot" value="true"/>
+				<Entry varId="useNoAccidentalStealing" value="false"/>
+				<Entry varId="disableStealing" value="false"/>
+				<Entry varId="enableOnKillLoot" value="true"/>
+				<Entry varId="questItemWarningMsg" value="true"/>
+				<Entry varId="forceQuestLoot" value="false"/>
+				<Entry varId="fullReset" value="false"/>
+			</Preset>
+		</PresetsArray>
+		<VisibleVars>
+			<Var id="useAutoLoot" displayName="ahdal_modToggle" displayType="TOGGLE" />
+			<Var id="useNoAccidentalStealing" displayName="ahdal_noStealing" displayType="TOGGLE" />
+			<Var id="disableStealing" displayName="ahdal_disableStealing" displayType="TOGGLE" />
+			<Var id="enableOnKillLoot" displayName="ahdal_autoLootOnKill" displayType="TOGGLE" />
+			<Var id="questItemWarningMsg" displayName="ahdal_questItemWarningMsg" displayType="TOGGLE" />
+			<Var id="forceQuestLoot" displayName="ahdal_forceQuestLoot" displayType="TOGGLE" />
+			<Var id="fullReset" displayName="ahdal_fullReset" displayType="TOGGLE" />
+<!-- [CURRENT MOD VERSION]                                                                            *****       **** -->
+			<Var id="modVersionUserSettings" displayName="modVersionUserSettings" displayType="SLIDER;5001;10000;4999" visibilityCondition="hideAlways" />
+<!-- [CURRENT MOD VERSION]                                                                            *****       **** -->
+		</VisibleVars>
+	</Group>
+	<Group id="AHDAutoLoot_filters_global" displayName="Mods.ahdal_modName.ahdal_filters_global">
+		<PresetsArray>
+			<Preset id="0" displayName="ahdal_default">
+				<Entry varId="noWitcherSchematics" value="true"/>
+				<Entry varId="noSpecialContainers" value="false"/>
+				<Entry varId="noTrophies" value="false"/>
+				<Entry varId="noHerbsCorvoBianco" value="false"/>
+				<Entry varId="noBeehives" value="false"/>
+				<Entry varId="noDropItems" value="false"/>
+				<Entry varId="noHorseLoot" value="false"/>
+				<Entry varId="DestroyWhiteLogicWA" value="0"/>
+			</Preset>
+		</PresetsArray>
+		<VisibleVars>
+			<Var id="noWitcherSchematics" displayName="ahdal_noWitcherSchematics" displayType="TOGGLE" />
+			<Var id="noSpecialContainers" displayName="ahdal_noSpecialContainers" displayType="TOGGLE" />
+			<Var id="noTrophies" displayName="ahdal_noTrophies" displayType="TOGGLE" />
+			<Var id="noHerbsCorvoBianco" displayName="ahdal_noHerbsCorvoBianco" displayType="TOGGLE" />
+			<Var id="noBeehives" displayName="ahdal_noBeehives" displayType="TOGGLE" />
+			<Var id="noDropItems" displayName="ahdal_noDropItems" displayType="TOGGLE" />
+			<Var id="noHorseLoot" displayName="ahdal_noHorseLoot" displayType="TOGGLE" />
+			<Var id="DestroyWhiteLogicWA" displayName="ahdal_DestroyWhiteLogicWA" displayType="OPTIONS" >
+				<OptionsArray>
+					<Option id="0" displayName="generalOff">
+						<Entry varId="WADestroyLogic" value="0"/>
+					</Option>
+					<Option id="1" displayName="ahdal_DestroyWhiteWAONplus">
+						<Entry varId="WADestroyLogic" value="1"/>
+					</Option>
+					<Option id="2" displayName="generalOn">
+						<Entry varId="WADestroyLogic" value="2"/>
+					</Option>
+				</OptionsArray>
+			</Var>
+		</VisibleVars>
+	</Group>
+	<Group id="AHDAutoLoot_containers" displayName="Mods.ahdal_modName.ahdal_containers">
+		<PresetsArray>
+			<Preset id="0" displayName="ahdal_default">
+				<Entry varId="useIsCorpse" value="false"/>
+				<Entry varId="useIsDropped" value="false"/>
+				<Entry varId="useQuantity" value="false"/>
+				<Entry varId="quantityAmount" value="15"/>
+				<Entry varId="Virtual_quantityLogic" value="0"/>
+			</Preset>
+			<Preset id="1" displayName="ahdal_presetCorpseCont">
+				<Entry varId="useIsCorpse" value="true"/>
+				<Entry varId="useIsDropped" value="false"/>
+				<Entry varId="useQuantity" value="false"/>
+			</Preset>
+			<Preset id="2" displayName="ahdal_presetOneItem">
+				<Entry varId="useIsCorpse" value="false"/>
+				<Entry varId="useIsDropped" value="false"/>
+				<Entry varId="useQuantity" value="true"/>
+				<Entry varId="quantityAmount" value="1"/>
+				<Entry varId="Virtual_quantityLogic" value="1"/>
+			</Preset>
+		</PresetsArray>
+		<VisibleVars>
+			<Var id="useIsCorpse" displayName="ahdal_corpsesToggle" displayType="TOGGLE" />
+			<Var id="useIsDropped" displayName="ahdal_droppedToggle" displayType="TOGGLE" />
+			<Var id="Separator" displayName="" displayType="SUBTLE_SEPARATOR"/>
+			<Var id="useQuantity" displayName="ahdal_quantityToggle" displayType="TOGGLE" />
+			<Var id="quantityAmount" displayName="ahdal_quantityThreshold" displayType="SLIDER;1;25;24" />
+			<Var id="Virtual_quantityLogic" displayName="ahdal_quantityLogic" displayType="OPTIONS" >
+				<OptionsArray>
+					<Option id="0" displayName="ahdal_slidersLess">
+						<Entry varId="quantityLogic" value="0"/>
+					</Option>
+					<Option id="1" displayName="ahdal_slidersExact">
+						<Entry varId="quantityLogic" value="1"/>
+					</Option>
+					<Option id="2" displayName="ahdal_slidersGreater">
+						<Entry varId="quantityLogic" value="2"/>
+					</Option>
+				</OptionsArray>
+			</Var>
+		</VisibleVars>
+	</Group>
+	<Group id="InteractionKey" displayName="Mods.ahdal_modName.ahdal_interactionKey">
+		<PresetsArray>
+			<Preset id="0" displayName="ahdal_default">
+				<Entry varId="interactionKey_lootLogic" value="0"/>
+				<Entry varId="interactionKeyMaxDistance" value="5"/>
+				<Entry varId="interactionKeyMaxDistanceHerbs" value="15"/>
+				<Entry varId="interactionKeyMaxContainers" value="25"/>
+			</Preset>
+			<Preset id="1" displayName="ahdal_normal">
+				<Entry varId="interactionKey_lootLogic" value="1"/>
+				<Entry varId="interactionKeyMaxDistance" value="10"/>
+				<Entry varId="interactionKeyMaxDistanceHerbs" value="30"/>
+				<Entry varId="interactionKeyMaxContainers" value="25"/>
+			</Preset>
+			<Preset id="2" displayName="ahdal_ultra">
+				<Entry varId="interactionKey_lootLogic" value="2"/>
+				<Entry varId="interactionKeyMaxDistance" value="15"/>
+				<Entry varId="interactionKeyMaxDistanceHerbs" value="50"/>
+				<Entry varId="interactionKeyMaxContainers" value="75"/>
+			</Preset>
+		</PresetsArray>
+		<VisibleVars>
+			<Var id="interactionKey_lootLogic" displayName="ahdal_interactionKeyLogic" displayType="OPTIONS" >
+				<OptionsArray>
+					<Option id="0" displayName="interactionKey_Off">
+						<Entry varId="interactionKeyLogic" value="0"/>
+					</Option>
+					<Option id="1" displayName="interactionKey_UniqueContainers">
+						<Entry varId="interactionKeyLogic" value="1"/>
+					</Option>
+					<Option id="2" displayName="interactionKey_On">
+						<Entry varId="interactionKeyLogic" value="2"/>
+					</Option>
+				</OptionsArray>
+			</Var>
+			<Var id="interactionKeyMaxDistance" displayName="ahdal_interactionKeyDistance" displayType="SLIDER;1;30;29" />
+			<Var id="interactionKeyMaxDistanceHerbs" displayName="ahdal_interactionKeyDistanceHerbs" displayType="SLIDER;1;50;49" />
+			<Var id="interactionKeyMaxContainers" displayName="ahdal_maxContainers" displayType="SLIDER;1;100;99" />
+		</VisibleVars>
+	</Group>
+	<Group id="AHDAutoLoot_filters" displayName="Mods.ahdal_modName.ahdal_itemFilters">
+		<PresetsArray>
+			<Preset id="0" displayName="ahdal_default">
+				<Entry varId="useIsHerb" value="false"/>
+				<Entry varId="chosenHerbQuantity" value="0"/>
+				<Entry varId="useIsArmor" value="false"/>
+				<Entry varId="chosenArmorQuality" value="0"/>
+				<Entry varId="chosenArmorValue" value="0"/>
+				<Entry varId="useIsWeapon" value="false"/>
+				<Entry varId="chosenWeaponQuality" value="0"/>
+				<Entry varId="chosenWeaponValue" value="0"/>
+				<Entry varId="useIsIngredient" value="false"/>
+				<Entry varId="chosenIngredientQuality" value="0"/>
+				<Entry varId="chosenIngredientValue" value="0"/>
+				<Entry varId="chosenIngredientQuantity" value="0"/>
+				<Entry varId="useIsJunk" value="false"/>
+				<Entry varId="chosenJunkQuality" value="0"/>
+				<Entry varId="chosenJunkValue" value="0"/>
+				<Entry varId="chosenJunkQuantity" value="0"/>
+				<Entry varId="useIsReadable" value="false"/>
+				<Entry varId="useIsAlreadyRead" value="false"/>
+				<Entry varId="chosenBookQuantity" value="0"/>
+				<Entry varId="useIsMoney" value="false"/>
+				<Entry varId="chosenCurrencyQuantity" value="0"/>
+				<Entry varId="useIsFood" value="false"/>
+				<Entry varId="chosenFoodValue" value="0"/>
+				<Entry varId="chosenFoodQuantity" value="0"/>
+				<Entry varId="useIsUpgrade" value="false"/>
+				<Entry varId="chosenUpgradeValue" value="0"/>
+				<Entry varId="useIsHorse" value="false"/>
+				<Entry varId="chosenHorseValue" value="0"/>
+				<Entry varId="useIsTrophy" value="false"/>
+				<Entry varId="chosenTrophyValue" value="0"/>
+				<Entry varId="useIsTool" value="false"/>
+				<Entry varId="chosenToolValue" value="0"/>
+				<Entry varId="useIsOther" value="false"/>
+				<Entry varId="chosenOtherValue" value="0"/>
+				<Entry varId="useIsFormula" value="false"/>
+				<Entry varId="useIsMask" value="false"/>
+				<Entry varId="useIsKey" value="false"/>
+			</Preset>
+			<Preset id="1" displayName="ahdal_presetAll">
+				<Entry varId="useIsHerb" value="true"/>
+				<Entry varId="chosenHerbQuantity" value="0"/>
+				<Entry varId="useIsArmor" value="true"/>
+				<Entry varId="chosenArmorQuality" value="0"/>
+				<Entry varId="chosenArmorValue" value="0"/>
+				<Entry varId="useIsWeapon" value="true"/>
+				<Entry varId="chosenWeaponQuality" value="0"/>
+				<Entry varId="chosenWeaponValue" value="0"/>
+				<Entry varId="useIsIngredient" value="true"/>
+				<Entry varId="chosenIngredientQuality" value="0"/>
+				<Entry varId="chosenIngredientValue" value="0"/>
+				<Entry varId="chosenIngredientQuantity" value="0"/>
+				<Entry varId="useIsJunk" value="true"/>
+				<Entry varId="chosenJunkQuality" value="0"/>
+				<Entry varId="chosenJunkValue" value="0"/>
+				<Entry varId="chosenJunkQuantity" value="0"/>
+				<Entry varId="useIsReadable" value="true"/>
+				<Entry varId="useIsAlreadyRead" value="true"/>
+				<Entry varId="chosenBookQuantity" value="0"/>
+				<Entry varId="useIsMoney" value="true"/>
+				<Entry varId="chosenCurrencyQuantity" value="0"/>
+				<Entry varId="useIsFood" value="true"/>
+				<Entry varId="chosenFoodValue" value="0"/>
+				<Entry varId="chosenFoodQuantity" value="0"/>
+				<Entry varId="useIsUpgrade" value="true"/>
+				<Entry varId="chosenUpgradeValue" value="0"/>
+				<Entry varId="useIsHorse" value="true"/>
+				<Entry varId="chosenHorseValue" value="0"/>
+				<Entry varId="useIsTrophy" value="true"/>
+				<Entry varId="chosenTrophyValue" value="0"/>
+				<Entry varId="useIsTool" value="true"/>
+				<Entry varId="chosenToolValue" value="0"/>
+				<Entry varId="useIsOther" value="true"/>
+				<Entry varId="chosenOtherValue" value="0"/>
+				<Entry varId="useIsFormula" value="true"/>
+				<Entry varId="useIsMask" value="true"/>
+				<Entry varId="useIsKey" value="true"/>
+			</Preset>
+			<Preset id="2" displayName="ahdal_presetskipWhite">
+				<Entry varId="useIsHerb" value="true"/>
+				<Entry varId="chosenHerbQuantity" value="0"/>
+				<Entry varId="useIsArmor" value="true"/>
+				<Entry varId="chosenArmorQuality" value="9"/>
+				<Entry varId="chosenArmorValue" value="0"/>
+				<Entry varId="useIsWeapon" value="true"/>
+				<Entry varId="chosenWeaponQuality" value="9"/>
+				<Entry varId="chosenWeaponValue" value="0"/>
+				<Entry varId="useIsIngredient" value="true"/>
+				<Entry varId="chosenIngredientQuality" value="0"/>
+				<Entry varId="chosenIngredientValue" value="0"/>
+				<Entry varId="chosenIngredientQuantity" value="0"/>
+				<Entry varId="useIsJunk" value="true"/>
+				<Entry varId="chosenJunkQuality" value="0"/>
+				<Entry varId="chosenJunkValue" value="0"/>
+				<Entry varId="chosenJunkQuantity" value="0"/>
+				<Entry varId="useIsReadable" value="true"/>
+				<Entry varId="useIsAlreadyRead" value="true"/>
+				<Entry varId="chosenBookQuantity" value="0"/>
+				<Entry varId="useIsMoney" value="true"/>
+				<Entry varId="chosenCurrencyQuantity" value="0"/>
+				<Entry varId="useIsFood" value="true"/>
+				<Entry varId="chosenFoodValue" value="0"/>
+				<Entry varId="chosenFoodQuantity" value="0"/>
+				<Entry varId="useIsUpgrade" value="true"/>
+				<Entry varId="chosenUpgradeValue" value="0"/>
+				<Entry varId="useIsHorse" value="true"/>
+				<Entry varId="chosenHorseValue" value="0"/>
+				<Entry varId="useIsTrophy" value="true"/>
+				<Entry varId="chosenTrophyValue" value="0"/>
+				<Entry varId="useIsTool" value="true"/>
+				<Entry varId="chosenToolValue" value="0"/>
+				<Entry varId="useIsOther" value="true"/>
+				<Entry varId="chosenOtherValue" value="0"/>
+				<Entry varId="useIsFormula" value="true"/>
+				<Entry varId="useIsMask" value="true"/>
+				<Entry varId="useIsKey" value="true"/>
+			</Preset>
+		</PresetsArray>
+		<VisibleVars>
+			<Var id="useFilters" displayName="ahdal_filterToggle" displayType="TOGGLE" />
+			<Var id="Separator" displayName="" displayType="SUBTLE_SEPARATOR"/>
+			<Var id="useIsHerb" displayName="ahdal_herbToggle" displayType="TOGGLE" />
+			<Var id="chosenHerbQuantity" displayName="generalQuantityLimit" displayType="SLIDER;0;1000;1000" />
+			<Var id="Separator" displayName="" displayType="SUBTLE_SEPARATOR"/>
+			<Var id="useIsArmor" displayName="ahdal_armorToggle" displayType="TOGGLE" />
+			<Var id="chosenArmorQuality" displayName="generalQuality" displayType="OPTIONS" >
+				<OptionsArray>
+					<Option id="0" displayName="generalOff">
+						<Entry varId="AQualityLogic" value="0"/>
+					</Option>
+					<Option id="1" displayName="equalQualityCommon">
+						<Entry varId="AQualityLogic" value="1"/>
+					</Option>
+					<Option id="2" displayName="equalQualityMaster">
+						<Entry varId="AQualityLogic" value="2"/>
+					</Option>
+					<Option id="3" displayName="equalQualityMagic">
+						<Entry varId="AQualityLogic" value="3"/>
+					</Option>
+					<Option id="4" displayName="equalQualityRelic">
+						<Entry varId="AQualityLogic" value="4"/>
+					</Option>
+					<Option id="5" displayName="equalQualityWitcher">
+						<Entry varId="AQualityLogic" value="5"/>
+					</Option>
+					<Option id="6" displayName="lessQualityMaster">
+						<Entry varId="AQualityLogic" value="6"/>
+					</Option>
+					<Option id="7" displayName="lessQualityMagic">
+						<Entry varId="AQualityLogic" value="7"/>
+					</Option>
+					<Option id="8" displayName="lessQualityRelic">
+						<Entry varId="AQualityLogic" value="8"/>
+					</Option>
+					<Option id="9" displayName="greaterQualityMaster">
+						<Entry varId="AQualityLogic" value="9"/>
+					</Option>
+					<Option id="10" displayName="greaterQualityMagic">
+						<Entry varId="AQualityLogic" value="10"/>
+					</Option>
+					<Option id="11" displayName="greaterQualityRelic">
+						<Entry varId="AQualityLogic" value="11"/>
+					</Option>
+				</OptionsArray>
+			</Var>
+			<Var id="chosenArmorValue" displayName="generalValue" displayType="SLIDER;0;5000;5000" />
+			<Var id="Separator" displayName="" displayType="SUBTLE_SEPARATOR"/>
+			<Var id="useIsWeapon" displayName="ahdal_weaponToggle" displayType="TOGGLE" />
+			<Var id="chosenWeaponQuality" displayName="generalQuality" displayType="OPTIONS" >
+				<OptionsArray>
+					<Option id="0" displayName="generalOff">
+						<Entry varId="WQualityLogic" value="0"/>
+					</Option>
+					<Option id="1" displayName="equalQualityCommon">
+						<Entry varId="WQualityLogic" value="1"/>
+					</Option>
+					<Option id="2" displayName="equalQualityMaster">
+						<Entry varId="WQualityLogic" value="2"/>
+					</Option>
+					<Option id="3" displayName="equalQualityMagic">
+						<Entry varId="WQualityLogic" value="3"/>
+					</Option>
+					<Option id="4" displayName="equalQualityRelic">
+						<Entry varId="WQualityLogic" value="4"/>
+					</Option>
+					<Option id="5" displayName="equalQualityWitcher">
+						<Entry varId="WQualityLogic" value="5"/>
+					</Option>
+					<Option id="6" displayName="lessQualityMaster">
+						<Entry varId="WQualityLogic" value="6"/>
+					</Option>
+					<Option id="7" displayName="lessQualityMagic">
+						<Entry varId="WQualityLogic" value="7"/>
+					</Option>
+					<Option id="8" displayName="lessQualityRelic">
+						<Entry varId="WQualityLogic" value="8"/>
+					</Option>
+					<Option id="9" displayName="greaterQualityMaster">
+						<Entry varId="WQualityLogic" value="9"/>
+					</Option>
+					<Option id="10" displayName="greaterQualityMagic">
+						<Entry varId="WQualityLogic" value="10"/>
+					</Option>
+					<Option id="11" displayName="greaterQualityRelic">
+						<Entry varId="WQualityLogic" value="11"/>
+					</Option>
+				</OptionsArray>
+			</Var>
+			<Var id="chosenWeaponValue" displayName="generalValue" displayType="SLIDER;0;5000;5000" />
+			<Var id="Separator" displayName="" displayType="SUBTLE_SEPARATOR"/>
+			<Var id="useIsIngredient" displayName="ahdal_ingredientToggle" displayType="TOGGLE" />
+			<Var id="chosenIngredientQuality" displayName="generalQuality" displayType="OPTIONS" >
+				<OptionsArray>
+					<Option id="0" displayName="generalOff">
+						<Entry varId="IQualityLogic" value="0"/>
+					</Option>
+					<Option id="1" displayName="equalQualityCommon">
+						<Entry varId="IQualityLogic" value="1"/>
+					</Option>
+					<Option id="2" displayName="equalQualityMaster">
+						<Entry varId="IQualityLogic" value="2"/>
+					</Option>
+					<Option id="3" displayName="equalQualityMagic">
+						<Entry varId="IQualityLogic" value="3"/>
+					</Option>
+					<Option id="4" displayName="equalQualityRelic">
+						<Entry varId="IQualityLogic" value="4"/>
+					</Option>
+					<Option id="5" displayName="lessQualityMaster">
+						<Entry varId="IQualityLogic" value="5"/>
+					</Option>
+					<Option id="6" displayName="lessQualityMagic">
+						<Entry varId="IQualityLogic" value="6"/>
+					</Option>
+					<Option id="7" displayName="greaterQualityMaster">
+						<Entry varId="IQualityLogic" value="7"/>
+					</Option>
+					<Option id="8" displayName="greaterQualityMagic">
+						<Entry varId="IQualityLogic" value="8"/>
+					</Option>
+				</OptionsArray>
+			</Var>
+			<Var id="chosenIngredientValue" displayName="generalValue" displayType="SLIDER;0;1000;1000" />
+			<Var id="chosenIngredientQuantity" displayName="generalQuantityLimit" displayType="SLIDER;0;1000;1000" />
+			<Var id="Separator" displayName="" displayType="SUBTLE_SEPARATOR"/>
+			<Var id="useIsJunk" displayName="ahdal_junkToggle" displayType="TOGGLE" />
+			<Var id="chosenJunkQuality" displayName="generalQuality" displayType="OPTIONS" >
+				<OptionsArray>
+					<Option id="0" displayName="generalOff">
+						<Entry varId="JQualityLogic" value="0"/>
+					</Option>
+					<Option id="1" displayName="equalQualityCommon">
+						<Entry varId="JQualityLogic" value="1"/>
+					</Option>
+					<Option id="2" displayName="equalQualityMaster">
+						<Entry varId="JQualityLogic" value="2"/>
+					</Option>
+					<Option id="3" displayName="equalQualityMagic">
+						<Entry varId="JQualityLogic" value="3"/>
+					</Option>
+					<Option id="4" displayName="equalQualityRelic">
+						<Entry varId="JQualityLogic" value="4"/>
+					</Option>
+					<Option id="5" displayName="lessQualityMaster">
+						<Entry varId="JQualityLogic" value="5"/>
+					</Option>
+					<Option id="6" displayName="lessQualityMagic">
+						<Entry varId="JQualityLogic" value="6"/>
+					</Option>
+					<Option id="7" displayName="greaterQualityMaster">
+						<Entry varId="JQualityLogic" value="7"/>
+					</Option>
+					<Option id="8" displayName="greaterQualityMagic">
+						<Entry varId="JQualityLogic" value="8"/>
+					</Option>
+				</OptionsArray>
+			</Var>
+			<Var id="chosenJunkValue" displayName="generalValue" displayType="SLIDER;0;500;500" />
+			<Var id="chosenJunkQuantity" displayName="generalQuantityLimit" displayType="SLIDER;0;1000;1000" />
+			<Var id="Separator" displayName="" displayType="SUBTLE_SEPARATOR"/>
+			<Var id="useIsReadable" displayName="ahdal_readableToggle" displayType="TOGGLE" />
+			<Var id="useIsAlreadyRead" displayName="ahdal_alreadyReadToggle" displayType="TOGGLE" />
+			<Var id="chosenBookQuantity" displayName="readableQuantityLimit" displayType="SLIDER;0;99;99" />
+			<Var id="Separator" displayName="" displayType="SUBTLE_SEPARATOR"/>
+			<Var id="useIsMoney" displayName="ahdal_moneyToggle" displayType="TOGGLE" />
+			<Var id="chosenCurrencyQuantity" displayName="ahdal_CurrencyQuantity" displayType="SLIDER;0;5000;5000" />
+			<Var id="Separator" displayName="" displayType="SUBTLE_SEPARATOR"/>
+			<Var id="useIsFood" displayName="ahdal_foodToggle" displayType="TOGGLE" />
+			<Var id="chosenFoodValue" displayName="generalValue" displayType="SLIDER;0;50;50" />
+			<Var id="chosenFoodQuantity" displayName="generalQuantityLimit" displayType="SLIDER;0;1000;1000" />
+			<Var id="Separator" displayName="" displayType="SUBTLE_SEPARATOR"/>
+			<Var id="useIsUpgrade" displayName="ahdal_upgradeToggle" displayType="TOGGLE" />
+			<Var id="chosenUpgradeValue" displayName="generalValue" displayType="SLIDER;0;1000;1000" />
+			<Var id="Separator" displayName="" displayType="SUBTLE_SEPARATOR"/>
+			<Var id="useIsHorse" displayName="ahdal_horseToggle" displayType="TOGGLE" />
+			<Var id="chosenHorseValue" displayName="generalValue" displayType="SLIDER;0;400;400" />
+			<Var id="Separator" displayName="" displayType="SUBTLE_SEPARATOR"/>
+			<Var id="useIsTrophy" displayName="ahdal_trophyToggle" displayType="TOGGLE" />
+			<Var id="chosenTrophyValue" displayName="generalValue" displayType="SLIDER;0;1000;1000" />
+			<Var id="Separator" displayName="" displayType="SUBTLE_SEPARATOR"/>
+			<Var id="useIsTool" displayName="ahdal_toolToggle" displayType="TOGGLE" />
+			<Var id="chosenToolValue" displayName="generalValue" displayType="SLIDER;0;120;120" />
+			<Var id="Separator" displayName="" displayType="SUBTLE_SEPARATOR"/>
+			<Var id="useIsOther" displayName="ahdal_otherToggle" displayType="TOGGLE" />
+			<Var id="chosenOtherValue" displayName="generalValue" displayType="SLIDER;0;500;500" />
+			<Var id="Separator" displayName="" displayType="SUBTLE_SEPARATOR"/>
+			<Var id="useIsFormula" displayName="ahdal_formulaToggle" displayType="TOGGLE" />
+			<Var id="Separator" displayName="" displayType="SUBTLE_SEPARATOR"/>
+			<Var id="useIsMask" displayName="ahdal_maskToggle" displayType="TOGGLE" />
+			<Var id="Separator" displayName="" displayType="SUBTLE_SEPARATOR"/>
+			<Var id="useIsKey" displayName="ahdal_keyToggle" displayType="TOGGLE" />
+		</VisibleVars>
+	</Group>
+	<Group id="AHDAutoLoot_radius" displayName="Mods.ahdal_modName.ahdal_radius">
+		<PresetsArray>
+			<Preset id="0" displayName="ahdal_default">
+				<Entry varId="radiusLootIgnoreFilters" value="false"/>
+				<Entry varId="enableRadiusLootCombat" value="false"/>
+				<Entry varId="radiusLootMaxDistance" value="10"/>
+				<Entry varId="radiusMaxContainers" value="25"/>
+			</Preset>
+			<Preset id="1" displayName="ahdal_normal">
+				<Entry varId="radiusLootIgnoreFilters" value="false"/>
+				<Entry varId="enableRadiusLootCombat" value="false"/>
+				<Entry varId="radiusLootMaxDistance" value="20"/>
+				<Entry varId="radiusMaxContainers" value="25"/>
+			</Preset>
+			<Preset id="2" displayName="ahdal_ultra">
+				<Entry varId="radiusLootIgnoreFilters" value="false"/>
+				<Entry varId="enableRadiusLootCombat" value="false"/>
+				<Entry varId="radiusLootMaxDistance" value="30"/>
+				<Entry varId="radiusMaxContainers" value="25"/>
+			</Preset>
+		</PresetsArray>
+		<VisibleVars>
+			<Var id="radiusLootIgnoreFilters" displayName="ahdal_radiusIgnoreFilters" displayType="TOGGLE" />
+			<Var id="enableRadiusLootCombat" displayName="ahdal_allowCombat" displayType="TOGGLE" />
+			<Var id="radiusLootMaxDistance" displayName="ahdal_distance" displayType="SLIDER;1;30;29" />
+			<Var id="radiusMaxContainers" displayName="ahdal_maxContainers" displayType="SLIDER;1;100;99" />
+		</VisibleVars>
+	</Group>
+	<Group id="AHDAutoLoot_true" displayName="Mods.ahdal_modName.ahdal_trueloot">
+		<PresetsArray>
+			<Preset id="0" displayName="ahdal_default">
+				<Entry varId="enableTrueAutoLoot" value="true"/>
+				<Entry varId="enableTrueAutoLootOnStart" value="true"/>
+				<Entry varId="disableTruePopupThreshold" value="1"/>
+				<Entry varId="noIdleLoot" value="false"/>
+				<Entry varId="enableTrueAutoLootCombat" value="false"/>
+				<Entry varId="timeBetweenTrueAutoLootPopups" value="3"/>
+				<Entry varId="trueAutoLootTime" value="2"/>
+				<Entry varId="trueAutoLootMaxDistance" value="15"/>
+				<Entry varId="trueAutoLootMaxContainers" value="25"/>
+			</Preset>
+			<Preset id="1" displayName="ahdal_normal">
+				<Entry varId="enableTrueAutoLoot" value="true"/>
+				<Entry varId="enableTrueAutoLootOnStart" value="true"/>
+				<Entry varId="noIdleLoot" value="false"/>
+				<Entry varId="enableTrueAutoLootCombat" value="false"/>
+				<Entry varId="timeBetweenTrueAutoLootPopups" value="3"/>
+				<Entry varId="trueAutoLootTime" value="2"/>
+				<Entry varId="trueAutoLootMaxDistance" value="20"/>
+				<Entry varId="trueAutoLootMaxContainers" value="25"/>
+			</Preset>
+			<Preset id="2" displayName="ahdal_ultra">
+				<Entry varId="enableTrueAutoLoot" value="true"/>
+				<Entry varId="enableTrueAutoLootOnStart" value="true"/>
+				<Entry varId="noIdleLoot" value="false"/>
+				<Entry varId="enableTrueAutoLootCombat" value="false"/>
+				<Entry varId="timeBetweenTrueAutoLootPopups" value="3"/>
+				<Entry varId="trueAutoLootTime" value="1"/>
+				<Entry varId="trueAutoLootMaxDistance" value="30"/>
+				<Entry varId="trueAutoLootMaxContainers" value="25"/>
+			</Preset>
+		</PresetsArray>
+		<VisibleVars>
+			<Var id="enableTrueAutoLoot" displayName="ahdal_trueAutoLootToggle" displayType="TOGGLE" />
+			<Var id="enableTrueAutoLootOnStart" displayName="ahdal_trueAutoLootOnStartToggle" displayType="TOGGLE" />
+			<Var id="disableTruePopupThreshold" displayName="ahdal_disableTruePopupThreshold" displayType="OPTIONS" >
+				<OptionsArray>
+					<Option id="0" displayName="ahdal_disableTruePopupOff">
+						<Entry varId="popupThreshold" value="0"/>
+					</Option>
+					<Option id="1" displayName="ahdal_disableTruePopupDisabled">
+						<Entry varId="popupThreshold" value="1"/>
+					</Option>
+					<Option id="2" displayName="ahdal_disableTruePopupEnabled">
+						<Entry varId="popupThreshold" value="2"/>
+					</Option>
+					<Option id="3" displayName="ahdal_disableTruePopupBoth">
+						<Entry varId="popupThreshold" value="3"/>
+					</Option>
+				</OptionsArray>
+			</Var>
+			<Var id="noIdleLoot" displayName="ahdal_noIdleLoot" displayType="TOGGLE" />
+			<Var id="enableTrueAutoLootCombat" displayName="ahdal_allowCombat" displayType="TOGGLE" />
+			<Var id="timeBetweenTrueAutoLootPopups" displayName="ahdal_timeBetweenTrueAutoLootPopups" displayType="SLIDER;1;5;8" />
+			<Var id="trueAutoLootTime" displayName="ahdal_trueAutoLootTime" displayType="SLIDER;1;20;19" />
+			<Var id="trueAutoLootMaxDistance" displayName="ahdal_distance" displayType="SLIDER;1;30;29" />
+			<Var id="trueAutoLootMaxContainers" displayName="ahdal_maxContainers" displayType="SLIDER;1;100;99" />
+		</VisibleVars>
+	</Group>
+	<Group id="AHDAutoLoot_notifications" displayName="Mods.ahdal_modName.ahdal_notifications">
+		<PresetsArray>
+			<Preset id="0" displayName="ahdal_default">
+				<Entry varId="enableNotification" value="true"/>
+				<Entry varId="DEFpopupBlack" value="false"/>
+				<Entry varId="AASpopupBlack" value="true"/>
+				<Entry varId="PopupOpacity" value="50"/>
+				<Entry varId="textOutline" value="3"/>
+				<Entry varId="notificationFontSize" value="23"/>
+				<Entry varId="PopupPosX" value="100"/>
+				<Entry varId="PopupPosY" value="0"/>
+				<Entry varId="AASpopupWidthMax" value="175"/>
+				<Entry varId="BookPopupPosX" value="0"/>
+				<Entry varId="BookPopupPosY" value="0"/>
+				<Entry varId="multiColor" value="18"/>
+				<Entry varId="commonColor" value="7"/>
+				<Entry varId="masterColor" value="1"/>
+				<Entry varId="magicColor" value="1"/>
+				<Entry varId="relicColor" value="1"/>
+				<Entry varId="witcherColor" value="1"/>
+				<Entry varId="useNewNotification" value="false"/>
+				<Entry varId="useNotificationDesc" value="false"/>
+				<Entry varId="useNotificationItemCounts" value="false"/>
+				<Entry varId="lootPopupMaxItems" value="30"/>
+				<Entry varId="useNotificationQuantity" value="true"/>
+				<Entry varId="enableLootSound" value="true"/>
+				<Entry varId="enableColors" value="true"/>
+				<Entry varId="useNotificationImage" value="true"/>
+				<Entry varId="hideNotificationCombat" value="true"/>
+				<Entry varId="showLootAL" value="false"/>
+				<Entry varId="notificationTime" value="5"/>
+				<Entry varId="notificationTimeAddPerItem" value="150"/>
+			</Preset>
+			<Preset id="1" displayName="ahdal_Vanilla_popup">
+				<Entry varId="AASpopupBlack" value="false"/>
+				<Entry varId="PopupOpacity" value="100"/>
+				<Entry varId="textOutline" value="0"/>
+				<Entry varId="multiColor" value="25"/>
+				<Entry varId="commonColor" value="25"/>
+				<Entry varId="masterColor" value="0"/>
+				<Entry varId="magicColor" value="0"/>
+				<Entry varId="relicColor" value="0"/>
+				<Entry varId="witcherColor" value="0"/>
+			</Preset>
+			<Preset id="2" displayName="ahdal_black_bg_def">
+				<Entry varId="AASpopupBlack" value="true"/>
+				<Entry varId="PopupOpacity" value="0"/>
+				<Entry varId="textOutline" value="3"/>
+				<Entry varId="multiColor" value="18"/>
+				<Entry varId="commonColor" value="7"/>
+				<Entry varId="masterColor" value="1"/>
+				<Entry varId="magicColor" value="1"/>
+				<Entry varId="relicColor" value="1"/>
+				<Entry varId="witcherColor" value="1"/>
+			</Preset>
+			<Preset id="3" displayName="ahdal_no_bg_alt">
+				<Entry varId="AASpopupBlack" value="true"/>
+				<Entry varId="PopupOpacity" value="0"/>
+				<Entry varId="textOutline" value="2"/>
+				<Entry varId="multiColor" value="7"/>
+				<Entry varId="commonColor" value="1"/>
+				<Entry varId="masterColor" value="0"/>
+				<Entry varId="magicColor" value="0"/>
+				<Entry varId="relicColor" value="0"/>
+				<Entry varId="witcherColor" value="0"/>
+			</Preset>
+			<Preset id="4" displayName="ahdal_with_frame">
+				<Entry varId="AASpopupBlack" value="true"/>
+				<Entry varId="PopupOpacity" value="25"/>
+				<Entry varId="textOutline" value="1"/>
+				<Entry varId="multiColor" value="18"/>
+				<Entry varId="commonColor" value="7"/>
+				<Entry varId="masterColor" value="1"/>
+				<Entry varId="magicColor" value="1"/>
+				<Entry varId="relicColor" value="1"/>
+				<Entry varId="witcherColor" value="1"/>
+			</Preset>
+		</PresetsArray>
+		<VisibleVars>
+			<Var id="enableNotification" displayName="ahdal_notificationsToggle" displayType="TOGGLE" />
+			<Var id="DEFpopupBlack" displayName="ahdal_DEFpopupBlack" displayType="TOGGLE" />
+			<Var id="AASpopupBlack" displayName="ahdal_AASpopupBlack" displayType="TOGGLE" />
+			<Var id="PopupOpacity" displayName="ahdal_PopupOpacity" displayType="SLIDER;0;100;100" />
+			<Var id="textOutline" displayName="ahdal_textOutline" displayType="OPTIONS" >
+				<OptionsArray>
+					<Option id="0" displayName="ahdal_outlineOff">
+						<Entry varId="outlineLogic" value="0"/>
+					</Option>
+					<Option id="1" displayName="ahdal_outlineLight">
+						<Entry varId="outlineLogic" value="1"/>
+					</Option>
+					<Option id="2" displayName="ahdal_outlineStrong">
+						<Entry varId="outlineLogic" value="2"/>
+					</Option>
+					<Option id="3" displayName="ahdal_outlineAlt">
+						<Entry varId="outlineLogic" value="3"/>
+					</Option>
+				</OptionsArray>
+			</Var>
+			<Var id="notificationFontSize" displayName="ahdal_notificationsFontSize" displayType="SLIDER;14;34;20" />
+<!-- PopupPosX ~max. suitable value depends on the resolution, "AASpopupWidthMax" setting and the item's name length (long-named item e.g.: "lore_toussaint_ecology") -->
+			<Var id="PopupPosX" displayName="ahdal_PopupPosX" displayType="SLIDER;0;3500;3500" />
+			<Var id="PopupPosY" displayName="ahdal_PopupPosY" displayType="SLIDER;0;500;500" />
+			<Var id="AASpopupWidthMax" displayName="ahdal_aasPopupWidthMax" displayType="SLIDER;100;200;4" />
+			<Var id="Separator" displayName="" displayType="SUBTLE_SEPARATOR"/>
+<!-- BookPopupPosX ~min. value for ratios > ~3.6 (for Book popup to be fully on the left), needs to be adjusted - edit the values below to e.g.: "-1500;3000;4500" -->
+			<Var id="BookPopupPosX" displayName="ahdal_bookPopupPosX" displayType="SLIDER;-999;3000;3999" /> <!-- the suitable min. value for ratios < 1.8: -59 -->
+			<Var id="BookPopupPosY" displayName="ahdal_bookPopupPosY" displayType="SLIDER;-527;904;1431" /> <!-- the suitable range for 16:9 ratio: -300 to 677 -->
+			<Var id="Separator" displayName="" displayType="SUBTLE_SEPARATOR"/>
+			<Var id="multiColor" displayName="ahdal_multiColor" displayType="OPTIONS" >
+				<OptionsArray>
+					<Option id="0" displayName="ahdal_col_I">
+						<Entry varId="colorXThreshold" value="0"/>
+					</Option>
+					<Option id="1" displayName="ahdal_col_II">
+						<Entry varId="colorXThreshold" value="1"/>
+					</Option>
+					<Option id="2" displayName="ahdal_col_III">
+						<Entry varId="colorXThreshold" value="2"/>
+					</Option>
+					<Option id="3" displayName="ahdal_col_IV">
+						<Entry varId="colorXThreshold" value="3"/>
+					</Option>
+					<Option id="4" displayName="ahdal_col_V">
+						<Entry varId="colorXThreshold" value="4"/>
+					</Option>
+					<Option id="5" displayName="ahdal_col_VI">
+						<Entry varId="colorXThreshold" value="5"/>
+					</Option>
+					<Option id="6" displayName="ahdal_col_VII">
+						<Entry varId="colorXThreshold" value="6"/>
+					</Option>
+					<Option id="7" displayName="ahdal_col_VIII">
+						<Entry varId="colorXThreshold" value="7"/>
+					</Option>
+					<Option id="8" displayName="ahdal_col_IX">
+						<Entry varId="colorXThreshold" value="8"/>
+					</Option>
+					<Option id="9" displayName="ahdal_col_X">
+						<Entry varId="colorXThreshold" value="9"/>
+					</Option>
+					<Option id="10" displayName="ahdal_col_XI">
+						<Entry varId="colorXThreshold" value="10"/>
+					</Option>
+					<Option id="11" displayName="ahdal_col_XII">
+						<Entry varId="colorXThreshold" value="11"/>
+					</Option>
+					<Option id="12" displayName="ahdal_col_XIII">
+						<Entry varId="colorXThreshold" value="12"/>
+					</Option>
+					<Option id="13" displayName="ahdal_col_XIV">
+						<Entry varId="colorXThreshold" value="13"/>
+					</Option>
+					<Option id="14" displayName="ahdal_col_XV">
+						<Entry varId="colorXThreshold" value="14"/>
+					</Option>
+					<Option id="15" displayName="ahdal_col_XVI">
+						<Entry varId="colorXThreshold" value="15"/>
+					</Option>
+					<Option id="16" displayName="ahdal_col_XVII">
+						<Entry varId="colorXThreshold" value="16"/>
+					</Option>
+					<Option id="17" displayName="ahdal_col_XVIII">
+						<Entry varId="colorXThreshold" value="17"/>
+					</Option>
+					<Option id="18" displayName="ahdal_col_XIX">
+						<Entry varId="colorXThreshold" value="18"/>
+					</Option>
+					<Option id="19" displayName="ahdal_col_XX">
+						<Entry varId="colorXThreshold" value="19"/>
+					</Option>
+					<Option id="20" displayName="ahdal_col_XXI">
+						<Entry varId="colorXThreshold" value="20"/>
+					</Option>
+					<Option id="21" displayName="ahdal_col_XXII">
+						<Entry varId="colorXThreshold" value="21"/>
+					</Option>
+					<Option id="22" displayName="ahdal_col_XXIII">
+						<Entry varId="colorXThreshold" value="22"/>
+					</Option>
+					<Option id="23" displayName="ahdal_col_XXIV">
+						<Entry varId="colorXThreshold" value="23"/>
+					</Option>
+					<Option id="24" displayName="ahdal_col_XXV">
+						<Entry varId="colorXThreshold" value="24"/>
+					</Option>
+					<Option id="25" displayName="ahdal_col_XXVI">
+						<Entry varId="colorXThreshold" value="25"/>
+					</Option>
+				</OptionsArray>
+			</Var>
+			<Var id="commonColor" displayName="ahdal_commonColor" displayType="OPTIONS" >
+				<OptionsArray>
+					<Option id="0" displayName="ahdal_col_I">
+						<Entry varId="comColThreshold" value="0"/>
+					</Option>
+					<Option id="1" displayName="ahdal_col_II">
+						<Entry varId="comColThreshold" value="1"/>
+					</Option>
+					<Option id="2" displayName="ahdal_col_III">
+						<Entry varId="comColThreshold" value="2"/>
+					</Option>
+					<Option id="3" displayName="ahdal_col_IV">
+						<Entry varId="comColThreshold" value="3"/>
+					</Option>
+					<Option id="4" displayName="ahdal_col_V">
+						<Entry varId="comColThreshold" value="4"/>
+					</Option>
+					<Option id="5" displayName="ahdal_col_VI">
+						<Entry varId="comColThreshold" value="5"/>
+					</Option>
+					<Option id="6" displayName="ahdal_col_VII">
+						<Entry varId="comColThreshold" value="6"/>
+					</Option>
+					<Option id="7" displayName="ahdal_col_VIII">
+						<Entry varId="comColThreshold" value="7"/>
+					</Option>
+					<Option id="8" displayName="ahdal_col_IX">
+						<Entry varId="comColThreshold" value="8"/>
+					</Option>
+					<Option id="9" displayName="ahdal_col_X">
+						<Entry varId="comColThreshold" value="9"/>
+					</Option>
+					<Option id="10" displayName="ahdal_col_XI">
+						<Entry varId="comColThreshold" value="10"/>
+					</Option>
+					<Option id="11" displayName="ahdal_col_XII">
+						<Entry varId="comColThreshold" value="11"/>
+					</Option>
+					<Option id="12" displayName="ahdal_col_XIII">
+						<Entry varId="comColThreshold" value="12"/>
+					</Option>
+					<Option id="13" displayName="ahdal_col_XIV">
+						<Entry varId="comColThreshold" value="13"/>
+					</Option>
+					<Option id="14" displayName="ahdal_col_XV">
+						<Entry varId="comColThreshold" value="14"/>
+					</Option>
+					<Option id="15" displayName="ahdal_col_XVI">
+						<Entry varId="comColThreshold" value="15"/>
+					</Option>
+					<Option id="16" displayName="ahdal_col_XVII">
+						<Entry varId="comColThreshold" value="16"/>
+					</Option>
+					<Option id="17" displayName="ahdal_col_XVIII">
+						<Entry varId="comColThreshold" value="17"/>
+					</Option>
+					<Option id="18" displayName="ahdal_col_XIX">
+						<Entry varId="comColThreshold" value="18"/>
+					</Option>
+					<Option id="19" displayName="ahdal_col_XX">
+						<Entry varId="comColThreshold" value="19"/>
+					</Option>
+					<Option id="20" displayName="ahdal_col_XXI">
+						<Entry varId="comColThreshold" value="20"/>
+					</Option>
+					<Option id="21" displayName="ahdal_col_XXII">
+						<Entry varId="comColThreshold" value="21"/>
+					</Option>
+					<Option id="22" displayName="ahdal_col_XXIII">
+						<Entry varId="comColThreshold" value="22"/>
+					</Option>
+					<Option id="23" displayName="ahdal_col_XXIV">
+						<Entry varId="comColThreshold" value="23"/>
+					</Option>
+					<Option id="24" displayName="ahdal_col_XXV">
+						<Entry varId="comColThreshold" value="24"/>
+					</Option>
+					<Option id="25" displayName="ahdal_col_XXVI">
+						<Entry varId="comColThreshold" value="25"/>
+					</Option>
+				</OptionsArray>
+			</Var>
+			<Var id="masterColor" displayName="ahdal_masterColor" displayType="OPTIONS" >
+				<OptionsArray>
+					<Option id="0" displayName="ahdal_masCol_I">
+						<Entry varId="masColThreshold" value="0"/>
+					</Option>
+					<Option id="1" displayName="ahdal_masCol_II">
+						<Entry varId="masColThreshold" value="1"/>
+					</Option>
+					<Option id="2" displayName="ahdal_masCol_III">
+						<Entry varId="masColThreshold" value="2"/>
+					</Option>
+				</OptionsArray>
+			</Var>
+			<Var id="magicColor" displayName="ahdal_magicColor" displayType="OPTIONS" >
+				<OptionsArray>
+					<Option id="0" displayName="ahdal_magCol_I">
+						<Entry varId="magColThreshold" value="0"/>
+					</Option>
+					<Option id="1" displayName="ahdal_magCol_II">
+						<Entry varId="magColThreshold" value="1"/>
+					</Option>
+					<Option id="2" displayName="ahdal_magCol_III">
+						<Entry varId="magColThreshold" value="2"/>
+					</Option>
+				</OptionsArray>
+			</Var>
+			<Var id="relicColor" displayName="ahdal_relicColor" displayType="OPTIONS" >
+				<OptionsArray>
+					<Option id="0" displayName="ahdal_relCol_I">
+						<Entry varId="relColThreshold" value="0"/>
+					</Option>
+					<Option id="1" displayName="ahdal_relCol_II">
+						<Entry varId="relColThreshold" value="1"/>
+					</Option>
+					<Option id="2" displayName="ahdal_relCol_III">
+						<Entry varId="relColThreshold" value="2"/>
+					</Option>
+				</OptionsArray>
+			</Var>
+			<Var id="witcherColor" displayName="ahdal_witcherColor" displayType="OPTIONS" >
+				<OptionsArray>
+					<Option id="0" displayName="ahdal_witchCol_I">
+						<Entry varId="witchColThreshold" value="0"/>
+					</Option>
+					<Option id="1" displayName="ahdal_witchCol_II">
+						<Entry varId="witchColThreshold" value="1"/>
+					</Option>
+					<Option id="2" displayName="ahdal_witchCol_III">
+						<Entry varId="witchColThreshold" value="2"/>
+					</Option>
+				</OptionsArray>
+			</Var>
+			<Var id="Separator" displayName="" displayType="SUBTLE_SEPARATOR"/>
+			<Var id="useNewNotification" displayName="ahdal_notificationsUseNew" displayType="TOGGLE" />
+			<Var id="useNotificationDesc" displayName="ahdal_notificationsUseDesc" displayType="TOGGLE" />
+			<Var id="useNotificationItemCounts" displayName="ahdal_useNotificationItemCounts" displayType="TOGGLE" />
+			<Var id="lootPopupMaxItems" displayName="ahdal_lootPopupMaxItems" displayType="SLIDER;10;40;30" />
+			<Var id="useNotificationQuantity" displayName="ahdal_notificationsUseQuantity" displayType="TOGGLE" />
+			<Var id="enableLootSound" displayName="ahdal_soundToggle" displayType="TOGGLE" />
+			<Var id="enableColors" displayName="ahdal_colorToggle" displayType="TOGGLE" />
+			<Var id="useNotificationImage" displayName="ahdal_notificationsUseImage" displayType="TOGGLE" />
+			<Var id="hideNotificationCombat" displayName="ahdal_notificationCombatToggle" displayType="TOGGLE" />
+			<Var id="showLootAL" displayName="ahdal_showLootAL" displayType="TOGGLE" />
+			<Var id="notificationTime" displayName="ahdal_notificationsTime" displayType="SLIDER;1;15;14" />
+			<Var id="notificationTimeAddPerItem" displayName="ahdal_notificationsTimeAddPerItem" displayType="SLIDER;0;500;500" />
+			<Var id="GlobalPopup" displayName="GlobalPopup" displayType="TOGGLE" visibilityCondition="hideAlways" />
+		</VisibleVars>
+	</Group>
+	<Group id="AutoLoot_shortcuts" displayName="Mods.ahdal_modName.ahdal_shortcuts">
+		<PresetsArray>
+			<Preset id="0" displayName="ahdal_default">
+				<Entry varId="disableShortcutsThreshold" value="0"/>
+				<Entry varId="radiusShortcutsStep" value="2"/>
+				<Entry varId="trueShortcutsStep" value="2"/>
+				<Entry varId="altShortcuts" value="false"/>
+				<Entry varId="radiusLootDistanceOne" value="5"/>
+				<Entry varId="radiusLootDistanceTwo" value="10"/>
+				<Entry varId="radiusLootDistanceThree" value="30"/>
+				<Entry varId="trueAutoLootDistanceOne" value="5"/>
+				<Entry varId="trueAutoLootDistanceTwo" value="10"/>
+				<Entry varId="trueAutoLootDistanceThree" value="30"/>
+			</Preset>
+			<Preset id="1" displayName="ahdal_light">
+				<Entry varId="disableShortcutsThreshold" value="0"/>
+				<Entry varId="radiusShortcutsStep" value="1"/>
+				<Entry varId="trueShortcutsStep" value="1"/>
+				<Entry varId="altShortcuts" value="false"/>
+				<Entry varId="radiusLootDistanceOne" value="4"/>
+				<Entry varId="radiusLootDistanceTwo" value="10"/>
+				<Entry varId="radiusLootDistanceThree" value="30"/>
+				<Entry varId="trueAutoLootDistanceOne" value="4"/>
+				<Entry varId="trueAutoLootDistanceTwo" value="10"/>
+				<Entry varId="trueAutoLootDistanceThree" value="30"/>
+			</Preset>
+			<Preset id="2" displayName="ahdal_ultra">
+				<Entry varId="disableShortcutsThreshold" value="0"/>
+				<Entry varId="radiusShortcutsStep" value="5"/>
+				<Entry varId="trueShortcutsStep" value="5"/>
+				<Entry varId="altShortcuts" value="false"/>
+				<Entry varId="radiusLootDistanceOne" value="5"/>
+				<Entry varId="radiusLootDistanceTwo" value="20"/>
+				<Entry varId="radiusLootDistanceThree" value="30"/>
+				<Entry varId="trueAutoLootDistanceOne" value="5"/>
+				<Entry varId="trueAutoLootDistanceTwo" value="20"/>
+				<Entry varId="trueAutoLootDistanceThree" value="30"/>
+			</Preset>
+		</PresetsArray>
+		<VisibleVars>
+			<Var id="disableShortcutsThreshold" displayName="ahdal_disableShortcutsThreshold" displayType="OPTIONS" >
+				<OptionsArray>
+					<Option id="0" displayName="generalOff">
+						<Entry varId="shortcutsThreshold" value="0"/>
+					</Option>
+					<Option id="1" displayName="ahdal_disableRadiusShortcuts">
+						<Entry varId="shortcutsThreshold" value="1"/>
+					</Option>
+					<Option id="2" displayName="ahdal_disableTrueShortcuts">
+						<Entry varId="shortcutsThreshold" value="2"/>
+					</Option>
+					<Option id="3" displayName="ahdal_disableShortcutsBoth">
+						<Entry varId="shortcutsThreshold" value="3"/>
+					</Option>
+				</OptionsArray>
+			</Var>
+			<Var id="radiusShortcutsStep" displayName="ahdal_radiusShortcutsStep" displayType="SLIDER;1;29;28" />
+			<Var id="trueShortcutsStep" displayName="ahdal_trueShortcutsStep" displayType="SLIDER;1;29;28" />
+			<Var id="altShortcuts" displayName="ahdal_altShortcuts" displayType="TOGGLE" />
+			<Var id="radiusLootDistanceOne" displayName="ahdal_radiusLootDistanceOne" displayType="SLIDER;1;30;29" />
+			<Var id="radiusLootDistanceTwo" displayName="ahdal_radiusLootDistanceTwo" displayType="SLIDER;1;30;29" />
+			<Var id="radiusLootDistanceThree" displayName="ahdal_radiusLootDistanceThree" displayType="SLIDER;1;30;29" />
+			<Var id="trueAutoLootDistanceOne" displayName="ahdal_trueAutoLootDistanceOne" displayType="SLIDER;1;30;29" />
+			<Var id="trueAutoLootDistanceTwo" displayName="ahdal_trueAutoLootDistanceTwo" displayType="SLIDER;1;30;29" />
+			<Var id="trueAutoLootDistanceThree" displayName="ahdal_trueAutoLootDistanceThree" displayType="SLIDER;1;30;29" />
+		</VisibleVars>
+	</Group>
+	<Group id="AutoLoot_popups" displayName="Mods.ahdal_modName.ahdal_popups">
+		<PresetsArray>
+			<Preset id="0" displayName="ahdal_default">
+				<Entry varId="NoPopH" value="false"/>
+				<Entry varId="NoPopI" value="true"/>
+				<Entry varId="IngredientQualitySPLogic" value="0"/>
+				<Entry varId="NoPopR" value="false"/>
+				<Entry varId="NoPopF" value="false"/>
+				<Entry varId="NoPopJ" value="false"/>
+				<Entry varId="priceJunk" value="150"/>
+				<Entry varId="NoPopC" value="false"/>
+				<Entry varId="quantityCurrency" value="100"/>
+				<Entry varId="NoPopA" value="true"/>
+				<Entry varId="AQualitySPLogic" value="0"/>
+				<Entry varId="NoPopW" value="true"/>
+				<Entry varId="WQualitySPLogic" value="0"/>
+			</Preset>
+			<Preset id="1" displayName="ahdal_light">
+				<Entry varId="NoPopH" value="true"/>
+				<Entry varId="NoPopI" value="true"/>
+				<Entry varId="IngredientQualitySPLogic" value="0"/>
+				<Entry varId="NoPopR" value="true"/>
+				<Entry varId="NoPopF" value="false"/>
+				<Entry varId="NoPopJ" value="false"/>
+				<Entry varId="priceJunk" value="150"/>
+				<Entry varId="NoPopC" value="false"/>
+				<Entry varId="quantityCurrency" value="100"/>
+				<Entry varId="NoPopA" value="true"/>
+				<Entry varId="AQualitySPLogic" value="0"/>
+				<Entry varId="NoPopW" value="true"/>
+				<Entry varId="WQualitySPLogic" value="0"/>
+			</Preset>
+			<Preset id="2" displayName="ahdal_normal">
+				<Entry varId="NoPopH" value="true"/>
+				<Entry varId="NoPopI" value="true"/>
+				<Entry varId="IngredientQualitySPLogic" value="2"/>
+				<Entry varId="NoPopR" value="true"/>
+				<Entry varId="NoPopF" value="true"/>
+				<Entry varId="NoPopJ" value="true"/>
+				<Entry varId="priceJunk" value="150"/>
+				<Entry varId="NoPopC" value="true"/>
+				<Entry varId="quantityCurrency" value="100"/>
+				<Entry varId="NoPopA" value="true"/>
+				<Entry varId="AQualitySPLogic" value="0"/>
+				<Entry varId="NoPopW" value="true"/>
+				<Entry varId="WQualitySPLogic" value="0"/>
+			</Preset>
+		</PresetsArray>
+		<VisibleVars>
+			<Var id="SP_E_key_Logic" displayName="ahdal_SP_E_keyLogic" displayType="OPTIONS" >
+				<OptionsArray>
+					<Option id="0" displayName="generalOff">
+						<Entry varId="E_keyLogic" value="0"/>
+					</Option>
+					<Option id="1" displayName="ahdal_SP_E_key_Herbs">
+						<Entry varId="E_keyLogic" value="1"/>
+					</Option>
+					<Option id="2" displayName="generalOn">
+						<Entry varId="E_keyLogic" value="2"/>
+					</Option>
+				</OptionsArray>
+			</Var>
+			<Var id="NoPopH" displayName="ahdal_PopupHerb" displayType="TOGGLE" />
+			<Var id="NoPopI" displayName="ahdal_PopupIngredient" displayType="TOGGLE" visibilityCondition="hideAlways" />
+			<Var id="IngredientQualitySPLogic" displayName="ahdal_IqualitySPThreshold" displayType="OPTIONS" >
+				<OptionsArray>
+					<Option id="0" displayName="generalOff">
+						<Entry varId="qualityIngSPThreshold" value="0"/>
+					</Option>
+					<Option id="1" displayName="ahdal_qualityWhiteSP">
+						<Entry varId="qualityIngSPThreshold" value="1"/>
+					</Option>
+					<Option id="2" displayName="ahdal_qualityBlueSP">
+						<Entry varId="qualityIngSPThreshold" value="2"/>
+					</Option>
+					<Option id="3" displayName="ahdal_qualityYellowSP">
+						<Entry varId="qualityIngSPThreshold" value="3"/>
+					</Option>
+					<Option id="4" displayName="ahdal_qualityOrangeSP">
+						<Entry varId="qualityIngSPThreshold" value="4"/>
+					</Option>
+				</OptionsArray>
+			</Var>
+			<Var id="NoPopR" displayName="ahdal_PopupRead" displayType="TOGGLE" />
+			<Var id="NoPopF" displayName="ahdal_PopupFood" displayType="TOGGLE" />
+			<Var id="NoPopJ" displayName="ahdal_PopupJunk" displayType="TOGGLE" />
+			<Var id="priceJunk" displayName="ahdal_priceJunkThreshold" displayType="SLIDER;1;150;149" />
+			<Var id="NoPopC" displayName="ahdal_PopupCurrency" displayType="TOGGLE" />
+			<Var id="quantityCurrency" displayName="ahdal_quantityCurrencyThreshold" displayType="SLIDER;1;5000;4999" />
+			<Var id="NoPopA" displayName="ahdal_PopupA" displayType="TOGGLE" visibilityCondition="hideAlways" />
+			<Var id="AQualitySPLogic" displayName="ahdal_AqualitySPThreshold" displayType="OPTIONS" >
+				<OptionsArray>
+					<Option id="0" displayName="generalOff">
+						<Entry varId="qualityASPThreshold" value="0"/>
+					</Option>
+					<Option id="1" displayName="ahdal_qualityWhiteSP">
+						<Entry varId="qualityASPThreshold" value="1"/>
+					</Option>
+					<Option id="2" displayName="ahdal_qualityBlueSP">
+						<Entry varId="qualityASPThreshold" value="2"/>
+					</Option>
+					<Option id="3" displayName="ahdal_qualityYellowSP">
+						<Entry varId="qualityASPThreshold" value="3"/>
+					</Option>
+					<Option id="4" displayName="ahdal_qualityOrangeSP">
+						<Entry varId="qualityASPThreshold" value="4"/>
+					</Option>
+				</OptionsArray>
+			</Var>
+			<Var id="NoPopW" displayName="ahdal_PopupW" displayType="TOGGLE" visibilityCondition="hideAlways" />
+			<Var id="WQualitySPLogic" displayName="ahdal_WqualitySPThreshold" displayType="OPTIONS" >
+				<OptionsArray>
+					<Option id="0" displayName="generalOff">
+						<Entry varId="qualityWSPThreshold" value="0"/>
+					</Option>
+					<Option id="1" displayName="ahdal_qualityWhiteSP">
+						<Entry varId="qualityWSPThreshold" value="1"/>
+					</Option>
+					<Option id="2" displayName="ahdal_qualityBlueSP">
+						<Entry varId="qualityWSPThreshold" value="2"/>
+					</Option>
+					<Option id="3" displayName="ahdal_qualityYellowSP">
+						<Entry varId="qualityWSPThreshold" value="3"/>
+					</Option>
+					<Option id="4" displayName="ahdal_qualityOrangeSP">
+						<Entry varId="qualityWSPThreshold" value="4"/>
+					</Option>
+				</OptionsArray>
+			</Var>
+		</VisibleVars>
+	</Group>
+</UserConfig>

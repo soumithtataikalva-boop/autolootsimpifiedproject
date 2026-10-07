@@ -1,0 +1,11 @@
+			<!-- AutoLoot Begin -->
+			<Var builder="Input" id="AutoLootRadius" displayName="ahdal_keyRadius" displayType="INPUTPC" actions="AutoLootRadius;AutoLootRadiusHold"/>
+			<Var builder="Input" id="ToggleTrueAutoLoot" displayName="ahdal_keyTrue" displayType="INPUTPC" actions="ToggleTrueAutoLoot"/>
+			<Var builder="Input" id="RadiusRangeAutoLoot0" displayName="ahdal_keyRadiusOne" displayType="INPUTPC" actions="RadiusRangeAutoLoot0;RadiusRangeAutoLoot2"/>
+			<Var builder="Input" id="RadiusRangeAutoLoot1" displayName="ahdal_keyRadiusThree" displayType="INPUTPC" actions="RadiusRangeAutoLoot1;RadiusRangeAutoLoot3"/>
+			<Var builder="Input" id="RadiusRangeAutoLoot4" displayName="ahdal_keyRadiusCurrent" displayType="INPUTPC" actions="RadiusRangeAutoLoot4;RadiusRangeAutoLoot5"/>
+			<Var builder="Input" id="TrueRangeAutoLoot0" displayName="ahdal_keyTrueOne" displayType="INPUTPC" actions="TrueRangeAutoLoot0;TrueRangeAutoLoot2"/>
+			<Var builder="Input" id="TrueRangeAutoLoot1" displayName="ahdal_keyTrueThree" displayType="INPUTPC" actions="TrueRangeAutoLoot1;TrueRangeAutoLoot3"/>
+			<Var builder="Input" id="TrueRangeAutoLoot4" displayName="ahdal_keyTrueCurrent" displayType="INPUTPC" actions="TrueRangeAutoLoot4;TrueRangeAutoLoot5"/>
+			<Var builder="Input" id="FiltersInfoAutoLoot" displayName="ahdal_keyFiltersSettings" displayType="INPUTPC" actions="FiltersInfoAutoLoot;FiltersToggleAutoLoot"/>
+			<!-- AutoLoot End -->
