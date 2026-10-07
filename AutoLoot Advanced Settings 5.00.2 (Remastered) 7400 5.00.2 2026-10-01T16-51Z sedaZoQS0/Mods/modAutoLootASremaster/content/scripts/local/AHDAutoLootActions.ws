@@ -29,7 +29,7 @@ class CAHDAutoLootActions
 	//Determines if the container's inventory component is empty
 	private function IsInvEmpty(inventory : CInventoryComponent) : bool { return inventory.GetAllItemsQuantity() <= 0; }
 	
-	//Determines if the container should be looted. Returns if loot was taken from the container
+	//Process eligible loot; return true if items remain, including when a nonempty container is protected.
 	public function ProcessContainer(container : W3Container) : bool
 	{
 		var wasLooted : bool;
@@ -79,8 +79,8 @@ class CAHDAutoLootActions
 			
 			if( AutoLootConfig.AutoLootLogic(container, invItemList[i]) )
 			{
-				//if( AutoLootConfig.NotificationsEnabled() ) //Disabled: no loot sound if this is On while Notification setting is Off
-				//adds Autoloot popups notifications for everything but SP options (with exception if Quest container is looted)
+				//Queue eligible items for notification and sound processing; popup visibility is handled separately.
+				//Quest containers and Gwent cards bypass popup suppression if they reach this path.
 				if( !skipNotificationSP(container, invItemList[i]) || AutoLootConfig.GetFilters().isQuestContainer(container) || cInv.ItemHasTag(invItemList[i], 'GwintCard') )
 					AutoLootConfig.GetNotifications().AddItem( container, invItemList[i] );
 				

@@ -61,11 +61,7 @@ class CAHDAutoLootFilters
 				}
 			}
 			
-			//exclude quickslot items (besides masks and torches) from Autoloot check to eliminate stutter (AHDAutoLootActions.ws file = no loot quickslot items)
-			//Optional: 4x torch from "Possession" quest, but not needed (at least in NG) since even with no torch in the inventory you can still placed them
-			//if( StrFindFirst((string)container,"quests\part_1\quest_files\q203_him\entities\q203_crate_torches.w2ent")>=0 )
-			//	return true;
-			//else
+			//Skip quickslot items except masks and torches; continue checking the other inventory entries.
 			if( cInv.ItemHasTag(invItemList[i], 'QuickSlot') && !cInv.ItemHasTag(invItemList[i], 'UI_Torch') && !cInv.IsItemMask(invItemList[i]) )
 				continue; //if "return true;" is here: then other items in a container wouldn't be looted (in dependancy of which item was dropped first because the drop order matters)
 			
@@ -179,22 +175,9 @@ class CAHDAutoLootFilters
 				}
 			}
 			
-			//containers with GREEN(witcher) schematics (like Scavenger Hunt missions) - optional but RECOMMENDED! option
-			//...the line below(=the origin "if") discarded (no need for NG): FIX when diagrams weren't looted with AutoLoot (Filters=ON/Formula filter=OFF) but a quest was marked as "completed"
-			//if( (AutoLootConfig.FiltersEnabled() && !AutoLootConfig.UseFormulaFilter()) || AutoLootConfig.ProtectWitcherSchematics() )
+			//When enabled, protect containers containing Witcher-quality formulas or diagrams.
 			if( AutoLootConfig.ProtectWitcherSchematics() )
 			{
-				/* //discarded: the origin way with Viper Gear Expanded (VGE) mod support (www.nexusmods.com/witcher3/mods/3828)
-				if( (W3treasureHuntContainer)container )
-					return true;
-				else if( StrFindFirst((string)container,"Viper")>=0 )
-				{
-					if( StrFindFirst((string)container,"1")>=0
-						|| StrFindFirst((string)container,"2")>=0
-						|| StrFindFirst((string)container,"3")>=0 )
-						return true;
-				}
-				*/
 				if( IsFormula(container, invItemList[i]) && cInv.GetItemQuality(invItemList[i]) == 5 )
 					return true;
 			}
@@ -233,7 +216,7 @@ class CAHDAutoLootFilters
 		return true;
 	}
 	
-	//Check if container has a quest item
+	//Protect quest-tagged loot and the explicit quest-sensitive container paths listed below.
 	public function isQuestContainer(container : W3Container) : bool
 	{
 		if( container.HasQuestItem()
@@ -280,17 +263,6 @@ class CAHDAutoLootFilters
 			|| StrFindFirst((string)container,"quests\minor_quests\quest_files\mq7009_painter\entities\mq7009_gryphon_corpse.w2ent")>=0 //"A Portrait of the Witcher as an Old Man" quest - Griffin trophy
 			|| StrFindFirst((string)container,"items\remains\remains__monster_01\remains__monster_trophy_cockatrice_01.w2ent")>=0 //"Mutual of Beauclair's Wild Kingdom - Silver basilisk trophy
 			|| (StrFindFirst((string)container,"items\remains\remains__monster_01\remains__monster_01.w2ent")>=0 && container.GetInventory().GetItemQuantityByName('mq7002_spriggan_trophy') > 0) //"Feet as Cold as Ice" quest - Grottore trophy
-		/* e) another quest related container packs/or just items (currently not used):
-			|| StrFindFirst((string)container,"quests\part_2\quest_files")>=0
-			|| StrFindFirst((string)container,"quests\part_3\quest_files")>=0
-			|| StrFindFirst((string)container,"quests\quest_files")>=0
-			|| StrFindFirst((string)container,"quests\generic_quests")>=0
-			|| StrFindFirst((string)container,"quests\sidequests")>=0
-			|| StrFindFirst((string)container,"quests\minor_quests\mq3016_wandering_bards\mq3016_equ_container.w2l")>=0 //"Novigrad Hospitality" quest (no loot for your temporarily stolen items) ...no need anymore
-			|| StrFindFirst((string)container,"container_definitions\autogen\stone_coffin_q603_ofir_sword.w2ent")>=0 //Ofieri Kilij - steel sword (HoS) ...first location
-			|| StrFindFirst((string)container,"chest_wooden_container_q604_ofir_sabre_1.w2ent")>=0 //Ofieri Kilij - steel sword (HoS) ...second location
-			|| StrFindFirst((string)container,"quests\main_quests\quest_files\q701_wine_festival\entities\q701_victim_personal_items_loot.w2ent")>=0 //"The Beast of Toussaint" quest - handkerchief
-		*/
 			)
 			return true;
 		
@@ -558,10 +530,9 @@ class CAHDAutoLootFilters
 	}
 	
 	
-	//Checks if the item is a trophy
+	//Classify the individual item as a trophy; container trophy protection is handled separately.
 	public function IsTrophy(container : W3Container, itemID : SItemUniqueId) : bool
 	{
-		//Note: "((W3ActorRemains)container).HasTrophyItems()" command loots everything from container if there is a trophy
 		if( container.GetInventory().IsItemTrophy(itemID) )
 			return true;
 		

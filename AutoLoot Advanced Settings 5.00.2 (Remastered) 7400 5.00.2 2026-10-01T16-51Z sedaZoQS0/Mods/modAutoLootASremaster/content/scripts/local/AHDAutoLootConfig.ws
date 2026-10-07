@@ -96,10 +96,9 @@ class CAHDAutoLootConfig
 	//Determines if the menu settings were saved, and that it matches the current version
 	public function IsModLoaded() : bool
 	{
+		//The loaded flag starts false and is set when the saved mod version matches.
 		if( ModVersionSettings() == currentModVersion )
 			modLoaded_base = true;
-		//else
-		//	modLoaded_base = false; //no need since it is default value
 		
 		return ( modInitalized && modLoaded_base );
 	}
@@ -114,8 +113,8 @@ class CAHDAutoLootConfig
 		}
 		else
 		{
+			//Report that default settings were loaded through the HUD message.
 			GetWitcherPlayer().DisplayHudMessage( GetLocStringByKeyExt("ahdal_defaultLoadedMsg") );
-			//theGame.GetGuiManager().ShowNotification(( GetLocStringByKeyExt("ahdal_defaultLoadedMsg") ), 3000);
 		}
 	}
 	
@@ -302,11 +301,11 @@ class CAHDAutoLootConfig
 		
 	}
 	
+	//Expose the services used by game hooks and the mod processing path.
 	public function GetFeatureManager() : CAHDAutoLootFeatureManager { return features; }
 	public function GetFilters() : CAHDAutoLootFilters { return filters; }
 	public function GetActions() : CAHDAutoLootActions { return actions; }
 	public function GetNotifications() : CAHDAutoLootNotificationManager { return notifications; }
-	//public function GetShortcuts() : AutoLootShortcuts { return shortcuts; }
 	
 	public function ModEnabled() : bool { return SettingEnabled( 'AHDAutoLoot_settings', 'useAutoLoot' ); }
 	public function NoAccidentalStealingEnabled() : bool { return SettingEnabled( 'AHDAutoLoot_settings', 'useNoAccidentalStealing' ); }

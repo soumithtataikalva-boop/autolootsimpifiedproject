@@ -25,8 +25,7 @@ class CAHDAutoLootFeatureManager
 		isInitialized = true;
 	}
 	
-	//Returns true if player pressed Interaction Key ('E' on PC)
-	//NOTE: e.g. 'Container' can be probably replaced by any action bound to 'E' (like 'Use') and it still works (so maybe only e.g. 'Container' is enough)
+	//Detect interaction looting from the active trigger state or a newly pressed loot-related action.
 	public final function WasInteractionKeyPressed() : bool
 	{
 		//If we are currently inside an 'E' key looting sequence, return true
@@ -88,7 +87,7 @@ class CAHDAutoLootFeatureManager
 				{
 					if( targetHerb )
 					{
-						//GetWitcherPlayer().DisplayHudMessage("'E' pressed to loot Herb; (Type=2)");
+						//Plants use the herb interaction and notification rules.
 						return 2; //Gathered Herb
 					}
 					
@@ -99,7 +98,7 @@ class CAHDAutoLootFeatureManager
 						|| targetContainer.IsLocked() || targetContainer.lockedByKey	//alt. to GetKeyName(): probably doesn't work though
 						)
 					{
-						//GetWitcherPlayer().DisplayHudMessage("'E' pressed on Unique container (Quest/(Un)Locked)/Witcher shematics; (Type=3)");
+						//Quest, treasure-hunt, and keyed/locked targets use the unique-container path.
 						return 3;
 					}
 					
@@ -117,32 +116,30 @@ class CAHDAutoLootFeatureManager
 					{
 						if( ((W3ActorRemains)targetContainer).HasTrophyItems() )
 						{
-							//GetWitcherPlayer().DisplayHudMessage("'E' pressed on Unique container (with Trophy); (Type=3)");
+							//Preserve normal interaction handling for protected trophy containers in modes 0/1.
 							return 3;
 						}
 					}
 					
-					//4) Bee hives
+					//Protected beehives use the unique-container path.
 					if( AutoLootConfig.ProtectBeehives() )
 					{
 						if( StrFindFirst((string)targetContainer,"\beehive")>=0 || StrFindFirst((string)targetContainer,"\bee_hive")>=0 )
 						{
-							//GetWitcherPlayer().DisplayHudMessage("'E' pressed on Unique container (bee hive); (Type=3)");
 							return 3;
 						}
 					}
 					
-					//5) Dropped loot by the player
+					//Protected player loot bags use the unique-container path.
 					if( AutoLootConfig.ProtectDroppedItems() )
 					{
 						if( ((W3ActorRemains)targetContainer).HasTag('lootbag') )
 						{
-							//GetWitcherPlayer().DisplayHudMessage("'E' pressed on Unique container (dropped); (Type=3)");
 							return 3;
 						}
 					}
 					
-					//GetWitcherPlayer().DisplayHudMessage("'E' pressed on Common container; (Type=1)");
+					//All remaining container targets use the ordinary interaction path.
 					return 1; //Common container
 				}
 			}
