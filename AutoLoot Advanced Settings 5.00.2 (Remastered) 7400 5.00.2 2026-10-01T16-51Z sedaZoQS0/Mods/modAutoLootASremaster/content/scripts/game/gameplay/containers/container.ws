@@ -1026,7 +1026,7 @@ import class W3Container extends W3LockableEntity
 		
 		if( AutoLootConfig.ModEnabled() &&
 			((E_KEY_Logic == 1 && AutoLootConfig.GetFeatureManager().GetInteractionKeyContainerType() != 3)
-			|| E_KEY_Logic == 2 || AutoLootConfig.TrueAutoLootEnabled() || IsPressed(actionRadius) || (W3Herb)this) )
+			|| E_KEY_Logic == 2 || IsPressed(actionRadius) || (W3Herb)this) )
 		{
 			//FIX by desfoi: prevents to get a duplicate diagram or alchemy formula from chests if you use radius looting
 			UpdateContainer();

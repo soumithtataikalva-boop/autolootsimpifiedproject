@@ -256,14 +256,6 @@ statemachine abstract import class CR4Player extends CPlayer
 	
 	public function GetAutoLootConfig() : CAHDAutoLootConfig { return mAutoLootConfig; }
 	
-	timer function TrueAutoLootMode( dt : float, id : int )
-	{
-		if( GetAutoLootConfig().ModEnabled() || GetAutoLootConfig().TrueAutoLootEnabled() )
-		{
-			mAutoLootConfig.GetFeatureManager().TryAreaLooting("true_autoloot_mode");
-			AddTimer('TrueAutoLootMode', mAutoLootConfig.GetTrueAutoLootTime());
-		}
-	}
 	//--AutoLoot +A.S.
 
 	function EnablePCMode( flag : bool )

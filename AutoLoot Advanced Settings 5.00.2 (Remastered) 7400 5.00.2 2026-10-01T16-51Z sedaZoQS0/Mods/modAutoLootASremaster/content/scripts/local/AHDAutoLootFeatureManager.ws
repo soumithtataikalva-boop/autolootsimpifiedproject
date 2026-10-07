@@ -14,12 +14,10 @@ class CAHDAutoLootFeatureManager
 	private var currentLootTriggerType : int; //0 = Auto/Silent, 1 = Container, 2 = GatherHerbs, 3 = Unique Container (Quest/(Un)Locked etc)
 	
 	private var AHDAL_INTERACT_LOOT,
-				AHDAL_RADIUS_LOOT,
-				AHDAL_TRUE_AUTOLOOT_MODE : string;
+				AHDAL_RADIUS_LOOT : string;
 				
 		default AHDAL_INTERACT_LOOT = "interact_loot";
 		default AHDAL_RADIUS_LOOT = "radius_loot";
-		default AHDAL_TRUE_AUTOLOOT_MODE = "true_autoloot_mode";
 	
 	//Registers the keybinding listeners
 	public function Init() : void
@@ -28,7 +26,6 @@ class CAHDAutoLootFeatureManager
 		
 		theInput.RegisterListener( this, 'OnAutoLootRadiusLoot', 'AutoLootRadius' );
 		theInput.RegisterListener( this, 'OnAutoLootRadiusHold', 'AutoLootRadiusHold' );
-		theInput.RegisterListener( this, 'OnTrueAutoLoot', 'ToggleTrueAutoLoot' );
 		theInput.RegisterListener( this, 'OnDefaultInteractKey', 'Container' );
 		
 		isInitialized = true;
@@ -240,57 +237,6 @@ class CAHDAutoLootFeatureManager
 			TryAreaLooting( AHDAL_RADIUS_LOOT );
 	}
 	
-	//Handles the True AutoLoot Mode keybinding
-	public final function OnTrueAutoLoot(action : SInputAction) : void
-	{
-		if( AutoLootConfig.ModEnabled() && IsPressed(action) )
-		{
-			if( !AutoLootConfig.TrueAutoLootEnabled() )
-			{
-				AutoLootConfig.ToggleTrueAutoLoot();
-				TrueAutoLootStart();
-			}
-			else
-			{
-				AutoLootConfig.ToggleTrueAutoLoot();
-				TrueAutoLootStop();
-			}
-		}
-		
-		if( AutoLootConfig.ModEnabled() && OnClosingMenuBugFix() ) //Bug Fix
-			AutoLootConfig.ToggleTrueAutoLoot();
-	}
-	
-	//Helper event for the Bug Fix above
-	event OnClosingMenuBugFix()
-	{
-		AutoLootConfig.TryTrueAutoLoot();
-	}
-	
-	//Activates True AutoLoot Mode
-	public function TrueAutoLootStart()
-	{
-		if( AutoLootConfig.ModEnabled()
-			&& !theGame.IsDialogOrCutscenePlaying()
-			&& !theGame.IsCurrentlyPlayingNonGameplayScene()
-			&& theInput.GetContext() != 'Scene' )
-			theGame.GetGuiManager().ShowNotification( GetLocStringByKeyExt("ahdal_trueAutoLootMsg") + ": " + "<font color =\"#197319\">" + GetLocStringByKeyExt("ahdal_enabled") + "</font>", 3000 );
-		
-		thePlayer.AddTimer('TrueAutoLootMode', 3.0 );
-	}
-	
-	//Deactivates True AutoLoot Mode
-	public function TrueAutoLootStop() : void
-	{
-		if( AutoLootConfig.ModEnabled()
-			&& !theGame.IsDialogOrCutscenePlaying()
-			&& !theGame.IsCurrentlyPlayingNonGameplayScene()
-			&& theInput.GetContext() != 'Scene' )
-			theGame.GetGuiManager().ShowNotification( GetLocStringByKeyExt("ahdal_trueAutoLootMsg") + ": " + "<font color =\"#931313\">" + GetLocStringByKeyExt("ahdal_disabled") + "</font>" );
-		
-		thePlayer.RemoveTimer('TrueAutoLootMode');
-	}
-	
 	//Tries to loot all containers in the area based on the specified mode
 	public function TryAreaLooting(mode : string, optional contType : int) : void
 	{
@@ -326,15 +272,6 @@ class CAHDAutoLootFeatureManager
 			allowInCombat = AutoLootConfig.RadiusLootInCombat();
 			distance = AutoLootConfig.GetRadiusLootDistance();
 			maxContainers = AutoLootConfig.GetRadiusLootMaxContainers();
-		}
-		//"contType" here instead of "WasInteractionKeyPressed()" can cause problems e.g. when: Filters=On (none selected); TA=On (range=30); E=0; E_range=30; E_range_Herbs=1
-		//...then spamming 'E' on containers (even Locked) can cause True Autoloot to gather Herbs
-		else if( mode == AHDAL_TRUE_AUTOLOOT_MODE && !IsPressed(actionRadius) && !WasInteractionKeyPressed() )
-		{
-			enabled = AutoLootConfig.TrueAutoLootEnabled();
-			allowInCombat = AutoLootConfig.TrueAutoLootInCombat();
-			distance = AutoLootConfig.GetTrueAutoLootDistance();
-			maxContainers = AutoLootConfig.GetTrueAutoLootMaxContainers();
 		}
 		else
 			enabled = false;

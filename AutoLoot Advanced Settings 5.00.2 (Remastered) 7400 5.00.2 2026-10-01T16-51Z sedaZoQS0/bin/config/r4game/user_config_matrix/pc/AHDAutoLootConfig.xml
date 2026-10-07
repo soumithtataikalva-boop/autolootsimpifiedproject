@@ -487,67 +487,6 @@
 			<Var id="radiusMaxContainers" displayName="ahdal_maxContainers" displayType="SLIDER;1;100;99" />
 		</VisibleVars>
 	</Group>
-	<Group id="AHDAutoLoot_true" displayName="Mods.ahdal_modName.ahdal_trueloot">
-		<PresetsArray>
-			<Preset id="0" displayName="ahdal_default">
-				<Entry varId="enableTrueAutoLoot" value="true"/>
-				<Entry varId="enableTrueAutoLootOnStart" value="true"/>
-				<Entry varId="disableTruePopupThreshold" value="1"/>
-				<Entry varId="noIdleLoot" value="false"/>
-				<Entry varId="enableTrueAutoLootCombat" value="false"/>
-				<Entry varId="timeBetweenTrueAutoLootPopups" value="3"/>
-				<Entry varId="trueAutoLootTime" value="2"/>
-				<Entry varId="trueAutoLootMaxDistance" value="15"/>
-				<Entry varId="trueAutoLootMaxContainers" value="25"/>
-			</Preset>
-			<Preset id="1" displayName="ahdal_normal">
-				<Entry varId="enableTrueAutoLoot" value="true"/>
-				<Entry varId="enableTrueAutoLootOnStart" value="true"/>
-				<Entry varId="noIdleLoot" value="false"/>
-				<Entry varId="enableTrueAutoLootCombat" value="false"/>
-				<Entry varId="timeBetweenTrueAutoLootPopups" value="3"/>
-				<Entry varId="trueAutoLootTime" value="2"/>
-				<Entry varId="trueAutoLootMaxDistance" value="20"/>
-				<Entry varId="trueAutoLootMaxContainers" value="25"/>
-			</Preset>
-			<Preset id="2" displayName="ahdal_ultra">
-				<Entry varId="enableTrueAutoLoot" value="true"/>
-				<Entry varId="enableTrueAutoLootOnStart" value="true"/>
-				<Entry varId="noIdleLoot" value="false"/>
-				<Entry varId="enableTrueAutoLootCombat" value="false"/>
-				<Entry varId="timeBetweenTrueAutoLootPopups" value="3"/>
-				<Entry varId="trueAutoLootTime" value="1"/>
-				<Entry varId="trueAutoLootMaxDistance" value="30"/>
-				<Entry varId="trueAutoLootMaxContainers" value="25"/>
-			</Preset>
-		</PresetsArray>
-		<VisibleVars>
-			<Var id="enableTrueAutoLoot" displayName="ahdal_trueAutoLootToggle" displayType="TOGGLE" />
-			<Var id="enableTrueAutoLootOnStart" displayName="ahdal_trueAutoLootOnStartToggle" displayType="TOGGLE" />
-			<Var id="disableTruePopupThreshold" displayName="ahdal_disableTruePopupThreshold" displayType="OPTIONS" >
-				<OptionsArray>
-					<Option id="0" displayName="ahdal_disableTruePopupOff">
-						<Entry varId="popupThreshold" value="0"/>
-					</Option>
-					<Option id="1" displayName="ahdal_disableTruePopupDisabled">
-						<Entry varId="popupThreshold" value="1"/>
-					</Option>
-					<Option id="2" displayName="ahdal_disableTruePopupEnabled">
-						<Entry varId="popupThreshold" value="2"/>
-					</Option>
-					<Option id="3" displayName="ahdal_disableTruePopupBoth">
-						<Entry varId="popupThreshold" value="3"/>
-					</Option>
-				</OptionsArray>
-			</Var>
-			<Var id="noIdleLoot" displayName="ahdal_noIdleLoot" displayType="TOGGLE" />
-			<Var id="enableTrueAutoLootCombat" displayName="ahdal_allowCombat" displayType="TOGGLE" />
-			<Var id="timeBetweenTrueAutoLootPopups" displayName="ahdal_timeBetweenTrueAutoLootPopups" displayType="SLIDER;1;5;8" />
-			<Var id="trueAutoLootTime" displayName="ahdal_trueAutoLootTime" displayType="SLIDER;1;20;19" />
-			<Var id="trueAutoLootMaxDistance" displayName="ahdal_distance" displayType="SLIDER;1;30;29" />
-			<Var id="trueAutoLootMaxContainers" displayName="ahdal_maxContainers" displayType="SLIDER;1;100;99" />
-		</VisibleVars>
-	</Group>
 	<Group id="AHDAutoLoot_notifications" displayName="Mods.ahdal_modName.ahdal_notifications">
 		<PresetsArray>
 			<Preset id="0" displayName="ahdal_default">
@@ -894,66 +833,44 @@
 			<Preset id="0" displayName="ahdal_default">
 				<Entry varId="disableShortcutsThreshold" value="0"/>
 				<Entry varId="radiusShortcutsStep" value="2"/>
-				<Entry varId="trueShortcutsStep" value="2"/>
 				<Entry varId="altShortcuts" value="false"/>
 				<Entry varId="radiusLootDistanceOne" value="5"/>
 				<Entry varId="radiusLootDistanceTwo" value="10"/>
 				<Entry varId="radiusLootDistanceThree" value="30"/>
-				<Entry varId="trueAutoLootDistanceOne" value="5"/>
-				<Entry varId="trueAutoLootDistanceTwo" value="10"/>
-				<Entry varId="trueAutoLootDistanceThree" value="30"/>
 			</Preset>
 			<Preset id="1" displayName="ahdal_light">
 				<Entry varId="disableShortcutsThreshold" value="0"/>
 				<Entry varId="radiusShortcutsStep" value="1"/>
-				<Entry varId="trueShortcutsStep" value="1"/>
 				<Entry varId="altShortcuts" value="false"/>
 				<Entry varId="radiusLootDistanceOne" value="4"/>
 				<Entry varId="radiusLootDistanceTwo" value="10"/>
 				<Entry varId="radiusLootDistanceThree" value="30"/>
-				<Entry varId="trueAutoLootDistanceOne" value="4"/>
-				<Entry varId="trueAutoLootDistanceTwo" value="10"/>
-				<Entry varId="trueAutoLootDistanceThree" value="30"/>
 			</Preset>
 			<Preset id="2" displayName="ahdal_ultra">
 				<Entry varId="disableShortcutsThreshold" value="0"/>
 				<Entry varId="radiusShortcutsStep" value="5"/>
-				<Entry varId="trueShortcutsStep" value="5"/>
 				<Entry varId="altShortcuts" value="false"/>
 				<Entry varId="radiusLootDistanceOne" value="5"/>
 				<Entry varId="radiusLootDistanceTwo" value="20"/>
 				<Entry varId="radiusLootDistanceThree" value="30"/>
-				<Entry varId="trueAutoLootDistanceOne" value="5"/>
-				<Entry varId="trueAutoLootDistanceTwo" value="20"/>
-				<Entry varId="trueAutoLootDistanceThree" value="30"/>
 			</Preset>
 		</PresetsArray>
 		<VisibleVars>
 			<Var id="disableShortcutsThreshold" displayName="ahdal_disableShortcutsThreshold" displayType="OPTIONS" >
 				<OptionsArray>
 					<Option id="0" displayName="generalOff">
-						<Entry varId="shortcutsThreshold" value="0"/>
+						<Entry varId="disableShortcutsThreshold" value="0"/>
 					</Option>
 					<Option id="1" displayName="ahdal_disableRadiusShortcuts">
-						<Entry varId="shortcutsThreshold" value="1"/>
-					</Option>
-					<Option id="2" displayName="ahdal_disableTrueShortcuts">
-						<Entry varId="shortcutsThreshold" value="2"/>
-					</Option>
-					<Option id="3" displayName="ahdal_disableShortcutsBoth">
-						<Entry varId="shortcutsThreshold" value="3"/>
+						<Entry varId="disableShortcutsThreshold" value="1"/>
 					</Option>
 				</OptionsArray>
 			</Var>
 			<Var id="radiusShortcutsStep" displayName="ahdal_radiusShortcutsStep" displayType="SLIDER;1;29;28" />
-			<Var id="trueShortcutsStep" displayName="ahdal_trueShortcutsStep" displayType="SLIDER;1;29;28" />
 			<Var id="altShortcuts" displayName="ahdal_altShortcuts" displayType="TOGGLE" />
 			<Var id="radiusLootDistanceOne" displayName="ahdal_radiusLootDistanceOne" displayType="SLIDER;1;30;29" />
 			<Var id="radiusLootDistanceTwo" displayName="ahdal_radiusLootDistanceTwo" displayType="SLIDER;1;30;29" />
 			<Var id="radiusLootDistanceThree" displayName="ahdal_radiusLootDistanceThree" displayType="SLIDER;1;30;29" />
-			<Var id="trueAutoLootDistanceOne" displayName="ahdal_trueAutoLootDistanceOne" displayType="SLIDER;1;30;29" />
-			<Var id="trueAutoLootDistanceTwo" displayName="ahdal_trueAutoLootDistanceTwo" displayType="SLIDER;1;30;29" />
-			<Var id="trueAutoLootDistanceThree" displayName="ahdal_trueAutoLootDistanceThree" displayType="SLIDER;1;30;29" />
 		</VisibleVars>
 	</Group>
 	<Group id="AutoLoot_popups" displayName="Mods.ahdal_modName.ahdal_popups">

@@ -43,10 +43,8 @@ class CAHDAutoLootConfig
 					useIsOther,
 					useIsFormula,
 					useIsMask,
-					useIsKey,
+					useIsKey : bool;
 					
-					enableTrueAutoLoot,
-					enableTrueAutoLootOnStart	: bool;
 	
 	private var		DestroyWhiteWALogic,
 					chosenHerbQuantity,
@@ -118,39 +116,25 @@ class CAHDAutoLootConfig
 		}
 		
 		GetAutoLootSettings();
+		NormalizeRadiusShortcuts();
 		
 		modInitalized = true;
 		
 		if( displayMsg )
 			DisplayWelcomeMsg();
 		
-		InitTrueAutoLoot();
 		GetWitcherPlayer().UpdateEncumbrance();
 	}
 	
-	//Initializes the True AutoLoot Mode and checks if it should be started when loading the game
-	private function InitTrueAutoLoot() : void
+	//Map legacy shortcut choices to the remaining radius-only options.
+	private function NormalizeRadiusShortcuts() : void
 	{
-		if( enableTrueAutoLootOnStart && enableTrueAutoLoot )
+		var threshold : int;
+		threshold = GetSettingAsInt( 'AutoLoot_shortcuts', 'disableShortcutsThreshold' );
+		if( threshold == 2 || threshold == 3 )
 		{
-			//True AutoLoot enable popup message when game starts/loads is optional
-			if( !(disableTruePopupThreshold() == 2 || disableTruePopupThreshold() == 3) )
-				features.TrueAutoLootStart();
-			else
-				thePlayer.AddTimer('TrueAutoLootMode', 3.0 );
-		}
-		else
-		{
-			UserSettings.SetVarValue( 'AHDAutoLoot_true', 'enableTrueAutoLoot', "false" );
+			UserSettings.SetVarValue( 'AutoLoot_shortcuts', 'disableShortcutsThreshold', threshold - 2 );
 			theGame.SaveUserSettings();
-			enableTrueAutoLoot = false;
-		
-			//True AutoLoot disable popup message when game starts/loads can be enabled
-			if( !(disableTruePopupThreshold() == 1 || disableTruePopupThreshold() == 3) )
-			{
-				if( !enableTrueAutoLoot )
-					features.TrueAutoLootStop();
-			}
 		}
 	}
 	
@@ -256,15 +240,6 @@ class CAHDAutoLootConfig
 		UserSettings.SetVarValue( 'AHDAutoLoot_radius', 'radiusLootMaxDistance', 10 );
 		UserSettings.SetVarValue( 'AHDAutoLoot_radius', 'radiusMaxContainers', 25 );
 		
-		UserSettings.SetVarValue( 'AHDAutoLoot_true', 'enableTrueAutoLoot', "true" );
-		UserSettings.SetVarValue( 'AHDAutoLoot_true', 'enableTrueAutoLootOnStart', "true" );
-		UserSettings.SetVarValue( 'AHDAutoLoot_true', 'disableTruePopupThreshold', 1 );
-		UserSettings.SetVarValue( 'AHDAutoLoot_true', 'noIdleLoot', "false" );
-		UserSettings.SetVarValue( 'AHDAutoLoot_true', 'enableTrueAutoLootCombat', "false" );
-		UserSettings.SetVarValue( 'AHDAutoLoot_true', 'timeBetweenTrueAutoLootPopups', 3 );
-		UserSettings.SetVarValue( 'AHDAutoLoot_true', 'trueAutoLootTime', 2 );
-		UserSettings.SetVarValue( 'AHDAutoLoot_true', 'trueAutoLootMaxDistance', 15 );
-		UserSettings.SetVarValue( 'AHDAutoLoot_true', 'trueAutoLootMaxContainers', 25 );
 		
 		UserSettings.SetVarValue( 'AHDAutoLoot_notifications', 'enableNotification', "true" );
 		UserSettings.SetVarValue( 'AHDAutoLoot_notifications', 'DEFpopupBlack', "false" );
@@ -298,14 +273,10 @@ class CAHDAutoLootConfig
 		
 		UserSettings.SetVarValue( 'AutoLoot_shortcuts', 'disableShortcutsThreshold', 0 );
 		UserSettings.SetVarValue( 'AutoLoot_shortcuts', 'radiusShortcutsStep', 2 );
-		UserSettings.SetVarValue( 'AutoLoot_shortcuts', 'trueShortcutsStep', 2 );
 		UserSettings.SetVarValue( 'AutoLoot_shortcuts', 'altShortcuts', "false" );
 		UserSettings.SetVarValue( 'AutoLoot_shortcuts', 'radiusLootDistanceOne', 5 );
 		UserSettings.SetVarValue( 'AutoLoot_shortcuts', 'radiusLootDistanceTwo', 10 );
 		UserSettings.SetVarValue( 'AutoLoot_shortcuts', 'radiusLootDistanceThree', 30 );
-		UserSettings.SetVarValue( 'AutoLoot_shortcuts', 'trueAutoLootDistanceOne', 5 );
-		UserSettings.SetVarValue( 'AutoLoot_shortcuts', 'trueAutoLootDistanceTwo', 10 );
-		UserSettings.SetVarValue( 'AutoLoot_shortcuts', 'trueAutoLootDistanceThree', 30 );
 		
 		UserSettings.SetVarValue( 'AutoLoot_popups', 'SP_E_key_Logic', 1 );
 		UserSettings.SetVarValue( 'AutoLoot_popups', 'NoPopH', "false" );
@@ -376,38 +347,6 @@ class CAHDAutoLootConfig
 		}
 		
 		return false;
-	}
-	
-	//Tries to activate/deactivate True AutoLoot Mode, based on changed settings (from closing the menu)
-	public function TryTrueAutoLoot() : void
-	{
-		var old : bool;
-		
-		old = enableTrueAutoLoot;
-		enableTrueAutoLoot = TrueAutoLootEnabled();
-		
-		if( old != enableTrueAutoLoot )
-		{
-			if( enableTrueAutoLoot )
-				features.TrueAutoLootStart();
-			else
-				features.TrueAutoLootStop();
-		}
-	}
-	
-	//Toggles the true autoloot mode and saves it to user.settings
-	public function ToggleTrueAutoLoot() : void
-	{
-		var enabled : bool;
-		
-		enabled = TrueAutoLootEnabled();
-		
-		if( enabled )
-			UserSettings.SetVarValue( 'AHDAutoLoot_true', 'enableTrueAutoLoot', "false" );
-		else
-			UserSettings.SetVarValue( 'AHDAutoLoot_true', 'enableTrueAutoLoot', "true" );
-		
-		theGame.SaveUserSettings();
 	}
 	
 	//Returns if the specified item can be looted from the container based on menu configuration
@@ -588,8 +527,6 @@ class CAHDAutoLootConfig
 		useIsMask					= UserSettings.GetVarValue( 'AHDAutoLoot_filters', 'useIsMask' );
 		useIsKey					= UserSettings.GetVarValue( 'AHDAutoLoot_filters', 'useIsKey' );
 		
-		enableTrueAutoLoot			= UserSettings.GetVarValue( 'AHDAutoLoot_true', 'enableTrueAutoLoot' );
-		enableTrueAutoLootOnStart	= UserSettings.GetVarValue( 'AHDAutoLoot_true', 'enableTrueAutoLootOnStart' );
 	}
 	
 	public function GetFeatureManager() : CAHDAutoLootFeatureManager { return features; }
@@ -670,15 +607,6 @@ class CAHDAutoLootConfig
 	public function RadiusLootInCombat() : bool { return SettingEnabled( 'AHDAutoLoot_radius', 'enableRadiusLootCombat' ); }
 	public function GetRadiusLootDistance() : float { return GetSettingAsFloat( 'AHDAutoLoot_radius', 'radiusLootMaxDistance' ); }
 	public function GetRadiusLootMaxContainers() : int { return GetSettingAsInt( 'AHDAutoLoot_radius', 'radiusMaxContainers' ); }
-	
-	public function TrueAutoLootEnabled() : bool { return SettingEnabled( 'AHDAutoLoot_true', 'enableTrueAutoLoot' ); }
-	private function disableTruePopupThreshold() : int { return GetSettingAsInt( 'AHDAutoLoot_true', 'disableTruePopupThreshold' ); } //AAS: 0=Off(show both) / 1=hide "disabled" popup / 2=hide "enabled" popup / 3=hide both
-	public function NoIdleLooting() : bool { return SettingEnabled( 'AHDAutoLoot_true', 'noIdleLoot' ); }
-	public function TrueAutoLootInCombat() : bool { return SettingEnabled( 'AHDAutoLoot_true', 'enableTrueAutoLootCombat' ); }
-	public function GetTimeBetweenTrueAutoLootPopups() : float { return GetSettingAsFloat( 'AHDAutoLoot_true', 'timeBetweenTrueAutoLootPopups' ); }
-	public function GetTrueAutoLootTime() : float { return GetSettingAsFloat( 'AHDAutoLoot_true', 'trueAutoLootTime' ); }
-	public function GetTrueAutoLootDistance() : float { return GetSettingAsFloat( 'AHDAutoLoot_true', 'trueAutoLootMaxDistance' ); }
-	public function GetTrueAutoLootMaxContainers() : int { return GetSettingAsInt( 'AHDAutoLoot_true', 'trueAutoLootMaxContainers' ); }
 	
 	public function NotificationsEnabled() : bool { return SettingEnabled( 'AHDAutoLoot_notifications', 'enableNotification' ); }
 	public function GetPopupOpacity() : int { return GetSettingAsInt( 'AHDAutoLoot_notifications', 'PopupOpacity' ); }

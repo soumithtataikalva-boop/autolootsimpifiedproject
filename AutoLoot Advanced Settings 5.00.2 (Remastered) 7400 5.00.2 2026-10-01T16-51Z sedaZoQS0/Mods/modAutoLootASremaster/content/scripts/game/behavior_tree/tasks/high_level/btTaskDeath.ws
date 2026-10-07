@@ -625,14 +625,7 @@ class CBTTaskDropLoot extends IBehTreeTask
 			if( !GetWitcherPlayer().GetAutoLootConfig().LootOnKillEnabled() ) return;
 			if( GetWitcherPlayer().GetAutoLootConfig().ModEnabled() )
 			{
-				if( GetWitcherPlayer().GetAutoLootConfig().TrueAutoLootEnabled() )
-				{
-					distance = GetWitcherPlayer().GetAutoLootConfig().GetTrueAutoLootDistance();
-				}
-				else
-				{
-					distance = GetWitcherPlayer().GetAutoLootConfig().GetRadiusLootDistance();
-				}
+				distance = GetWitcherPlayer().GetAutoLootConfig().GetRadiusLootDistance();
 			}
 			else
 			{

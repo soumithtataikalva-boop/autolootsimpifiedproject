@@ -498,19 +498,6 @@ class CAHDAutoLootFilters
 					return true;
 			}
 			
-			//looting if you don't move while True Autoloot is On
-			if( AutoLootConfig.NoIdleLooting() )
-			{
-				if( AutoLootConfig.TrueAutoLootEnabled() )
-				{
-					if( thePlayer.playerMoveType == PMT_Idle //note - another moveTypes: PMT_Idle, PMT_Walk, PMT_Run, PMT_Sprint
-						&& !IsPressed(actionRadiusHold)
-						&& !thePlayer.IsUsingVehicle()
-						&& thePlayer.GetCurrentStateName() != 'Swimming' )
-						return true;
-				}
-			}
-			
 			return false;
 		}
 		

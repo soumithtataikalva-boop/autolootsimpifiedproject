@@ -8,7 +8,6 @@ class CR4CommonIngameMenu extends CR4MenuBase
 	private var m_menuData 	  		: array< SMenuTab >;
 	protected var currentMenuName 	: name;
 	public var reopenRequested	: bool; default reopenRequested = false;
-	private var openCloseVar : int; //AutoLoot +A.S.
 	
 	event  OnConfigUI()
 	{
@@ -82,18 +81,9 @@ class CR4CommonIngameMenu extends CR4MenuBase
 			
 			OnPlaySoundEvent( "gui_global_panel_close" );
 		
-		//AutoLoot +A.S.: compares AutoLoot states when the main menu was opened vs closed (if different = AutoLoot was enabled from the mod menu and True AutoLoot Enable/Disable popup will be displayed)--
-			if( openCloseVar == 0 )
-			{
-				if( GetWitcherPlayer().GetAutoLootConfig().TrueAutoLootEnabled() )
-					GetWitcherPlayer().GetAutoLootConfig().GetFeatureManager().TrueAutoLootStart();
-				else
-					GetWitcherPlayer().GetAutoLootConfig().GetFeatureManager().TrueAutoLootStop();
-			}
 		}
 		
 		GetWitcherPlayer().GetAutoLootConfig().TryFullReset();
-		GetWitcherPlayer().GetAutoLootConfig().TryTrueAutoLoot();
 		GetWitcherPlayer().UpdateEncumbrance();
 		//--AutoLoot +A.S.
 	}
@@ -209,12 +199,6 @@ class CR4CommonIngameMenu extends CR4MenuBase
 	{
 		OnPlaySoundEvent("gui_global_panel_open");	
 		
-	//AutoLoot +A.S.: saves AutoLoot state when the main menu is opened--
-		if( GetWitcherPlayer().GetAutoLootConfig().ModEnabled() )
-			openCloseVar = 1;
-		else
-			openCloseVar = 0;
-	//--AutoLoot +A.S.
 	}
 }
 

@@ -574,15 +574,12 @@ class CAHDAutoLootNotificationManager
 				//Manual press detection (Radius/E key) overriding the time delay
 				isManualTrigger = IsPressed(actionRadius) || IsPressed(actionRadiusHold) || (AutoLootConfig.GetFeatureManager().GetInteractionKeyContainerType() > 0);
 				
-				//True AutoLoot: ALWAYS wait for the last popup time delay to expire (IsLastNotificationDelayOver)
+				//Manual looting can bypass the previous popup delay; queued notifications retain the delay.
 				if( isManualTrigger || IsLastNotificationDelayOver() )
 				{
 					if( helperSecond == 0 )
 					{
-						if( AutoLootConfig.TrueAutoLootEnabled() && AutoLootConfig.GetFeatureManager().GetInteractionKeyContainerType() <= 0 )
-							timeDelay = AutoLootConfig.GetTimeBetweenTrueAutoLootPopups();
-						else
-							timeDelay = 4.0f; //time delay between Autoloot popups for Interaction key ('E') or Radius Looting key is fixed to 4s
+						timeDelay = 4.0f; //time delay between Autoloot popups for Interaction key ('E') or Radius Looting key is fixed to 4s
 						
 						chunkMsg = FormatNotification(combat, countDisplayed);
 						theGame.GetGuiManager().ShowAASNotification( chunkMsg, GetTotalNotificationTimeForCount(countDisplayed) );
