@@ -656,9 +656,7 @@
 				<Entry varId="NoPopR" value="false"/>
 				<Entry varId="NoPopF" value="false"/>
 				<Entry varId="NoPopJ" value="false"/>
-				<Entry varId="priceJunk" value="150"/>
 				<Entry varId="NoPopC" value="false"/>
-				<Entry varId="quantityCurrency" value="100"/>
 				<Entry varId="NoPopA" value="true"/>
 				<Entry varId="AQualitySPLogic" value="0"/>
 				<Entry varId="NoPopW" value="true"/>
@@ -671,9 +669,7 @@
 				<Entry varId="NoPopR" value="true"/>
 				<Entry varId="NoPopF" value="false"/>
 				<Entry varId="NoPopJ" value="false"/>
-				<Entry varId="priceJunk" value="150"/>
 				<Entry varId="NoPopC" value="false"/>
-				<Entry varId="quantityCurrency" value="100"/>
 				<Entry varId="NoPopA" value="true"/>
 				<Entry varId="AQualitySPLogic" value="0"/>
 				<Entry varId="NoPopW" value="true"/>
@@ -686,9 +682,7 @@
 				<Entry varId="NoPopR" value="true"/>
 				<Entry varId="NoPopF" value="true"/>
 				<Entry varId="NoPopJ" value="true"/>
-				<Entry varId="priceJunk" value="150"/>
 				<Entry varId="NoPopC" value="true"/>
-				<Entry varId="quantityCurrency" value="100"/>
 				<Entry varId="NoPopA" value="true"/>
 				<Entry varId="AQualitySPLogic" value="0"/>
 				<Entry varId="NoPopW" value="true"/>
@@ -733,9 +727,7 @@
 			<Var id="NoPopR" displayName="ahdal_PopupRead" displayType="TOGGLE" />
 			<Var id="NoPopF" displayName="ahdal_PopupFood" displayType="TOGGLE" />
 			<Var id="NoPopJ" displayName="ahdal_PopupJunk" displayType="TOGGLE" />
-			<Var id="priceJunk" displayName="ahdal_priceJunkThreshold" displayType="SLIDER;1;150;149" />
 			<Var id="NoPopC" displayName="ahdal_PopupCurrency" displayType="TOGGLE" />
-			<Var id="quantityCurrency" displayName="ahdal_quantityCurrencyThreshold" displayType="SLIDER;1;5000;4999" />
 			<Var id="NoPopA" displayName="ahdal_PopupA" displayType="TOGGLE" visibilityCondition="hideAlways" />
 			<Var id="AQualitySPLogic" displayName="ahdal_AqualitySPThreshold" displayType="OPTIONS" >
 				<OptionsArray>

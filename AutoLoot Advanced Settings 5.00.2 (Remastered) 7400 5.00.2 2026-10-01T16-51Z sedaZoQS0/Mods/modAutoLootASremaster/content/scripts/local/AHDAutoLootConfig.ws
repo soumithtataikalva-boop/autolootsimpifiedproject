@@ -203,9 +203,7 @@ class CAHDAutoLootConfig
 		UserSettings.SetVarValue( 'AutoLoot_popups', 'NoPopR', "false" );
 		UserSettings.SetVarValue( 'AutoLoot_popups', 'NoPopF', "false" );
 		UserSettings.SetVarValue( 'AutoLoot_popups', 'NoPopJ', "false" );
-		UserSettings.SetVarValue( 'AutoLoot_popups', 'priceJunk', 150 );
 		UserSettings.SetVarValue( 'AutoLoot_popups', 'NoPopC', "false" );
-		UserSettings.SetVarValue( 'AutoLoot_popups', 'quantityCurrency', 100 );
 		UserSettings.SetVarValue( 'AutoLoot_popups', 'NoPopA', "true" );
 		UserSettings.SetVarValue( 'AutoLoot_popups', 'AQualitySPLogic', 0 );
 		UserSettings.SetVarValue( 'AutoLoot_popups', 'NoPopW', "true" );
@@ -394,8 +392,6 @@ class CAHDAutoLootConfig
 	public function GetNotificationTApI() : float { return GetSettingAsFloat( 'AHDAutoLoot_notifications', 'notificationTimeAddPerItem' ); }
 	
 	public function GetSP_Ekey_Logic() : int { return GetSettingAsInt( 'AutoLoot_popups', 'SP_E_key_Logic' ); }
-	public function GetJPrice() : int { return GetSettingAsInt( 'AutoLoot_popups', 'priceJunk' ); }
-	public function GetCQuantity() : int { return GetSettingAsInt( 'AutoLoot_popups', 'quantityCurrency' ); }
 	public function GetIQuality() : int { return GetSettingAsInt( 'AutoLoot_popups', 'IngredientQualitySPLogic' ); }
 	public function GetAQuality() : int { return GetSettingAsInt( 'AutoLoot_popups', 'AQualitySPLogic' ); }
 	public function GetWQuality() : int { return GetSettingAsInt( 'AutoLoot_popups', 'WQualitySPLogic' ); }

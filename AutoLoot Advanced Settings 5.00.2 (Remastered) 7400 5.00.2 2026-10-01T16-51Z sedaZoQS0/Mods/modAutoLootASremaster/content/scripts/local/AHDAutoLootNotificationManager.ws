@@ -73,19 +73,17 @@ class CAHDAutoLootNotificationManager
 		return ( AutoLootConfig.HideF() && AutoLootConfig.GetFilters().IsFood(container, itemID) );
 	}
 	
-	//JUNK (shows J with the selected price and "Sea shell" = contains Black pearl) ...price=1 -> hides everything (except "Sea shell")
+	//JUNK: suppress popups when enabled, except for Seashell.
 	public function silentJ(container : W3Container, itemID : SItemUniqueId) : bool
 	{
 		return ( AutoLootConfig.HideJ() && AutoLootConfig.GetFilters().IsJunk(container, itemID)
-			&& container.GetInventory().GetItemName(itemID) != 'Seashell'
-			&& (container.GetInventory().GetItemPrice(itemID) < AutoLootConfig.GetJPrice() || AutoLootConfig.GetJPrice() == 1) );
+			&& container.GetInventory().GetItemName(itemID) != 'Seashell' );
 	}
 	
-	//CURRENCY (shows C with the selected price; price=1 -> hides everything)
+	//CURRENCY: suppress popups when enabled, regardless of stack quantity.
 	public function silentC(container : W3Container, itemID : SItemUniqueId) : bool
 	{
-		return ( AutoLootConfig.HideC() && AutoLootConfig.GetFilters().IsCurrency(container, itemID)
-			&& (container.GetInventory().GetItemQuantity(itemID) < AutoLootConfig.GetCQuantity() || AutoLootConfig.GetCQuantity() == 1) );
+		return ( AutoLootConfig.HideC() && AutoLootConfig.GetFilters().IsCurrency(container, itemID) );
 	}
 	
 	//INGREDIENT (hides I with the selected quality and Bottomless carafe (endless supply of strong alcohol))
