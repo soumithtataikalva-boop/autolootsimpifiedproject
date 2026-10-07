@@ -1,6 +1,6 @@
 # AutoLoot Simplified
 
-A simplified version of AutoLoot Advanced Settings for The Witcher 3 Remastered. This build focuses on interaction with the selected container, loot-on-kill, category filters, and configurable notifications.
+A simplified version of AutoLoot Advanced Settings by jerry18 for The Witcher 3 Remastered, with code credited to AeroHD and original AutoLoot code by JupiterTheGod. This build focuses on interaction with the selected container, loot-on-kill, category filters, and configurable notifications. Original source attribution remains in the scripts.
 
 ## Looting behavior
 
@@ -53,7 +53,3 @@ Quest containers, Gwent-card containers, locks, decorations, and certain story-s
 - Forced quest-container looting.
 - The option to globally disable stealing reactions and warnings.
 - Junk price and currency quantity popup thresholds.
-
-## Credits
-
-Based on AutoLoot Advanced Settings by jerry18, with code credited to AeroHD and original AutoLoot code by JupiterTheGod. Original source attribution remains in the scripts.
