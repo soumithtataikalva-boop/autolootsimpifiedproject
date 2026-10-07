@@ -10,11 +10,10 @@
 class CAHDAutoLootNotificationManager
 {
 	private var AutoLootConfig : CAHDAutoLootConfig;
-	private var UserSettings : CInGameConfigWrapper;
 	private var itemNames, itemIcons, itemDescriptions : array<string>;
 	private var itemCounts : array<int>;
 	private var soundCategories : array<name>;
-	private var totalSize, helperSecond, E_KEY_Logic, totalItemsProcessed : int;
+	private var totalSize, helperSecond, totalItemsProcessed : int;
 	private var currentTime, lastNotificationTime, timeDelay : float;
 	private var AHDAL_READ_SUFFIX, AHDAL_KNOWN_SUFFIX : string;
 	private var setComColStr, setMasColStr, setMagColStr, setRelColStr, setWitchColStr, setMulColStr : string;
@@ -151,7 +150,7 @@ class CAHDAutoLootNotificationManager
 	private function FormatItem(container : W3Container, itemID : SItemUniqueId) : string
 	{
 		var itemStr, rarityStr : string;
-		var itemQuality, fontSize : int;
+		var itemQuality : int;
 		
 		itemStr = container.GetInventory().GetItemLocalizedNameByUniqueID(itemID);
 		itemStr = GetLocStringByKeyExt(itemStr);
@@ -560,12 +559,11 @@ class CAHDAutoLootNotificationManager
 		var isManualTrigger : bool;
 		
 		
-		if( ( !thePlayer.IsInCombat() || (thePlayer.IsInCombat() && !AutoLootConfig.HideNotificationInCombat()) )
+		if( ( !thePlayer.IsInCombat() || !AutoLootConfig.HideNotificationInCombat() )
 			&& itemNames.Size() > 0 )
 		{
 			if( AutoLootConfig.NotificationsEnabled() )
 			{
-				E_KEY_Logic = AutoLootConfig.GetEkeyLogic();
 				
 				//Interaction-key looting can override the previous notification delay.
 				isManualTrigger = (AutoLootConfig.GetFeatureManager().GetInteractionKeyContainerType() > 0);

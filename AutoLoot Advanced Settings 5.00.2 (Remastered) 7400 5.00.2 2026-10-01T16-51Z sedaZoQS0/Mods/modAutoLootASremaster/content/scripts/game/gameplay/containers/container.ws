@@ -451,7 +451,7 @@ import class W3Container extends W3LockableEntity
 		}
 		//AutoLoot +A.S.: sound conditions
 		if ( !GetWitcherPlayer().GetAutoLootConfig().ModEnabled() ||
-			(GetWitcherPlayer().GetAutoLootConfig().ModEnabled() && GetWitcherPlayer().GetAutoLootConfig().EnableLootSound()) )
+			GetWitcherPlayer().GetAutoLootConfig().EnableLootSound() )
 		{
 			if( itemsCategories.Size() == 1 )
 			{
@@ -591,7 +591,7 @@ import class W3Container extends W3LockableEntity
 			if( (W3Herb)this && !usedByCiri && GetWitcherPlayer().GetAutoLootConfig().ModEnabled() )
 				ShowLoot();
 			
-			if( !GetWitcherPlayer().GetAutoLootConfig().ModEnabled() || (GetWitcherPlayer().GetAutoLootConfig().ModEnabled() && !((W3Herb)this)) )
+			if( !GetWitcherPlayer().GetAutoLootConfig().ModEnabled() || !((W3Herb)this) )
 			{
 				TakeAllItems();
 				OnContainerClosed();			

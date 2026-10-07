@@ -52,7 +52,6 @@ class CR4OverlayPopup extends CR4PopupBase
 	private var notificationTextOutlineLIGHT	: CScriptedFlashSprite;
 	private var notificationTextOutlineSTRONG	: CScriptedFlashSprite;
 	private var notificationTextOutlineALT		: CScriptedFlashSprite;
-	private var m_fxAASpopupWidth				: CScriptedFlashFunction;
 	//--AutoLoot +A.S.
 	
 	event  OnConfigUI()
@@ -67,7 +66,6 @@ class CR4OverlayPopup extends CR4PopupBase
 		notificationTextOutlineLIGHT = notificationModule.GetChildFlashSprite("tfMessageOutlineLIGHT");
 		notificationTextOutlineSTRONG = notificationModule.GetChildFlashSprite("tfMessageOutlineSTRONG");
 		notificationTextOutlineALT = notificationModule.GetChildFlashSprite("tfMessageOutlineALT");
-		m_fxAASpopupWidth = notificationModule.GetMemberFlashFunction( "TEXT_WIDTH_MAX" );
 		//--AutoLoot +A.S.
 		
 		m_fxShowNotification = m_flashModule.GetMemberFlashFunction( "showNotification" );
