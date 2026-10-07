@@ -20,7 +20,6 @@ class CAHDAutoLootFilters
 	//Checks if the container shouldn't be interacted with by AutoLoot
 	public function IsContainerProtected(container : W3Container) : bool
 	{
-		var actionRadiusHold : SInputAction;
 		var cInv : CInventoryComponent;
 		var invItemList : array< SItemUniqueId >;
 		var i, E_KEY_Logic : int;
@@ -28,8 +27,6 @@ class CAHDAutoLootFilters
 		cInv = container.GetInventory();
 		cInv.GetAllItems( invItemList );
 		
-		actionRadiusHold.value = theInput.GetActionValue('AutoLootRadiusHold');
-		actionRadiusHold.lastFrameValue = 0;
 		
 		E_KEY_Logic = AutoLootConfig.GetEkeyLogic();
 		
@@ -130,8 +127,7 @@ class CAHDAutoLootFilters
 				&& ( !AutoLootConfig.UseQuantityFilter()
 					|| (( AutoLootConfig.ChosenQuantityLogic() == 0 && invItemList.Size() > AutoLootConfig.ChosenQuantity())
 					|| ( AutoLootConfig.ChosenQuantityLogic() == 1 && invItemList.Size() != AutoLootConfig.ChosenQuantity())
-					|| ( AutoLootConfig.ChosenQuantityLogic() == 2 && invItemList.Size() < AutoLootConfig.ChosenQuantity() )) )
-				&& ( !AutoLootConfig.RadiusLootIgnoreFilters() || !IsPressed(actionRadiusHold) ) )
+					|| ( AutoLootConfig.ChosenQuantityLogic() == 2 && invItemList.Size() < AutoLootConfig.ChosenQuantity() )) ) )
 			{
 				if( ( IsHerb(container, invItemList[i]) && !AutoLootConfig.UseHerbFilter() )
 					|| ( IsArmor(container, invItemList[i]) && !AutoLootConfig.UseArmorFilter() )

@@ -13,19 +13,15 @@ class CAHDAutoLootFeatureManager
 	private var AutoLootConfig : CAHDAutoLootConfig;
 	private var currentLootTriggerType : int; //0 = Auto/Silent, 1 = Container, 2 = GatherHerbs, 3 = Unique Container (Quest/(Un)Locked etc)
 	
-	private var AHDAL_INTERACT_LOOT,
-				AHDAL_RADIUS_LOOT : string;
+	private var AHDAL_INTERACT_LOOT : string;
 				
 		default AHDAL_INTERACT_LOOT = "interact_loot";
-		default AHDAL_RADIUS_LOOT = "radius_loot";
 	
 	//Registers the keybinding listeners
 	public function Init() : void
 	{
 		AutoLootConfig = GetWitcherPlayer().GetAutoLootConfig();
 		
-		theInput.RegisterListener( this, 'OnAutoLootRadiusLoot', 'AutoLootRadius' );
-		theInput.RegisterListener( this, 'OnAutoLootRadiusHold', 'AutoLootRadiusHold' );
 		theInput.RegisterListener( this, 'OnDefaultInteractKey', 'Container' );
 		
 		isInitialized = true;
@@ -223,20 +219,6 @@ class CAHDAutoLootFeatureManager
 		}
 	}
 	
-	//Handles the Radius Loot keybinding
-	public final function OnAutoLootRadiusLoot(action : SInputAction) : void
-	{
-		if( AutoLootConfig.ModEnabled() && IsPressed(action) )
-			TryAreaLooting( AHDAL_RADIUS_LOOT );
-	}
-	
-	//Handles the Radius Loot keybinding when holding the key (it is for ignoring Filters and looting everything)
-	public final function OnAutoLootRadiusHold(action : SInputAction) : void
-	{
-		if( AutoLootConfig.ModEnabled() && IsPressed(action) )
-			TryAreaLooting( AHDAL_RADIUS_LOOT );
-	}
-	
 	//Tries to loot all containers in the area based on the specified mode
 	public function TryAreaLooting(mode : string, optional contType : int) : void
 	{
@@ -245,11 +227,8 @@ class CAHDAutoLootFeatureManager
 		var enabled, allowInCombat : bool;
 		var container, targetContainer : W3Container;
 		var containerList : array<CGameplayEntity>;
-		var actionRadius : SInputAction;
 		var actualActionName : string;
 		
-		actionRadius.value = theInput.GetActionValue('AutoLootRadius');
-		actionRadius.lastFrameValue = 0;
 		
 		if( !isInitialized || !AutoLootConfig.ModEnabled() )
 			return;
@@ -265,13 +244,6 @@ class CAHDAutoLootFeatureManager
 				distance = AutoLootConfig.GetInteractionKeyDistance();
 			
 			maxContainers = AutoLootConfig.GetInteractionKeyMaxContainers();
-		}
-		else if( mode == AHDAL_RADIUS_LOOT && IsPressed(actionRadius) )
-		{
-			enabled = true;
-			allowInCombat = AutoLootConfig.RadiusLootInCombat();
-			distance = AutoLootConfig.GetRadiusLootDistance();
-			maxContainers = AutoLootConfig.GetRadiusLootMaxContainers();
 		}
 		else
 			enabled = false;

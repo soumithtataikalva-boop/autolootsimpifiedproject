@@ -116,7 +116,6 @@ class CAHDAutoLootConfig
 		}
 		
 		GetAutoLootSettings();
-		NormalizeRadiusShortcuts();
 		
 		modInitalized = true;
 		
@@ -124,18 +123,6 @@ class CAHDAutoLootConfig
 			DisplayWelcomeMsg();
 		
 		GetWitcherPlayer().UpdateEncumbrance();
-	}
-	
-	//Map legacy shortcut choices to the remaining radius-only options.
-	private function NormalizeRadiusShortcuts() : void
-	{
-		var threshold : int;
-		threshold = GetSettingAsInt( 'AutoLoot_shortcuts', 'disableShortcutsThreshold' );
-		if( threshold == 2 || threshold == 3 )
-		{
-			UserSettings.SetVarValue( 'AutoLoot_shortcuts', 'disableShortcutsThreshold', threshold - 2 );
-			theGame.SaveUserSettings();
-		}
 	}
 	
 	//Determines if the menu settings were saved, and that it matches the current version
@@ -171,6 +158,7 @@ class CAHDAutoLootConfig
 		UserSettings.SetVarValue( 'AHDAutoLoot_settings', 'useNoAccidentalStealing', "false" );
 		UserSettings.SetVarValue( 'AHDAutoLoot_settings', 'disableStealing', "false" );
 		UserSettings.SetVarValue( 'AHDAutoLoot_settings', 'enableOnKillLoot', "true" );
+		UserSettings.SetVarValue( 'AHDAutoLoot_settings', 'lootOnKillMaxDistance', 10 );
 		UserSettings.SetVarValue( 'AHDAutoLoot_settings', 'questItemWarningMsg', "true" );
 		UserSettings.SetVarValue( 'AHDAutoLoot_settings', 'forceQuestLoot', "false" );
 		UserSettings.SetVarValue( 'AHDAutoLoot_settings', 'fullReset', "false" );
@@ -235,10 +223,6 @@ class CAHDAutoLootConfig
 		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'useIsMask', "false" );
 		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'useIsKey', "false" );
 		
-		UserSettings.SetVarValue( 'AHDAutoLoot_radius', 'radiusLootIgnoreFilters', "false" );
-		UserSettings.SetVarValue( 'AHDAutoLoot_radius', 'enableRadiusLootCombat', "false" );
-		UserSettings.SetVarValue( 'AHDAutoLoot_radius', 'radiusLootMaxDistance', 10 );
-		UserSettings.SetVarValue( 'AHDAutoLoot_radius', 'radiusMaxContainers', 25 );
 		
 		
 		UserSettings.SetVarValue( 'AHDAutoLoot_notifications', 'enableNotification', "true" );
@@ -271,12 +255,6 @@ class CAHDAutoLootConfig
 		UserSettings.SetVarValue( 'AHDAutoLoot_notifications', 'notificationTime', 5 );
 		UserSettings.SetVarValue( 'AHDAutoLoot_notifications', 'notificationTimeAddPerItem', 150 );
 		
-		UserSettings.SetVarValue( 'AutoLoot_shortcuts', 'disableShortcutsThreshold', 0 );
-		UserSettings.SetVarValue( 'AutoLoot_shortcuts', 'radiusShortcutsStep', 2 );
-		UserSettings.SetVarValue( 'AutoLoot_shortcuts', 'altShortcuts', "false" );
-		UserSettings.SetVarValue( 'AutoLoot_shortcuts', 'radiusLootDistanceOne', 5 );
-		UserSettings.SetVarValue( 'AutoLoot_shortcuts', 'radiusLootDistanceTwo', 10 );
-		UserSettings.SetVarValue( 'AutoLoot_shortcuts', 'radiusLootDistanceThree', 30 );
 		
 		UserSettings.SetVarValue( 'AutoLoot_popups', 'SP_E_key_Logic', 1 );
 		UserSettings.SetVarValue( 'AutoLoot_popups', 'NoPopH', "false" );
@@ -353,11 +331,8 @@ class CAHDAutoLootConfig
 	public function AutoLootLogic(container : W3Container, itemID : SItemUniqueId, count : int) : bool
 	{
 		var itemName : name;
-		var actionRadiusHold : SInputAction;
 		
 		itemName = container.GetInventory().GetItemName(itemID);
-		actionRadiusHold.value = theInput.GetActionValue('AutoLootRadiusHold');
-		actionRadiusHold.lastFrameValue = 0;
 		
 		GetAutoLootSettings();
 		
@@ -388,7 +363,7 @@ class CAHDAutoLootConfig
 				}
 			}
 			
-			if( useFilters && (!RadiusLootIgnoreFilters() || !IsPressed(actionRadiusHold)) 
+			if( useFilters
 				&& GetFeatureManager().GetInteractionKeyContainerType() <= 0 ) //excludes Filters when E is pressed
 			{
 				if( ( !useIsCorpse || !filters.IsCorpse(container) )
@@ -539,6 +514,16 @@ class CAHDAutoLootConfig
 	public function NoAccidentalStealingEnabled() : bool { if( SettingEnabled( 'AHDAutoLoot_settings', 'disableStealing' ) ) return false; return SettingEnabled( 'AHDAutoLoot_settings', 'useNoAccidentalStealing' ); }
 	public function StealingDisabled() : bool { return SettingEnabled( 'AHDAutoLoot_settings', 'disableStealing' ); }
 	public function LootOnKillEnabled() : bool { return SettingEnabled( 'AHDAutoLoot_settings', 'enableOnKillLoot' ); }
+	//Loot-on-kill has its own range after removal of the radius-looting feature.
+	//Existing settings without this value use the previous default of 10 metres.
+	public function GetLootOnKillDistance() : float
+	{
+		var distance : float;
+		distance = GetSettingAsFloat( 'AHDAutoLoot_settings', 'lootOnKillMaxDistance' );
+		if( distance < 1.0f || distance > 30.0f )
+			return 10.0f;
+		return distance;
+	}
 	public function QuestItemWarningMsg() : bool { return SettingEnabled( 'AHDAutoLoot_settings', 'questItemWarningMsg' ); }
 	public function ForceQuestLoot() : bool { return SettingEnabled( 'AHDAutoLoot_settings', 'forceQuestLoot' ); }
 	public function EnableFullReset() : bool { return SettingEnabled( 'AHDAutoLoot_settings', 'fullReset' ); }
@@ -602,11 +587,6 @@ class CAHDAutoLootConfig
 	public function UseFormulaFilter() : bool { return SettingEnabled( 'AHDAutoLoot_filters', 'useIsFormula' ); }
 	public function UseMaskFilter() : bool { return SettingEnabled( 'AHDAutoLoot_filters', 'useIsMask' ); }
 	public function UseKeyFilter() : bool { return SettingEnabled( 'AHDAutoLoot_filters', 'useIsKey' ); }
-	
-	public function RadiusLootIgnoreFilters() : bool { return SettingEnabled( 'AHDAutoLoot_radius', 'radiusLootIgnoreFilters' ); }
-	public function RadiusLootInCombat() : bool { return SettingEnabled( 'AHDAutoLoot_radius', 'enableRadiusLootCombat' ); }
-	public function GetRadiusLootDistance() : float { return GetSettingAsFloat( 'AHDAutoLoot_radius', 'radiusLootMaxDistance' ); }
-	public function GetRadiusLootMaxContainers() : int { return GetSettingAsInt( 'AHDAutoLoot_radius', 'radiusMaxContainers' ); }
 	
 	public function NotificationsEnabled() : bool { return SettingEnabled( 'AHDAutoLoot_notifications', 'enableNotification' ); }
 	public function GetPopupOpacity() : int { return GetSettingAsInt( 'AHDAutoLoot_notifications', 'PopupOpacity' ); }

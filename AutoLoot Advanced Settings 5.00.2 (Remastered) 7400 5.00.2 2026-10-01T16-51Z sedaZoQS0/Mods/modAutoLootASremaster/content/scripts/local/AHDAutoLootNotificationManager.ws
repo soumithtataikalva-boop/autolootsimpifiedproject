@@ -554,15 +554,10 @@ class CAHDAutoLootNotificationManager
 	//Displays the loot notification if applicable; resets once full queue is processed
 	public function ShowNotification(optional combat : bool) : void
 	{
-		var actionRadius, actionRadiusHold : SInputAction;
 		var chunkMsg : string;
 		var countDisplayed : int;
 		var isManualTrigger : bool;
 		
-		actionRadius.value = theInput.GetActionValue('AutoLootRadius');
-		actionRadius.lastFrameValue = 0;
-		actionRadiusHold.value = theInput.GetActionValue('AutoLootRadiusHold');
-		actionRadiusHold.lastFrameValue = 0;
 		
 		if( ( !thePlayer.IsInCombat() || (thePlayer.IsInCombat() && !AutoLootConfig.HideNotificationInCombat()) )
 			&& itemNames.Size() > 0 )
@@ -571,15 +566,15 @@ class CAHDAutoLootNotificationManager
 			{
 				E_KEY_Logic = AutoLootConfig.GetEkeyLogic();
 				
-				//Manual press detection (Radius/E key) overriding the time delay
-				isManualTrigger = IsPressed(actionRadius) || IsPressed(actionRadiusHold) || (AutoLootConfig.GetFeatureManager().GetInteractionKeyContainerType() > 0);
+				//Interaction-key looting can override the previous notification delay.
+				isManualTrigger = (AutoLootConfig.GetFeatureManager().GetInteractionKeyContainerType() > 0);
 				
 				//Manual looting can bypass the previous popup delay; queued notifications retain the delay.
 				if( isManualTrigger || IsLastNotificationDelayOver() )
 				{
 					if( helperSecond == 0 )
 					{
-						timeDelay = 4.0f; //time delay between Autoloot popups for Interaction key ('E') or Radius Looting key is fixed to 4s
+						timeDelay = 4.0f; //Keep a four-second delay between queued interaction/kill loot popups.
 						
 						chunkMsg = FormatNotification(combat, countDisplayed);
 						theGame.GetGuiManager().ShowAASNotification( chunkMsg, GetTotalNotificationTimeForCount(countDisplayed) );

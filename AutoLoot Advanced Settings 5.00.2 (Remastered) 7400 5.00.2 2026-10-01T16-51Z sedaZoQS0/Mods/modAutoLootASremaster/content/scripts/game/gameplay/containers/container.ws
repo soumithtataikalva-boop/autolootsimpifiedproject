@@ -1012,7 +1012,6 @@ import class W3Container extends W3LockableEntity
 		//AutoLoot +A.S.: loot popup conditions--
 		var AutoLootConfig : CAHDAutoLootConfig;
 		var E_KEY_Logic : int;
-		var actionRadius : SInputAction;
 		var lootData : W3LootPopupData;
 		
 		lootData = new W3LootPopupData in this;
@@ -1021,14 +1020,12 @@ import class W3Container extends W3LockableEntity
 		
 		AutoLootConfig = GetWitcherPlayer().GetAutoLootConfig();
 		E_KEY_Logic = AutoLootConfig.GetEkeyLogic();
-		actionRadius.value = theInput.GetActionValue('AutoLootRadius');
-		actionRadius.lastFrameValue = 0;
 		
 		if( AutoLootConfig.ModEnabled() &&
 			((E_KEY_Logic == 1 && AutoLootConfig.GetFeatureManager().GetInteractionKeyContainerType() != 3)
-			|| E_KEY_Logic == 2 || IsPressed(actionRadius) || (W3Herb)this) )
+			|| E_KEY_Logic == 2 || (W3Herb)this) )
 		{
-			//FIX by desfoi: prevents to get a duplicate diagram or alchemy formula from chests if you use radius looting
+			//Refresh container items before processing to prevent duplicate diagrams or formulas.
 			UpdateContainer();
 			RebalanceItems();
 			RemoveUnwantedItems();
