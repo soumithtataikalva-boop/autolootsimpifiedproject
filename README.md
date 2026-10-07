@@ -41,12 +41,6 @@ No accidental stealing blocks mod looting of containers marked as theft-enabled.
 
 Quest containers, Gwent-card containers, locks, decorations, and certain story-sensitive containers retain their existing protection rules. Global protections are separate from category eligibility.
 
-## Native game settings
-
-The game's Accessibility AutoLoot and Gameplay LootMergeEnabled options are separate from this mod. The included game container script retains the native corpse-merging path, which can collect nearby corpse loot within 15 metres when those game options are enabled. For interaction with only one corpse, keep the native loot-merging option disabled.
-
-Native container theft exemptions and public compatibility helpers are retained.
-
 ## Removed features
 
 - TrueAutoLoot and dedicated radius autoloot.
