@@ -122,9 +122,7 @@ class CAHDAutoLootFilters
 			//check for individual filters (excludes not used filters from Autoloot check to eliminate stutter)
 			if( AutoLootConfig.FiltersEnabled()
 				&& !IsHerb(container, invItemList[i]) //Herbs have no category filter; global protections still apply.
-				&& (AutoLootConfig.GetFeatureManager().GetInteractionKeyContainerType() <= 0 || E_KEY_Logic == 2) //Match item filtering: mode 2 applies filters during interaction looting.
-				&& ( !AutoLootConfig.UseCorpseFilter() || !IsCorpse(container) )
-				&& ( !AutoLootConfig.UseDroppedFilter() || !IsDropped(container) ) )
+				&& (AutoLootConfig.GetFeatureManager().GetInteractionKeyContainerType() <= 0 || E_KEY_Logic == 2) ) //Match item filtering: mode 2 applies filters during interaction looting.
 			{
 				if( ( IsArmor(container, invItemList[i]) && !AutoLootConfig.UseArmorFilter() )
 					|| ( IsWeapon(container, invItemList[i]) && !AutoLootConfig.UseWeaponFilter() )
@@ -324,14 +322,6 @@ class CAHDAutoLootFilters
 		return false;
 	}
 	
-	//Checks if the container is dropped loot by the player
-	public function IsDropped(container : W3Container) : bool
-	{
-		if( ((W3ActorRemains)container).HasTag('lootbag') )
-			return true;
-		
-		return false;
-	}
 	
 	//Checks if the container is a plant, or if the item in the container is a plant
 	public function IsHerb(container : W3Container, itemID : SItemUniqueId) : bool

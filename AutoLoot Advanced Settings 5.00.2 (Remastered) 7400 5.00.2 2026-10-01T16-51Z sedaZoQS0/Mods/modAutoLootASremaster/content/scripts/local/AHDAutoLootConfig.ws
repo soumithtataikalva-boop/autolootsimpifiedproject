@@ -23,8 +23,6 @@ class CAHDAutoLootConfig
 	private var		modEnabled,
 					useNoAccidentalStealing,
 					disableStealing,
-					useIsCorpse,
-					useIsDropped,
 					useFilters,
 					useIsArmor,
 					useIsWeapon,
@@ -145,8 +143,6 @@ class CAHDAutoLootConfig
 		UserSettings.SetVarValue( 'AHDAutoLoot_filters_global', 'noHorseLoot', "false" );
 		UserSettings.SetVarValue( 'AHDAutoLoot_filters_global', 'DestroyWhiteLogicWA', 0 );
 		
-		UserSettings.SetVarValue( 'AHDAutoLoot_containers', 'useIsCorpse', "false" );
-		UserSettings.SetVarValue( 'AHDAutoLoot_containers', 'useIsDropped', "false" );
 		
 		UserSettings.SetVarValue( 'AHDAutoLoot_settings', 'interactionKey_lootLogic', 0 );
 		
@@ -247,21 +243,6 @@ class CAHDAutoLootConfig
 		return true;
 	}
 	
-	//Checks what type the container is and if we can loot it
-	private function GetContainerLogic(container : W3Container) : bool
-	{
-		var temp1, temp2 : bool;
-		temp1 = false;
-		temp2 = false;
-		
-		if( useIsCorpse )	{ temp1 = filters.IsCorpse(container); }
-		if( useIsDropped ) 	{ temp2 = filters.IsDropped(container); }
-		
-		if( !useIsCorpse && !useIsDropped )
-			return true;
-		
-		return ( temp1 || temp2 );
-	}
 	
 	
 	//Returns if the specified item can be looted from the container based on menu configuration
@@ -303,50 +284,23 @@ class CAHDAutoLootConfig
 			if( useFilters
 				&& (GetFeatureManager().GetInteractionKeyContainerType() <= 0 || GetEkeyLogic() == 2) ) //Mode 2 applies filters to interaction loot; modes 0/1 retain their bypass.
 			{
-				if( ( !useIsCorpse || !filters.IsCorpse(container) )
-					&& ( !useIsDropped || !filters.IsDropped(container) ) )
-				{
-					return ( (( filters.IsHerb(container, itemID) )
-						|| ( filters.IsArmorQ(container, itemID) && useIsArmor )
-						|| ( filters.IsWeaponQ(container, itemID) && useIsWeapon )
-						|| ( filters.IsIngredientQ(container, itemID) && useIsIngredient )
-						|| ( filters.IsJunkQ(container, itemID) && useIsJunk )
-						|| ( ((filters.IsReadable(container, itemID) && useIsReadable) || (filters.IsAlreadyRead(container, itemID) && useIsAlreadyRead)) && (useIsReadable || useIsAlreadyRead) )
-						|| ( filters.IsCurrency(container, itemID) && useIsMoney )
-						|| ( filters.IsFood(container, itemID) && useIsFood )
-						|| ( filters.IsUpgrade(container, itemID) && useIsUpgrade )
-						|| ( filters.IsHorse(container, itemID) && useIsHorse )
-						|| ( filters.IsTrophy(container, itemID) && useIsTrophy )
-						|| ( filters.IsTool(container, itemID) && useIsTool )
-						|| ( filters.IsOther(container, itemID) && useIsOther )
-						|| ( filters.IsFormula(container, itemID) && useIsFormula )
-						|| ( filters.IsMask(container, itemID) && useIsMask )
-						|| ( filters.IsKey(container, itemID) && useIsKey ))
-						&& GetStealingLogic(container) );
-				}
-				else if( (( useIsCorpse && filters.IsCorpse(container) )
-					|| ( useIsDropped && filters.IsDropped(container) )) )
-				{
-					return ( ( GetContainerLogic(container)
-						|| ( filters.IsHerb(container, itemID) )
-						|| ( filters.IsArmorQ(container, itemID) && useIsArmor )
-						|| ( filters.IsWeaponQ(container, itemID) && useIsWeapon )
-						|| ( filters.IsIngredientQ(container, itemID) && useIsIngredient )
-						|| ( filters.IsJunkQ(container, itemID) && useIsJunk )
-						|| ( ((filters.IsReadable(container, itemID) && useIsReadable) || (filters.IsAlreadyRead(container, itemID) && useIsAlreadyRead)) && (useIsReadable || useIsAlreadyRead) )
-						|| ( filters.IsCurrency(container, itemID) && useIsMoney )
-						|| ( filters.IsFood(container, itemID) && useIsFood )
-						|| ( filters.IsUpgrade(container, itemID) && useIsUpgrade )
-						|| ( filters.IsHorse(container, itemID) && useIsHorse )
-						|| ( filters.IsTrophy(container, itemID) && useIsTrophy )
-						|| ( filters.IsTool(container, itemID) && useIsTool )
-						|| ( filters.IsOther(container, itemID) && useIsOther )
-						|| ( filters.IsFormula(container, itemID) && useIsFormula )
-						|| ( filters.IsMask(container, itemID) && useIsMask )
-						|| ( filters.IsKey(container, itemID) && useIsKey ))
-						&& GetStealingLogic(container) );
-				}
-				return false;
+				return ( (( filters.IsHerb(container, itemID) )
+					|| ( filters.IsArmorQ(container, itemID) && useIsArmor )
+					|| ( filters.IsWeaponQ(container, itemID) && useIsWeapon )
+					|| ( filters.IsIngredientQ(container, itemID) && useIsIngredient )
+					|| ( filters.IsJunkQ(container, itemID) && useIsJunk )
+					|| ( ((filters.IsReadable(container, itemID) && useIsReadable) || (filters.IsAlreadyRead(container, itemID) && useIsAlreadyRead)) && (useIsReadable || useIsAlreadyRead) )
+					|| ( filters.IsCurrency(container, itemID) && useIsMoney )
+					|| ( filters.IsFood(container, itemID) && useIsFood )
+					|| ( filters.IsUpgrade(container, itemID) && useIsUpgrade )
+					|| ( filters.IsHorse(container, itemID) && useIsHorse )
+					|| ( filters.IsTrophy(container, itemID) && useIsTrophy )
+					|| ( filters.IsTool(container, itemID) && useIsTool )
+					|| ( filters.IsOther(container, itemID) && useIsOther )
+					|| ( filters.IsFormula(container, itemID) && useIsFormula )
+					|| ( filters.IsMask(container, itemID) && useIsMask )
+					|| ( filters.IsKey(container, itemID) && useIsKey ))
+					&& GetStealingLogic(container) );
 			}
 			
 			return GetStealingLogic(container);
@@ -364,8 +318,6 @@ class CAHDAutoLootConfig
 		
 		DestroyWhiteWALogic			= StringToInt(UserSettings.GetVarValue( 'AHDAutoLoot_filters_global', 'DestroyWhiteLogicWA' ));
 		
-		useIsCorpse					= UserSettings.GetVarValue( 'AHDAutoLoot_containers', 'useIsCorpse' );
-		useIsDropped				= UserSettings.GetVarValue( 'AHDAutoLoot_containers', 'useIsDropped' );
 		
 		useFilters					= UserSettings.GetVarValue( 'AHDAutoLoot_filters', 'useFilters' );
 		useIsArmor					= UserSettings.GetVarValue( 'AHDAutoLoot_filters', 'useIsArmor' );
@@ -421,8 +373,6 @@ class CAHDAutoLootConfig
 	public function NoHorseLooting() : bool { return SettingEnabled( 'AHDAutoLoot_filters_global', 'noHorseLoot' ); }
 	//public function GetWhiteWADestructionLogic() : int { return GetSettingAsInt( 'AHDAutoLoot_filters_global', 'DestroyWhiteLogicWA' ); }
 	
-	public function UseCorpseFilter() : bool { return SettingEnabled( 'AHDAutoLoot_containers', 'useIsCorpse' ); }
-	public function UseDroppedFilter() : bool { return SettingEnabled( 'AHDAutoLoot_containers', 'useIsDropped' ); }
 	
 	public function GetEkeyLogic() : int
 	{

@@ -78,22 +78,6 @@
 			</Var>
 		</VisibleVars>
 	</Group>
-	<Group id="AHDAutoLoot_containers" displayName="Mods.ahdal_modName.ahdal_containers">
-		<PresetsArray>
-			<Preset id="0" displayName="ahdal_default">
-				<Entry varId="useIsCorpse" value="false"/>
-				<Entry varId="useIsDropped" value="false"/>
-			</Preset>
-			<Preset id="1" displayName="ahdal_presetCorpseCont">
-				<Entry varId="useIsCorpse" value="true"/>
-				<Entry varId="useIsDropped" value="false"/>
-			</Preset>
-		</PresetsArray>
-		<VisibleVars>
-			<Var id="useIsCorpse" displayName="ahdal_corpsesToggle" displayType="TOGGLE" />
-			<Var id="useIsDropped" displayName="ahdal_droppedToggle" displayType="TOGGLE" />
-		</VisibleVars>
-	</Group>
 	<Group id="AHDAutoLoot_filters" displayName="Mods.ahdal_modName.ahdal_itemFilters">
 		<PresetsArray>
 			<Preset id="0" displayName="ahdal_default">
