@@ -141,31 +141,21 @@
 				<Entry varId="useIsHerb" value="false"/>
 				<Entry varId="useIsArmor" value="false"/>
 				<Entry varId="chosenArmorQuality" value="0"/>
-				<Entry varId="chosenArmorValue" value="0"/>
 				<Entry varId="useIsWeapon" value="false"/>
 				<Entry varId="chosenWeaponQuality" value="0"/>
-				<Entry varId="chosenWeaponValue" value="0"/>
 				<Entry varId="useIsIngredient" value="false"/>
 				<Entry varId="chosenIngredientQuality" value="0"/>
-				<Entry varId="chosenIngredientValue" value="0"/>
 				<Entry varId="useIsJunk" value="false"/>
 				<Entry varId="chosenJunkQuality" value="0"/>
-				<Entry varId="chosenJunkValue" value="0"/>
 				<Entry varId="useIsReadable" value="false"/>
 				<Entry varId="useIsAlreadyRead" value="false"/>
 				<Entry varId="useIsMoney" value="false"/>
 				<Entry varId="useIsFood" value="false"/>
-				<Entry varId="chosenFoodValue" value="0"/>
 				<Entry varId="useIsUpgrade" value="false"/>
-				<Entry varId="chosenUpgradeValue" value="0"/>
 				<Entry varId="useIsHorse" value="false"/>
-				<Entry varId="chosenHorseValue" value="0"/>
 				<Entry varId="useIsTrophy" value="false"/>
-				<Entry varId="chosenTrophyValue" value="0"/>
 				<Entry varId="useIsTool" value="false"/>
-				<Entry varId="chosenToolValue" value="0"/>
 				<Entry varId="useIsOther" value="false"/>
-				<Entry varId="chosenOtherValue" value="0"/>
 				<Entry varId="useIsFormula" value="false"/>
 				<Entry varId="useIsMask" value="false"/>
 				<Entry varId="useIsKey" value="false"/>
@@ -174,31 +164,21 @@
 				<Entry varId="useIsHerb" value="true"/>
 				<Entry varId="useIsArmor" value="true"/>
 				<Entry varId="chosenArmorQuality" value="0"/>
-				<Entry varId="chosenArmorValue" value="0"/>
 				<Entry varId="useIsWeapon" value="true"/>
 				<Entry varId="chosenWeaponQuality" value="0"/>
-				<Entry varId="chosenWeaponValue" value="0"/>
 				<Entry varId="useIsIngredient" value="true"/>
 				<Entry varId="chosenIngredientQuality" value="0"/>
-				<Entry varId="chosenIngredientValue" value="0"/>
 				<Entry varId="useIsJunk" value="true"/>
 				<Entry varId="chosenJunkQuality" value="0"/>
-				<Entry varId="chosenJunkValue" value="0"/>
 				<Entry varId="useIsReadable" value="true"/>
 				<Entry varId="useIsAlreadyRead" value="true"/>
 				<Entry varId="useIsMoney" value="true"/>
 				<Entry varId="useIsFood" value="true"/>
-				<Entry varId="chosenFoodValue" value="0"/>
 				<Entry varId="useIsUpgrade" value="true"/>
-				<Entry varId="chosenUpgradeValue" value="0"/>
 				<Entry varId="useIsHorse" value="true"/>
-				<Entry varId="chosenHorseValue" value="0"/>
 				<Entry varId="useIsTrophy" value="true"/>
-				<Entry varId="chosenTrophyValue" value="0"/>
 				<Entry varId="useIsTool" value="true"/>
-				<Entry varId="chosenToolValue" value="0"/>
 				<Entry varId="useIsOther" value="true"/>
-				<Entry varId="chosenOtherValue" value="0"/>
 				<Entry varId="useIsFormula" value="true"/>
 				<Entry varId="useIsMask" value="true"/>
 				<Entry varId="useIsKey" value="true"/>
@@ -207,31 +187,21 @@
 				<Entry varId="useIsHerb" value="true"/>
 				<Entry varId="useIsArmor" value="true"/>
 				<Entry varId="chosenArmorQuality" value="9"/>
-				<Entry varId="chosenArmorValue" value="0"/>
 				<Entry varId="useIsWeapon" value="true"/>
 				<Entry varId="chosenWeaponQuality" value="9"/>
-				<Entry varId="chosenWeaponValue" value="0"/>
 				<Entry varId="useIsIngredient" value="true"/>
 				<Entry varId="chosenIngredientQuality" value="0"/>
-				<Entry varId="chosenIngredientValue" value="0"/>
 				<Entry varId="useIsJunk" value="true"/>
 				<Entry varId="chosenJunkQuality" value="0"/>
-				<Entry varId="chosenJunkValue" value="0"/>
 				<Entry varId="useIsReadable" value="true"/>
 				<Entry varId="useIsAlreadyRead" value="true"/>
 				<Entry varId="useIsMoney" value="true"/>
 				<Entry varId="useIsFood" value="true"/>
-				<Entry varId="chosenFoodValue" value="0"/>
 				<Entry varId="useIsUpgrade" value="true"/>
-				<Entry varId="chosenUpgradeValue" value="0"/>
 				<Entry varId="useIsHorse" value="true"/>
-				<Entry varId="chosenHorseValue" value="0"/>
 				<Entry varId="useIsTrophy" value="true"/>
-				<Entry varId="chosenTrophyValue" value="0"/>
 				<Entry varId="useIsTool" value="true"/>
-				<Entry varId="chosenToolValue" value="0"/>
 				<Entry varId="useIsOther" value="true"/>
-				<Entry varId="chosenOtherValue" value="0"/>
 				<Entry varId="useIsFormula" value="true"/>
 				<Entry varId="useIsMask" value="true"/>
 				<Entry varId="useIsKey" value="true"/>
@@ -283,7 +253,6 @@
 					</Option>
 				</OptionsArray>
 			</Var>
-			<Var id="chosenArmorValue" displayName="generalValue" displayType="SLIDER;0;5000;5000" />
 			<Var id="Separator" displayName="" displayType="SUBTLE_SEPARATOR"/>
 			<Var id="useIsWeapon" displayName="ahdal_weaponToggle" displayType="TOGGLE" />
 			<Var id="chosenWeaponQuality" displayName="generalQuality" displayType="OPTIONS" >
@@ -326,7 +295,6 @@
 					</Option>
 				</OptionsArray>
 			</Var>
-			<Var id="chosenWeaponValue" displayName="generalValue" displayType="SLIDER;0;5000;5000" />
 			<Var id="Separator" displayName="" displayType="SUBTLE_SEPARATOR"/>
 			<Var id="useIsIngredient" displayName="ahdal_ingredientToggle" displayType="TOGGLE" />
 			<Var id="chosenIngredientQuality" displayName="generalQuality" displayType="OPTIONS" >
@@ -360,7 +328,6 @@
 					</Option>
 				</OptionsArray>
 			</Var>
-			<Var id="chosenIngredientValue" displayName="generalValue" displayType="SLIDER;0;1000;1000" />
 			<Var id="Separator" displayName="" displayType="SUBTLE_SEPARATOR"/>
 			<Var id="useIsJunk" displayName="ahdal_junkToggle" displayType="TOGGLE" />
 			<Var id="chosenJunkQuality" displayName="generalQuality" displayType="OPTIONS" >
@@ -394,7 +361,6 @@
 					</Option>
 				</OptionsArray>
 			</Var>
-			<Var id="chosenJunkValue" displayName="generalValue" displayType="SLIDER;0;500;500" />
 			<Var id="Separator" displayName="" displayType="SUBTLE_SEPARATOR"/>
 			<Var id="useIsReadable" displayName="ahdal_readableToggle" displayType="TOGGLE" />
 			<Var id="useIsAlreadyRead" displayName="ahdal_alreadyReadToggle" displayType="TOGGLE" />
@@ -402,22 +368,16 @@
 			<Var id="useIsMoney" displayName="ahdal_moneyToggle" displayType="TOGGLE" />
 			<Var id="Separator" displayName="" displayType="SUBTLE_SEPARATOR"/>
 			<Var id="useIsFood" displayName="ahdal_foodToggle" displayType="TOGGLE" />
-			<Var id="chosenFoodValue" displayName="generalValue" displayType="SLIDER;0;50;50" />
 			<Var id="Separator" displayName="" displayType="SUBTLE_SEPARATOR"/>
 			<Var id="useIsUpgrade" displayName="ahdal_upgradeToggle" displayType="TOGGLE" />
-			<Var id="chosenUpgradeValue" displayName="generalValue" displayType="SLIDER;0;1000;1000" />
 			<Var id="Separator" displayName="" displayType="SUBTLE_SEPARATOR"/>
 			<Var id="useIsHorse" displayName="ahdal_horseToggle" displayType="TOGGLE" />
-			<Var id="chosenHorseValue" displayName="generalValue" displayType="SLIDER;0;400;400" />
 			<Var id="Separator" displayName="" displayType="SUBTLE_SEPARATOR"/>
 			<Var id="useIsTrophy" displayName="ahdal_trophyToggle" displayType="TOGGLE" />
-			<Var id="chosenTrophyValue" displayName="generalValue" displayType="SLIDER;0;1000;1000" />
 			<Var id="Separator" displayName="" displayType="SUBTLE_SEPARATOR"/>
 			<Var id="useIsTool" displayName="ahdal_toolToggle" displayType="TOGGLE" />
-			<Var id="chosenToolValue" displayName="generalValue" displayType="SLIDER;0;120;120" />
 			<Var id="Separator" displayName="" displayType="SUBTLE_SEPARATOR"/>
 			<Var id="useIsOther" displayName="ahdal_otherToggle" displayType="TOGGLE" />
-			<Var id="chosenOtherValue" displayName="generalValue" displayType="SLIDER;0;500;500" />
 			<Var id="Separator" displayName="" displayType="SUBTLE_SEPARATOR"/>
 			<Var id="useIsFormula" displayName="ahdal_formulaToggle" displayType="TOGGLE" />
 			<Var id="Separator" displayName="" displayType="SUBTLE_SEPARATOR"/>

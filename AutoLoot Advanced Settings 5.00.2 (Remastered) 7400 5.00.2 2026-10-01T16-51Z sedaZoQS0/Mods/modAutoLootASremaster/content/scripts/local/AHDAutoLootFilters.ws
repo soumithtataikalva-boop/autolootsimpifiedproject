@@ -148,112 +148,19 @@ class CAHDAutoLootFilters
 					|| ( IsKey(container, invItemList[i]) && !AutoLootConfig.UseKeyFilter() ) )
 					continue;
 				
-				if( IsArmor(container, invItemList[i]) && AutoLootConfig.UseArmorFilter() )
-				{
-					if( AutoLootConfig.ChosenArmorQuality() >= 1 && AutoLootConfig.ChosenArmorValue() == 0 )
-					{
-						if( ( AutoLootConfig.ChosenArmorQuality() <= 5 && cInv.GetItemQuality(invItemList[i]) != AutoLootConfig.ChosenArmorQuality() )
-							|| ( AutoLootConfig.ChosenArmorQuality() == 6 && cInv.GetItemQuality(invItemList[i]) > 2 )
-							|| ( AutoLootConfig.ChosenArmorQuality() == 7 && cInv.GetItemQuality(invItemList[i]) > 3 )
-							|| ( AutoLootConfig.ChosenArmorQuality() == 8 && cInv.GetItemQuality(invItemList[i]) > 4 )
-							|| ( AutoLootConfig.ChosenArmorQuality() == 9 && cInv.GetItemQuality(invItemList[i]) < 2 )
-							|| ( AutoLootConfig.ChosenArmorQuality() == 10 && cInv.GetItemQuality(invItemList[i]) < 3 )
-							|| ( AutoLootConfig.ChosenArmorQuality() == 11 && cInv.GetItemQuality(invItemList[i]) < 4 ) )
-							continue;
-					}
-					else if( AutoLootConfig.ChosenArmorQuality() == 0 && AutoLootConfig.ChosenArmorValue() >= 1 )
-					{
-						if( cInv.GetItemPrice(invItemList[i]) < AutoLootConfig.ChosenArmorValue() )
-							continue;
-					}
-					else if( AutoLootConfig.ChosenArmorQuality() >= 1 && AutoLootConfig.ChosenArmorValue() >= 1 )
-					{
-						if( cInv.GetItemPrice(invItemList[i]) < AutoLootConfig.ChosenArmorValue() )
-							continue;
-						else if( ( AutoLootConfig.ChosenArmorQuality() <= 5 && cInv.GetItemQuality(invItemList[i]) != AutoLootConfig.ChosenArmorQuality() )
-							|| ( AutoLootConfig.ChosenArmorQuality() == 6 && cInv.GetItemQuality(invItemList[i]) > 2 )
-							|| ( AutoLootConfig.ChosenArmorQuality() == 7 && cInv.GetItemQuality(invItemList[i]) > 3 )
-							|| ( AutoLootConfig.ChosenArmorQuality() == 8 && cInv.GetItemQuality(invItemList[i]) > 4 )
-							|| ( AutoLootConfig.ChosenArmorQuality() == 9 && cInv.GetItemQuality(invItemList[i]) < 2 )
-							|| ( AutoLootConfig.ChosenArmorQuality() == 10 && cInv.GetItemQuality(invItemList[i]) < 3 )
-							|| ( AutoLootConfig.ChosenArmorQuality() == 11 && cInv.GetItemQuality(invItemList[i]) < 4 ) )
-							continue;
-					}
-				}
-				
-				if( IsWeapon(container, invItemList[i]) && AutoLootConfig.UseWeaponFilter() )
-				{
-					if( AutoLootConfig.ChosenWeaponQuality() >= 1 && AutoLootConfig.ChosenWeaponValue() == 0 )
-					{
-						if( ( AutoLootConfig.ChosenWeaponQuality() <= 5 && cInv.GetItemQuality(invItemList[i]) != AutoLootConfig.ChosenWeaponQuality() )
-							|| ( AutoLootConfig.ChosenWeaponQuality() == 6 && cInv.GetItemQuality(invItemList[i]) > 2 )
-							|| ( AutoLootConfig.ChosenWeaponQuality() == 7 && cInv.GetItemQuality(invItemList[i]) > 3 )
-							|| ( AutoLootConfig.ChosenWeaponQuality() == 8 && cInv.GetItemQuality(invItemList[i]) > 4 )
-							|| ( AutoLootConfig.ChosenWeaponQuality() == 9 && cInv.GetItemQuality(invItemList[i]) < 2 )
-							|| ( AutoLootConfig.ChosenWeaponQuality() == 10 && cInv.GetItemQuality(invItemList[i]) < 3 )
-							|| ( AutoLootConfig.ChosenWeaponQuality() == 11 && cInv.GetItemQuality(invItemList[i]) < 4 ) )
-							continue;
-					}
-					else if( AutoLootConfig.ChosenWeaponQuality() == 0 && AutoLootConfig.ChosenWeaponValue() >= 1 )
-					{
-						if( cInv.GetItemPrice(invItemList[i]) < AutoLootConfig.ChosenWeaponValue() )
-							continue;
-					}
-					else if( AutoLootConfig.ChosenWeaponQuality() >= 1 && AutoLootConfig.ChosenWeaponValue() >= 1 )
-					{
-						if( cInv.GetItemPrice(invItemList[i]) < AutoLootConfig.ChosenWeaponValue() )
-							continue;
-						else if( ( AutoLootConfig.ChosenWeaponQuality() <= 5 && cInv.GetItemQuality(invItemList[i]) != AutoLootConfig.ChosenWeaponQuality() )
-							|| ( AutoLootConfig.ChosenWeaponQuality() == 6 && cInv.GetItemQuality(invItemList[i]) > 2 )
-							|| ( AutoLootConfig.ChosenWeaponQuality() == 7 && cInv.GetItemQuality(invItemList[i]) > 3 )
-							|| ( AutoLootConfig.ChosenWeaponQuality() == 8 && cInv.GetItemQuality(invItemList[i]) > 4 )
-							|| ( AutoLootConfig.ChosenWeaponQuality() == 9 && cInv.GetItemQuality(invItemList[i]) < 2 )
-							|| ( AutoLootConfig.ChosenWeaponQuality() == 10 && cInv.GetItemQuality(invItemList[i]) < 3 )
-							|| ( AutoLootConfig.ChosenWeaponQuality() == 11 && cInv.GetItemQuality(invItemList[i]) < 4 ) )
-							continue;
-					}
-				}
-				
-				//Category eligibility uses quality/value rules only; stack quantities are unrestricted.
+				//Category filters retain quality checks; item value and stack quantity are unrestricted.
+				if( IsArmor(container, invItemList[i]) && AutoLootConfig.UseArmorFilter()
+					&& !IsArmorQ(container, invItemList[i]) )
+					continue;
+				if( IsWeapon(container, invItemList[i]) && AutoLootConfig.UseWeaponFilter()
+					&& !IsWeaponQ(container, invItemList[i]) )
+					continue;
 				if( IsIngredient(container, invItemList[i]) && AutoLootConfig.UseIngredientFilter()
-					&& !IsIngredientQV(container, invItemList[i]) )
+					&& !IsIngredientQ(container, invItemList[i]) )
 					continue;
 				if( IsJunk(container, invItemList[i]) && AutoLootConfig.UseJunkFilter()
-					&& !IsJunkQV(container, invItemList[i]) )
+					&& !IsJunkQ(container, invItemList[i]) )
 					continue;
-				if( IsFood(container, invItemList[i]) && AutoLootConfig.UseFoodFilter()
-					&& !IsFoodV(container, invItemList[i]) )
-					continue;
-
-				if( IsUpgrade(container, invItemList[i]) && AutoLootConfig.UseUpgradeFilter() && AutoLootConfig.ChosenUpgradeValue() >= 1 )
-				{
-					if( cInv.GetItemPrice(invItemList[i]) < AutoLootConfig.ChosenUpgradeValue() )
-						continue;
-				}
-				
-				if( IsHorse(container, invItemList[i]) && AutoLootConfig.UseHorseFilter() && AutoLootConfig.ChosenHorseValue() >= 1 )
-				{
-					if( cInv.GetItemPrice(invItemList[i]) < AutoLootConfig.ChosenHorseValue() )
-						continue;
-				}
-				
-				if( IsTrophy(container, invItemList[i]) && AutoLootConfig.UseTrophyFilter() && AutoLootConfig.ChosenTrophyValue() >= 1 )
-				{
-					if( cInv.GetItemPrice(invItemList[i]) < AutoLootConfig.ChosenTrophyValue() )
-						continue;
-				}
-				
-				if( IsTool(container, invItemList[i]) && AutoLootConfig.UseToolFilter() && AutoLootConfig.ChosenToolValue() >= 1 )
-				{
-					if( cInv.GetItemPrice(invItemList[i]) < AutoLootConfig.ChosenToolValue() )
-						continue;
-				}
-				
-				if( IsOther(container, invItemList[i]) && AutoLootConfig.UseOtherFilter() && AutoLootConfig.ChosenOtherValue() >= 1 )
-				{
-					if( cInv.GetItemPrice(invItemList[i]) < AutoLootConfig.ChosenOtherValue() )
-						continue;
-				}
 			}
 			
 			//containers with trophies
@@ -455,38 +362,28 @@ class CAHDAutoLootFilters
 		return false;
 	}
 	
-	//Checks if the item is an armor (with Quality and Value setting)
-	public function IsArmorQV(container : W3Container, itemID : SItemUniqueId) : bool
+	//Checks if the item is an armor (with Quality setting)
+	public function IsArmorQ(container : W3Container, itemID : SItemUniqueId) : bool
 	{
-		if( IsArmor(container, itemID) )
-		{
-			if( AutoLootConfig.ChosenArmorQuality() == 0 && AutoLootConfig.ChosenArmorValue() == 0 )
-				return true;
-			else if( AutoLootConfig.ChosenArmorQuality() == 0 )
-				return container.GetInventory().GetItemPrice(itemID) >= AutoLootConfig.ChosenArmorValue();
-			else if( AutoLootConfig.ChosenArmorQuality() >= 1 && AutoLootConfig.ChosenArmorQuality() <= 5 )
-				return container.GetInventory().GetItemQuality(itemID) == AutoLootConfig.ChosenArmorQuality()
-					&& container.GetInventory().GetItemPrice(itemID) >= AutoLootConfig.ChosenArmorValue();
-			else if( AutoLootConfig.ChosenArmorQuality() == 6 )
-				return container.GetInventory().GetItemQuality(itemID) <= 2
-					&& container.GetInventory().GetItemPrice(itemID) >= AutoLootConfig.ChosenArmorValue();
-			else if( AutoLootConfig.ChosenArmorQuality() == 7 )
-				return container.GetInventory().GetItemQuality(itemID) <= 3
-					&& container.GetInventory().GetItemPrice(itemID) >= AutoLootConfig.ChosenArmorValue();
-			else if( AutoLootConfig.ChosenArmorQuality() == 8 )
-				return container.GetInventory().GetItemQuality(itemID) <= 4
-					&& container.GetInventory().GetItemPrice(itemID) >= AutoLootConfig.ChosenArmorValue();
-			else if( AutoLootConfig.ChosenArmorQuality() == 9 )
-				return container.GetInventory().GetItemQuality(itemID) >= 2
-					&& container.GetInventory().GetItemPrice(itemID) >= AutoLootConfig.ChosenArmorValue();
-			else if( AutoLootConfig.ChosenArmorQuality() == 10 )
-				return container.GetInventory().GetItemQuality(itemID) >= 3
-					&& container.GetInventory().GetItemPrice(itemID) >= AutoLootConfig.ChosenArmorValue();
-			else if( AutoLootConfig.ChosenArmorQuality() == 11 )
-				return container.GetInventory().GetItemQuality(itemID) >= 4
-					&& container.GetInventory().GetItemPrice(itemID) >= AutoLootConfig.ChosenArmorValue();
-		}
-		
+		//Only category and quality affect eligibility; item value is unrestricted.
+		if( !IsArmor(container, itemID) )
+			return false;
+		if( AutoLootConfig.ChosenArmorQuality() == 0 )
+			return true;
+		if( AutoLootConfig.ChosenArmorQuality() >= 1 && AutoLootConfig.ChosenArmorQuality() <= 5 )
+			return container.GetInventory().GetItemQuality(itemID) == AutoLootConfig.ChosenArmorQuality();
+		if( AutoLootConfig.ChosenArmorQuality() == 6 )
+			return container.GetInventory().GetItemQuality(itemID) <= 2;
+		if( AutoLootConfig.ChosenArmorQuality() == 7 )
+			return container.GetInventory().GetItemQuality(itemID) <= 3;
+		if( AutoLootConfig.ChosenArmorQuality() == 8 )
+			return container.GetInventory().GetItemQuality(itemID) <= 4;
+		if( AutoLootConfig.ChosenArmorQuality() == 9 )
+			return container.GetInventory().GetItemQuality(itemID) >= 2;
+		if( AutoLootConfig.ChosenArmorQuality() == 10 )
+			return container.GetInventory().GetItemQuality(itemID) >= 3;
+		if( AutoLootConfig.ChosenArmorQuality() == 11 )
+			return container.GetInventory().GetItemQuality(itemID) >= 4;
 		return false;
 	}
 	
@@ -499,38 +396,28 @@ class CAHDAutoLootFilters
 		return false;
 	}
 	
-	//Checks if the item is a weapon (with Quality and Value setting)
-	public function IsWeaponQV(container : W3Container, itemID : SItemUniqueId) : bool
+	//Checks if the item is a weapon (with Quality setting)
+	public function IsWeaponQ(container : W3Container, itemID : SItemUniqueId) : bool
 	{
-		if( IsWeapon(container, itemID) )
-		{
-			if( AutoLootConfig.ChosenWeaponQuality() == 0 && AutoLootConfig.ChosenWeaponValue() == 0 )
-				return true;
-			else if( AutoLootConfig.ChosenWeaponQuality() == 0 )
-				return container.GetInventory().GetItemPrice(itemID) >= AutoLootConfig.ChosenWeaponValue();
-			else if( AutoLootConfig.ChosenWeaponQuality() >= 1 && AutoLootConfig.ChosenWeaponQuality() <= 5 )
-				return container.GetInventory().GetItemQuality(itemID) == AutoLootConfig.ChosenWeaponQuality()
-					&& container.GetInventory().GetItemPrice(itemID) >= AutoLootConfig.ChosenWeaponValue();
-			else if( AutoLootConfig.ChosenWeaponQuality() == 6 )
-				return container.GetInventory().GetItemQuality(itemID) <= 2
-					&& container.GetInventory().GetItemPrice(itemID) >= AutoLootConfig.ChosenWeaponValue();
-			else if( AutoLootConfig.ChosenWeaponQuality() == 7 )
-				return container.GetInventory().GetItemQuality(itemID) <= 3
-					&& container.GetInventory().GetItemPrice(itemID) >= AutoLootConfig.ChosenWeaponValue();
-			else if( AutoLootConfig.ChosenWeaponQuality() == 8 )
-				return container.GetInventory().GetItemQuality(itemID) <= 4
-					&& container.GetInventory().GetItemPrice(itemID) >= AutoLootConfig.ChosenWeaponValue();
-			else if( AutoLootConfig.ChosenWeaponQuality() == 9 )
-				return container.GetInventory().GetItemQuality(itemID) >= 2
-					&& container.GetInventory().GetItemPrice(itemID) >= AutoLootConfig.ChosenWeaponValue();
-			else if( AutoLootConfig.ChosenWeaponQuality() == 10 )
-				return container.GetInventory().GetItemQuality(itemID) >= 3
-					&& container.GetInventory().GetItemPrice(itemID) >= AutoLootConfig.ChosenWeaponValue();
-			else if( AutoLootConfig.ChosenWeaponQuality() == 11 )
-				return container.GetInventory().GetItemQuality(itemID) >= 4
-					&& container.GetInventory().GetItemPrice(itemID) >= AutoLootConfig.ChosenWeaponValue();
-		}
-		
+		//Only category and quality affect eligibility; item value is unrestricted.
+		if( !IsWeapon(container, itemID) )
+			return false;
+		if( AutoLootConfig.ChosenWeaponQuality() == 0 )
+			return true;
+		if( AutoLootConfig.ChosenWeaponQuality() >= 1 && AutoLootConfig.ChosenWeaponQuality() <= 5 )
+			return container.GetInventory().GetItemQuality(itemID) == AutoLootConfig.ChosenWeaponQuality();
+		if( AutoLootConfig.ChosenWeaponQuality() == 6 )
+			return container.GetInventory().GetItemQuality(itemID) <= 2;
+		if( AutoLootConfig.ChosenWeaponQuality() == 7 )
+			return container.GetInventory().GetItemQuality(itemID) <= 3;
+		if( AutoLootConfig.ChosenWeaponQuality() == 8 )
+			return container.GetInventory().GetItemQuality(itemID) <= 4;
+		if( AutoLootConfig.ChosenWeaponQuality() == 9 )
+			return container.GetInventory().GetItemQuality(itemID) >= 2;
+		if( AutoLootConfig.ChosenWeaponQuality() == 10 )
+			return container.GetInventory().GetItemQuality(itemID) >= 3;
+		if( AutoLootConfig.ChosenWeaponQuality() == 11 )
+			return container.GetInventory().GetItemQuality(itemID) >= 4;
 		return false;
 	}
 	
@@ -557,49 +444,24 @@ class CAHDAutoLootFilters
 		return false;
 	}
 	
-	//Checks if the item is an ingredient (with Quality / Value settings)
-	public function IsIngredientQV(container : W3Container, itemID : SItemUniqueId) : bool
+	//Checks if the item is an ingredient (with Quality setting)
+	public function IsIngredientQ(container : W3Container, itemID : SItemUniqueId) : bool
 	{
-		
-		if( IsIngredient(container, itemID) )
-		{
-			if( AutoLootConfig.ChosenIngredientQuality() == 0 && AutoLootConfig.ChosenIngredientValue() == 0 )
-				return true;
-			else if( AutoLootConfig.ChosenIngredientQuality() >= 1 && AutoLootConfig.ChosenIngredientValue() == 0 )
-			{
-				if( AutoLootConfig.ChosenIngredientQuality() <= 4 )
-					return container.GetInventory().GetItemQuality(itemID) == AutoLootConfig.ChosenIngredientQuality();
-				else if( AutoLootConfig.ChosenIngredientQuality() == 5 )
-					return container.GetInventory().GetItemQuality(itemID) <= 2;
-				else if( AutoLootConfig.ChosenIngredientQuality() == 6 )
-					return container.GetInventory().GetItemQuality(itemID) <= 3;
-				else if( AutoLootConfig.ChosenIngredientQuality() == 7 )
-					return container.GetInventory().GetItemQuality(itemID) >= 2;
-				else if( AutoLootConfig.ChosenIngredientQuality() == 8 )
-					return container.GetInventory().GetItemQuality(itemID) >= 3;
-			}
-			else if( AutoLootConfig.ChosenIngredientQuality() == 0 && AutoLootConfig.ChosenIngredientValue() >= 1 )
-				return container.GetInventory().GetItemPrice(itemID) >= AutoLootConfig.ChosenIngredientValue();
-			else if( AutoLootConfig.ChosenIngredientQuality() >= 1 && AutoLootConfig.ChosenIngredientValue() >= 1 )
-			{
-				if( AutoLootConfig.ChosenIngredientQuality() <= 4 )
-					return container.GetInventory().GetItemQuality(itemID) == AutoLootConfig.ChosenIngredientQuality()
-						&& container.GetInventory().GetItemPrice(itemID) >= AutoLootConfig.ChosenIngredientValue();
-				else if( AutoLootConfig.ChosenIngredientQuality() == 5 )
-					return container.GetInventory().GetItemQuality(itemID) <= 2
-						&& container.GetInventory().GetItemPrice(itemID) >= AutoLootConfig.ChosenIngredientValue();
-				else if( AutoLootConfig.ChosenIngredientQuality() == 6 )
-					return container.GetInventory().GetItemQuality(itemID) <= 3
-						&& container.GetInventory().GetItemPrice(itemID) >= AutoLootConfig.ChosenIngredientValue();
-				else if( AutoLootConfig.ChosenIngredientQuality() == 7 )
-					return container.GetInventory().GetItemQuality(itemID) >= 2
-						&& container.GetInventory().GetItemPrice(itemID) >= AutoLootConfig.ChosenIngredientValue();
-				else if( AutoLootConfig.ChosenIngredientQuality() == 8 )
-					return container.GetInventory().GetItemQuality(itemID) >= 3
-						&& container.GetInventory().GetItemPrice(itemID) >= AutoLootConfig.ChosenIngredientValue();
-			}
-		}
-		
+		//Only category and quality affect eligibility; item value is unrestricted.
+		if( !IsIngredient(container, itemID) )
+			return false;
+		if( AutoLootConfig.ChosenIngredientQuality() == 0 )
+			return true;
+		if( AutoLootConfig.ChosenIngredientQuality() >= 1 && AutoLootConfig.ChosenIngredientQuality() <= 4 )
+			return container.GetInventory().GetItemQuality(itemID) == AutoLootConfig.ChosenIngredientQuality();
+		if( AutoLootConfig.ChosenIngredientQuality() == 5 )
+			return container.GetInventory().GetItemQuality(itemID) <= 2;
+		if( AutoLootConfig.ChosenIngredientQuality() == 6 )
+			return container.GetInventory().GetItemQuality(itemID) <= 3;
+		if( AutoLootConfig.ChosenIngredientQuality() == 7 )
+			return container.GetInventory().GetItemQuality(itemID) >= 2;
+		if( AutoLootConfig.ChosenIngredientQuality() == 8 )
+			return container.GetInventory().GetItemQuality(itemID) >= 3;
 		return false;
 	}
 	
@@ -612,49 +474,24 @@ class CAHDAutoLootFilters
 		return false;
 	}
 	
-	//Checks if the item is a junk (with Quality / Value settings)
-	public function IsJunkQV(container : W3Container, itemID : SItemUniqueId) : bool
+	//Checks if the item is a junk (with Quality setting)
+	public function IsJunkQ(container : W3Container, itemID : SItemUniqueId) : bool
 	{
-		
-		if( IsJunk(container, itemID) )
-		{
-			if( AutoLootConfig.ChosenJunkQuality() == 0 && AutoLootConfig.ChosenJunkValue() == 0 )
-				return true;
-			else if( AutoLootConfig.ChosenJunkQuality() >= 1 && AutoLootConfig.ChosenJunkValue() == 0 )
-			{
-				if( AutoLootConfig.ChosenJunkQuality() <= 4 )
-					return container.GetInventory().GetItemQuality(itemID) == AutoLootConfig.ChosenJunkQuality();
-				else if( AutoLootConfig.ChosenJunkQuality() == 5 )
-					return container.GetInventory().GetItemQuality(itemID) <= 2;
-				else if( AutoLootConfig.ChosenJunkQuality() == 6 )
-					return container.GetInventory().GetItemQuality(itemID) <= 3;
-				else if( AutoLootConfig.ChosenJunkQuality() == 7 )
-					return container.GetInventory().GetItemQuality(itemID) >= 2;
-				else if( AutoLootConfig.ChosenJunkQuality() == 8 )
-					return container.GetInventory().GetItemQuality(itemID) >= 3;
-			}
-			else if( AutoLootConfig.ChosenJunkQuality() == 0 && AutoLootConfig.ChosenJunkValue() >= 1 )
-				return container.GetInventory().GetItemPrice(itemID) >= AutoLootConfig.ChosenJunkValue();
-			else if( AutoLootConfig.ChosenJunkQuality() >= 1 && AutoLootConfig.ChosenJunkValue() >= 1 )
-			{
-				if( AutoLootConfig.ChosenJunkQuality() <= 4 )
-					return container.GetInventory().GetItemQuality(itemID) == AutoLootConfig.ChosenJunkQuality()
-						&& container.GetInventory().GetItemPrice(itemID) >= AutoLootConfig.ChosenJunkValue();
-				else if( AutoLootConfig.ChosenJunkQuality() == 5 )
-					return container.GetInventory().GetItemQuality(itemID) <= 2
-						&& container.GetInventory().GetItemPrice(itemID) >= AutoLootConfig.ChosenJunkValue();
-				else if( AutoLootConfig.ChosenJunkQuality() == 6 )
-					return container.GetInventory().GetItemQuality(itemID) <= 3
-						&& container.GetInventory().GetItemPrice(itemID) >= AutoLootConfig.ChosenJunkValue();
-				else if( AutoLootConfig.ChosenJunkQuality() == 7 )
-					return container.GetInventory().GetItemQuality(itemID) >= 2
-						&& container.GetInventory().GetItemPrice(itemID) >= AutoLootConfig.ChosenJunkValue();
-				else if( AutoLootConfig.ChosenJunkQuality() == 8 )
-					return container.GetInventory().GetItemQuality(itemID) >= 3
-						&& container.GetInventory().GetItemPrice(itemID) >= AutoLootConfig.ChosenJunkValue();
-			}
-		}
-		
+		//Only category and quality affect eligibility; item value is unrestricted.
+		if( !IsJunk(container, itemID) )
+			return false;
+		if( AutoLootConfig.ChosenJunkQuality() == 0 )
+			return true;
+		if( AutoLootConfig.ChosenJunkQuality() >= 1 && AutoLootConfig.ChosenJunkQuality() <= 4 )
+			return container.GetInventory().GetItemQuality(itemID) == AutoLootConfig.ChosenJunkQuality();
+		if( AutoLootConfig.ChosenJunkQuality() == 5 )
+			return container.GetInventory().GetItemQuality(itemID) <= 2;
+		if( AutoLootConfig.ChosenJunkQuality() == 6 )
+			return container.GetInventory().GetItemQuality(itemID) <= 3;
+		if( AutoLootConfig.ChosenJunkQuality() == 7 )
+			return container.GetInventory().GetItemQuality(itemID) >= 2;
+		if( AutoLootConfig.ChosenJunkQuality() == 8 )
+			return container.GetInventory().GetItemQuality(itemID) >= 3;
 		return false;
 	}
 	
@@ -712,12 +549,6 @@ class CAHDAutoLootFilters
 		return false;
 	}
 	
-	//Checks if the item is a food/drink (with Value setting)
-	public function IsFoodV(container : W3Container, itemID : SItemUniqueId) : bool
-	{
-		return IsFood(container, itemID) && (AutoLootConfig.ChosenFoodValue() == 0
-			|| container.GetInventory().GetItemPrice(itemID) >= AutoLootConfig.ChosenFoodValue());
-	}
 	
 	//Checks if the item is a glyph/runestone/mutagen
 	public function IsUpgrade(container : W3Container, itemID : SItemUniqueId) : bool
@@ -731,19 +562,6 @@ class CAHDAutoLootFilters
 		return false;
 	}
 	
-	//Checks if the item is a glyph/runestone/mutagen (with Value setting)
-	public function IsUpgradeV(container : W3Container, itemID : SItemUniqueId) : bool
-	{
-		if( IsUpgrade(container, itemID) )
-		{
-			if( AutoLootConfig.ChosenUpgradeValue() == 0 )
-				return true;
-			else if( AutoLootConfig.ChosenUpgradeValue() >= 1 )
-				return container.GetInventory().GetItemPrice(itemID) >= AutoLootConfig.ChosenUpgradeValue();
-		}
-		
-		return false;
-	}
 	
 	//Checks if the item is horse equipment (Blinders, Saddles, Saddlebags)
 	public function IsHorse(container : W3Container, itemID : SItemUniqueId) : bool
@@ -760,19 +578,6 @@ class CAHDAutoLootFilters
 		return false;
 	}
 	
-	//Checks if the item is horse equipment (Blinders, Saddles, Saddlebags) ...(with Value setting)
-	public function IsHorseV(container : W3Container, itemID : SItemUniqueId) : bool
-	{
-		if( IsHorse(container, itemID) )
-		{
-			if( AutoLootConfig.ChosenHorseValue() == 0 )
-				return true;
-			else if( AutoLootConfig.ChosenHorseValue() >= 1 )
-				return container.GetInventory().GetItemPrice(itemID) >= AutoLootConfig.ChosenHorseValue();
-		}
-		
-		return false;
-	}
 	
 	//Checks if the item is a trophy
 	public function IsTrophy(container : W3Container, itemID : SItemUniqueId) : bool
@@ -784,19 +589,6 @@ class CAHDAutoLootFilters
 		return false;
 	}
 	
-	//Checks if the item is a trophy (with Value setting)
-	public function IsTrophyV(container : W3Container, itemID : SItemUniqueId) : bool
-	{
-		if( IsTrophy(container, itemID) )
-		{
-			if( AutoLootConfig.ChosenTrophyValue() == 0 )
-				return true;
-			else if( AutoLootConfig.ChosenTrophyValue() >= 1 )
-				return container.GetInventory().GetItemPrice(itemID) >= AutoLootConfig.ChosenTrophyValue();
-		}
-		
-		return false;
-	}
 	
 	//Checks if the item is a tool (Repair Kit)
 	public function IsTool(container : W3Container, itemID : SItemUniqueId) : bool
@@ -807,19 +599,6 @@ class CAHDAutoLootFilters
 		return false;
 	}
 	
-	//Checks if the item is a tool (Repair Kit) ...(with Value setting)
-	public function IsToolV(container : W3Container, itemID : SItemUniqueId) : bool
-	{
-		if( IsTool(container, itemID) )
-		{
-			if( AutoLootConfig.ChosenToolValue() == 0 )
-				return true;
-			else if( AutoLootConfig.ChosenToolValue() >= 1 )
-				return container.GetInventory().GetItemPrice(itemID) >= AutoLootConfig.ChosenToolValue();
-		}
-		
-		return false;
-	}
 	
 	//Checks if the item is "Other" category = "Quest Items/Other" tab (not "Other" category in the "Weapons/Armor" inventory tab)
 	public function IsOther(container : W3Container, itemID : SItemUniqueId) : bool
@@ -841,19 +620,6 @@ class CAHDAutoLootFilters
 		return false;
 	}
 	
-	//Checks if the item is "Other" category = "Quest Items/Other" tab (with Value setting)
-	public function IsOtherV(container : W3Container, itemID : SItemUniqueId) : bool
-	{
-		if( IsOther(container, itemID) )
-		{
-			if( AutoLootConfig.ChosenOtherValue() == 0 )
-				return true;
-			else if( AutoLootConfig.ChosenOtherValue() >= 1 )
-				return container.GetInventory().GetItemPrice(itemID) >= AutoLootConfig.ChosenOtherValue();
-		}
-		
-		return false;
-	}
 	
 	//Checks if the item is a recipe or schematic
 	public function IsFormula(container : W3Container, itemID : SItemUniqueId) : bool
