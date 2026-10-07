@@ -581,7 +581,7 @@ class CR4HudModuleJournalUpdate extends CR4HudModuleBase
 		{
 			itemInfoData.SetMemberFlashNumber("bookPosX", BookPopupPosX);
 			itemInfoData.SetMemberFlashNumber("bookPosY", BookPopupPosY);
-			//GetWitcherPlayer().DisplayHudMessage( "X: " + itemInfoData.GetMemberFlashNumber("bookPosX") + " / Y: " + (-itemInfoData.GetMemberFlashNumber("bookPosY")) );
+			//Book popup coordinates are applied only while the mod is enabled.
 		}
 		//--AutoLoot +A.S.
 		

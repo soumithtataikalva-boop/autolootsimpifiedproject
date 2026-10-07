@@ -2412,23 +2412,7 @@ class CR4IngameMenu extends CR4MenuBase
 		{
 			theGame.GetGuiManager().ShowAASNotification( "<font size='" + StringToInt(theGame.GetInGameConfigWrapper().GetVarValue('AHDAutoLoot_notifications', 'notificationFontSize')) + "'><font color =\"#00CDFF\">" + GetLocStringByKeyExt("ahdal_popupCurrentPosition") + "</font>" );
 			
-			/* Disabled functions (Start)--
-			//1) enhanced msg with an icon and additional text
-			var strAASNotFS : int; //note this have to be declared at the beginning yet if used
-			strAASNotFS = StringToInt(theGame.GetInGameConfigWrapper().GetVarValue('AHDAutoLoot_notifications', 'notificationFontSize'));
-			theGame.GetGuiManager().ShowAASNotification( "<font size='" + strAASNotFS + "'><font color =\"#00CDFF\">" + "The current position of Autoloot popup window..." + "<br>"
-			+ "<img src='img://icons/inventory/quests/map-64x64.png' height='" + strAASNotFS + "' width='" + strAASNotFS + "' vspace='-10' />&nbsp;" + ">> This is just random text for the item name" + "</font>" );
-			
-			//2) reset X-axis max value (to 1510 in this case) if the chosen value is higher than this ...more than ~1510 is too high (off screen) for up to 16:9 ratio
-			if ( StringToInt(optionValue) > 1510 )
-			{
-				theGame.GetInGameConfigWrapper().SetVarValue( 'AHDAutoLoot_notifications', 'PopupPosX', 1510 );
-				theGame.SaveUserSettings();
-				m_fxUpdateOptionValue.InvokeSelfTwoArgs( FlashArgUInt(NameToFlashUInt('PopupPosX')), FlashArgString('1510') );
-				theGame.GetGuiManager().ShowAASNotification("<font size='17'><font color =\"#FF4D00\">" + "The value is too high for the current resolution (reset to 1510)!"
-				+ "<br>" + "...(you have to re-enter the menu to see the change)" + "</font>", 7000);
-				theSound.SoundEvent("gui_global_denied");
-			} */ //--Disabled functions (End)
+			//Preview uses the current popup settings without changing the saved position.
 		}
 		
 		if ( optionName == 'LowHPAutoHealOn'

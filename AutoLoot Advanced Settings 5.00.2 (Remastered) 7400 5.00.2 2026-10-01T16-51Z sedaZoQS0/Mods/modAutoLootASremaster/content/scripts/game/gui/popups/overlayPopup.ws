@@ -404,10 +404,7 @@ class CR4OverlayPopup extends CR4PopupBase
 		notificationTextOutlineALT.SetX(PopupPosX + 20 + adjustX);
 		notificationTextOutlineALT.SetY(PopupPosY + 11 + adjustY);
 		
-		//if( AASpopupWidthMax < 400 )
-		//{
-		//	theGame.GetInGameConfigWrapper().SetVarValue( 'AHDAutoLoot_notifications', 'AASpopupWidthMax', 700 );
-		//}
+		//Apply the configured popup width without overriding the saved setting.
 		
 		notificationModule.SetMemberFlashNumber( "TEXT_WIDTH_MAX", AASpopupWidthMax );
 		
