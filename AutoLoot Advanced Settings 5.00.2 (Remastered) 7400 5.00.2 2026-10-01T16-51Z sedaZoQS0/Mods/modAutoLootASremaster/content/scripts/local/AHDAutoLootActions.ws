@@ -77,7 +77,7 @@ class CAHDAutoLootActions
 			if( cInv.GetItemName(invItemList[i]) == 'Tirnalia potion' )
 				continue;
 			
-			if( AutoLootConfig.AutoLootLogic(container, invItemList[i], totalItems) )
+			if( AutoLootConfig.AutoLootLogic(container, invItemList[i]) )
 			{
 				//if( AutoLootConfig.NotificationsEnabled() ) //Disabled: no loot sound if this is On while Notification setting is Off
 				//adds Autoloot popups notifications for everything but SP options (with exception if Quest container is looted)

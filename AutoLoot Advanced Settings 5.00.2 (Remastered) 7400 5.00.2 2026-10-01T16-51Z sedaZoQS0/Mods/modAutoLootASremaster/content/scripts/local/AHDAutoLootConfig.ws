@@ -25,7 +25,6 @@ class CAHDAutoLootConfig
 					disableStealing,
 					useIsCorpse,
 					useIsDropped,
-					useQuantity,
 					useFilters,
 					useIsArmor,
 					useIsWeapon,
@@ -49,18 +48,8 @@ class CAHDAutoLootConfig
 					chosenArmorQuality,
 					chosenWeaponQuality,
 					chosenIngredientQuality,
-					chosenJunkQuality,
-					
-					quantityAmount,
-					quantityLogic : int;
+					chosenJunkQuality : int;
 	
-	private const var 	AHDAL_COMPARE_LESS,
-						AHDAL_COMPARE_EQUAL,
-						AHDAL_COMPARE_GREATER	: int;
-				
-				default AHDAL_COMPARE_LESS = 0;
-				default AHDAL_COMPARE_EQUAL = 1;
-				default AHDAL_COMPARE_GREATER = 2;
 	
 	private var		modInitalized,
 					modLoaded_base				: bool;
@@ -158,9 +147,6 @@ class CAHDAutoLootConfig
 		
 		UserSettings.SetVarValue( 'AHDAutoLoot_containers', 'useIsCorpse', "false" );
 		UserSettings.SetVarValue( 'AHDAutoLoot_containers', 'useIsDropped', "false" );
-		UserSettings.SetVarValue( 'AHDAutoLoot_containers', 'useQuantity', "false" );
-		UserSettings.SetVarValue( 'AHDAutoLoot_containers', 'quantityAmount', 15 );
-		UserSettings.SetVarValue( 'AHDAutoLoot_containers', 'Virtual_quantityLogic', 0 );
 		
 		UserSettings.SetVarValue( 'AHDAutoLoot_settings', 'interactionKey_lootLogic', 0 );
 		
@@ -277,21 +263,9 @@ class CAHDAutoLootConfig
 		return ( temp1 || temp2 );
 	}
 	
-	//Checks how many items are in the container with the selected menu options
-	public function GetQuantityLogic(count : int) : bool
-	{
-		if( useQuantity )
-		{
-			if( quantityLogic == AHDAL_COMPARE_LESS )		{ return ( count <= quantityAmount ); }
-			if( quantityLogic == AHDAL_COMPARE_EQUAL )		{ return ( count == quantityAmount ); }
-			if( quantityLogic == AHDAL_COMPARE_GREATER )	{ return ( count >= quantityAmount ); }
-		}
-		
-		return false;
-	}
 	
 	//Returns if the specified item can be looted from the container based on menu configuration
-	public function AutoLootLogic(container : W3Container, itemID : SItemUniqueId, count : int) : bool
+	public function AutoLootLogic(container : W3Container, itemID : SItemUniqueId) : bool
 	{
 		var itemName : name;
 		
@@ -330,8 +304,7 @@ class CAHDAutoLootConfig
 				&& (GetFeatureManager().GetInteractionKeyContainerType() <= 0 || GetEkeyLogic() == 2) ) //Mode 2 applies filters to interaction loot; modes 0/1 retain their bypass.
 			{
 				if( ( !useIsCorpse || !filters.IsCorpse(container) )
-					&& ( !useIsDropped || !filters.IsDropped(container) )
-					&& !useQuantity )
+					&& ( !useIsDropped || !filters.IsDropped(container) ) )
 				{
 					return ( (( filters.IsHerb(container, itemID) )
 						|| ( filters.IsArmorQ(container, itemID) && useIsArmor )
@@ -352,8 +325,7 @@ class CAHDAutoLootConfig
 						&& GetStealingLogic(container) );
 				}
 				else if( (( useIsCorpse && filters.IsCorpse(container) )
-					|| ( useIsDropped && filters.IsDropped(container) ))
-					&& !useQuantity )
+					|| ( useIsDropped && filters.IsDropped(container) )) )
 				{
 					return ( ( GetContainerLogic(container)
 						|| ( filters.IsHerb(container, itemID) )
@@ -374,54 +346,6 @@ class CAHDAutoLootConfig
 						|| ( filters.IsKey(container, itemID) && useIsKey ))
 						&& GetStealingLogic(container) );
 				}
-				else if( ( (useIsCorpse && filters.IsCorpse(container) )
-					|| ( useIsDropped && filters.IsDropped(container) ))
-					&& useQuantity )
-				{
-					return ( ( GetContainerLogic(container)
-						|| GetQuantityLogic(count)
-						|| ( filters.IsHerb(container, itemID) )
-						|| ( filters.IsArmorQ(container, itemID) && useIsArmor )
-						|| ( filters.IsWeaponQ(container, itemID) && useIsWeapon )
-						|| ( filters.IsIngredientQ(container, itemID) && useIsIngredient )
-						|| ( filters.IsJunkQ(container, itemID) && useIsJunk )
-						|| ( ((filters.IsReadable(container, itemID) && useIsReadable) || (filters.IsAlreadyRead(container, itemID) && useIsAlreadyRead)) && (useIsReadable || useIsAlreadyRead) )
-						|| ( filters.IsCurrency(container, itemID) && useIsMoney )
-						|| ( filters.IsFood(container, itemID) && useIsFood )
-						|| ( filters.IsUpgrade(container, itemID) && useIsUpgrade )
-						|| ( filters.IsHorse(container, itemID) && useIsHorse )
-						|| ( filters.IsTrophy(container, itemID) && useIsTrophy )
-						|| ( filters.IsTool(container, itemID) && useIsTool )
-						|| ( filters.IsOther(container, itemID) && useIsOther )
-						|| ( filters.IsFormula(container, itemID) && useIsFormula )
-						|| ( filters.IsMask(container, itemID) && useIsMask )
-						|| ( filters.IsKey(container, itemID) && useIsKey ))
-						&& GetStealingLogic(container) );
-				}
-				else if( ( !useIsCorpse || !filters.IsCorpse(container) )
-					&& ( !useIsDropped || !filters.IsDropped(container) )
-					&& useQuantity )
-				{
-					return ( ( GetQuantityLogic(count)
-						|| ( filters.IsHerb(container, itemID) )
-						|| ( filters.IsArmorQ(container, itemID) && useIsArmor )
-						|| ( filters.IsWeaponQ(container, itemID) && useIsWeapon )
-						|| ( filters.IsIngredientQ(container, itemID) && useIsIngredient )
-						|| ( filters.IsJunkQ(container, itemID) && useIsJunk )
-						|| ( ((filters.IsReadable(container, itemID) && useIsReadable) || (filters.IsAlreadyRead(container, itemID) && useIsAlreadyRead)) && (useIsReadable || useIsAlreadyRead) )
-						|| ( filters.IsCurrency(container, itemID) && useIsMoney )
-						|| ( filters.IsFood(container, itemID) && useIsFood )
-						|| ( filters.IsUpgrade(container, itemID) && useIsUpgrade )
-						|| ( filters.IsHorse(container, itemID) && useIsHorse )
-						|| ( filters.IsTrophy(container, itemID) && useIsTrophy )
-						|| ( filters.IsTool(container, itemID) && useIsTool )
-						|| ( filters.IsOther(container, itemID) && useIsOther )
-						|| ( filters.IsFormula(container, itemID) && useIsFormula )
-						|| ( filters.IsMask(container, itemID) && useIsMask )
-						|| ( filters.IsKey(container, itemID) && useIsKey ))
-						&& GetStealingLogic(container) );
-				}
-				
 				return false;
 			}
 			
@@ -442,9 +366,6 @@ class CAHDAutoLootConfig
 		
 		useIsCorpse					= UserSettings.GetVarValue( 'AHDAutoLoot_containers', 'useIsCorpse' );
 		useIsDropped				= UserSettings.GetVarValue( 'AHDAutoLoot_containers', 'useIsDropped' );
-		useQuantity					= UserSettings.GetVarValue( 'AHDAutoLoot_containers', 'useQuantity' );
-		quantityLogic				= StringToInt(UserSettings.GetVarValue( 'AHDAutoLoot_containers', 'Virtual_quantityLogic' ));
-		quantityAmount				= StringToInt(UserSettings.GetVarValue( 'AHDAutoLoot_containers', 'quantityAmount' ));
 		
 		useFilters					= UserSettings.GetVarValue( 'AHDAutoLoot_filters', 'useFilters' );
 		useIsArmor					= UserSettings.GetVarValue( 'AHDAutoLoot_filters', 'useIsArmor' );
@@ -502,9 +423,6 @@ class CAHDAutoLootConfig
 	
 	public function UseCorpseFilter() : bool { return SettingEnabled( 'AHDAutoLoot_containers', 'useIsCorpse' ); }
 	public function UseDroppedFilter() : bool { return SettingEnabled( 'AHDAutoLoot_containers', 'useIsDropped' ); }
-	public function UseQuantityFilter() : bool { return SettingEnabled( 'AHDAutoLoot_containers', 'useQuantity' ); }
-	public function ChosenQuantity() : int { return GetSettingAsInt( 'AHDAutoLoot_containers', 'quantityAmount' ); }
-	public function ChosenQuantityLogic() : int { return GetSettingAsInt( 'AHDAutoLoot_containers', 'Virtual_quantityLogic' ); }
 	
 	public function GetEkeyLogic() : int
 	{
