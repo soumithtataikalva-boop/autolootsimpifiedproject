@@ -126,53 +126,34 @@ class CAHDAutoLootActions
 	//Silent Popup options (SP_E_KeyLogic -> options to still enable autoloot popup for selected items in Silent Popup menu if you autoloot them with "E" key)
 	private function skipNotificationSP(container : W3Container, itemID : SItemUniqueId) : bool
 	{
-		var containerType : int;
+		var containerType, suppressionMode : int;
 		
 		containerType = AutoLootConfig.GetFeatureManager().GetInteractionKeyContainerType();
+		suppressionMode = AutoLootConfig.GetSP_Ekey_Logic();
 		
+		//Unique-container interactions always show notifications.
 		if( containerType == 3 )
 			return false;
 		
-		if( AutoLootConfig.GetSP_Ekey_Logic() == 1 )
-		{
-			return ( AutoLootConfig.GetNotifications().silentH(container, itemID) && containerType != 2 )
-				|| ( AutoLootConfig.GetNotifications().silentI(container, itemID) )
-				|| ( AutoLootConfig.GetNotifications().silentR(container, itemID) )
-				|| ( AutoLootConfig.GetNotifications().silentF(container, itemID) )
-				|| ( AutoLootConfig.GetNotifications().silentJ(container, itemID) )
-				|| ( AutoLootConfig.GetNotifications().silentC(container, itemID) )
-				|| ( AutoLootConfig.GetNotifications().silentA(container, itemID) )
-				|| ( AutoLootConfig.GetNotifications().silentW(container, itemID) );
-		}
-		else if( AutoLootConfig.GetSP_Ekey_Logic() == 2 )
-		{
-			if( containerType <= 0 ) //E wasn't pressed
-			{
-				return ( AutoLootConfig.GetNotifications().silentH(container, itemID) )
-					|| ( AutoLootConfig.GetNotifications().silentI(container, itemID) )
-					|| ( AutoLootConfig.GetNotifications().silentR(container, itemID) )
-					|| ( AutoLootConfig.GetNotifications().silentF(container, itemID) )
-					|| ( AutoLootConfig.GetNotifications().silentJ(container, itemID) )
-					|| ( AutoLootConfig.GetNotifications().silentC(container, itemID) )
-					|| ( AutoLootConfig.GetNotifications().silentA(container, itemID) )
-					|| ( AutoLootConfig.GetNotifications().silentW(container, itemID) );
-			}
-		}
-		else
-		{
-			return ( AutoLootConfig.GetNotifications().silentH(container, itemID) )
-				|| ( AutoLootConfig.GetNotifications().silentI(container, itemID) )
-				|| ( AutoLootConfig.GetNotifications().silentR(container, itemID) )
-				|| ( AutoLootConfig.GetNotifications().silentF(container, itemID) )
-				|| ( AutoLootConfig.GetNotifications().silentJ(container, itemID) )
-				|| ( AutoLootConfig.GetNotifications().silentC(container, itemID) )
-				|| ( AutoLootConfig.GetNotifications().silentA(container, itemID) )
-				|| ( AutoLootConfig.GetNotifications().silentW(container, itemID) );
-		}
+		//Mode 2 shows notifications for all interaction-key loot.
+		if( suppressionMode == 2 && containerType > 0 )
+			return false;
 		
-		return false;
+		//Mode 1 exempts herb interactions from herb popup suppression.
+		return (
+			(AutoLootConfig.GetNotifications().silentH(container, itemID)
+				&& !(suppressionMode == 1 && containerType == 2))
+			|| AutoLootConfig.GetNotifications().silentI(container, itemID)
+			|| AutoLootConfig.GetNotifications().silentR(container, itemID)
+			|| AutoLootConfig.GetNotifications().silentF(container, itemID)
+			|| AutoLootConfig.GetNotifications().silentJ(container, itemID)
+			|| AutoLootConfig.GetNotifications().silentC(container, itemID)
+			|| AutoLootConfig.GetNotifications().silentA(container, itemID)
+			|| AutoLootConfig.GetNotifications().silentW(container, itemID)
+		);
 	}
 	
+
 	//Cleans the updated inventory list and applies various bug fixes
 	private function CleanAndFix(container : W3Container, shouldClean : bool)
 	{
