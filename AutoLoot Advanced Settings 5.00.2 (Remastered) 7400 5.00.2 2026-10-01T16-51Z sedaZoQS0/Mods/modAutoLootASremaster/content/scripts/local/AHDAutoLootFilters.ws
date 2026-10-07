@@ -121,6 +121,7 @@ class CAHDAutoLootFilters
 			
 			//check for individual filters (excludes not used filters from Autoloot check to eliminate stutter)
 			if( AutoLootConfig.FiltersEnabled()
+				&& !IsHerb(container, invItemList[i]) //Herbs have no category filter; global protections still apply.
 				&& (AutoLootConfig.GetFeatureManager().GetInteractionKeyContainerType() <= 0 || E_KEY_Logic == 2) //Match item filtering: mode 2 applies filters during interaction looting.
 				&& ( !AutoLootConfig.UseCorpseFilter() || !IsCorpse(container) )
 				&& ( !AutoLootConfig.UseDroppedFilter() || !IsDropped(container) )
@@ -129,8 +130,7 @@ class CAHDAutoLootFilters
 					|| ( AutoLootConfig.ChosenQuantityLogic() == 1 && invItemList.Size() != AutoLootConfig.ChosenQuantity())
 					|| ( AutoLootConfig.ChosenQuantityLogic() == 2 && invItemList.Size() < AutoLootConfig.ChosenQuantity() )) ) )
 			{
-				if( ( IsHerb(container, invItemList[i]) && !AutoLootConfig.UseHerbFilter() )
-					|| ( IsArmor(container, invItemList[i]) && !AutoLootConfig.UseArmorFilter() )
+				if( ( IsArmor(container, invItemList[i]) && !AutoLootConfig.UseArmorFilter() )
 					|| ( IsWeapon(container, invItemList[i]) && !AutoLootConfig.UseWeaponFilter() )
 					|| ( IsIngredient(container, invItemList[i]) && !AutoLootConfig.UseIngredientFilter() )
 					|| ( IsJunk(container, invItemList[i]) && !AutoLootConfig.UseJunkFilter() )

@@ -124,7 +124,6 @@
 	<Group id="AHDAutoLoot_filters" displayName="Mods.ahdal_modName.ahdal_itemFilters">
 		<PresetsArray>
 			<Preset id="0" displayName="ahdal_default">
-				<Entry varId="useIsHerb" value="false"/>
 				<Entry varId="useIsArmor" value="false"/>
 				<Entry varId="chosenArmorQuality" value="0"/>
 				<Entry varId="useIsWeapon" value="false"/>
@@ -147,7 +146,6 @@
 				<Entry varId="useIsKey" value="false"/>
 			</Preset>
 			<Preset id="1" displayName="ahdal_presetAll">
-				<Entry varId="useIsHerb" value="true"/>
 				<Entry varId="useIsArmor" value="true"/>
 				<Entry varId="chosenArmorQuality" value="0"/>
 				<Entry varId="useIsWeapon" value="true"/>
@@ -170,7 +168,6 @@
 				<Entry varId="useIsKey" value="true"/>
 			</Preset>
 			<Preset id="2" displayName="ahdal_presetskipWhite">
-				<Entry varId="useIsHerb" value="true"/>
 				<Entry varId="useIsArmor" value="true"/>
 				<Entry varId="chosenArmorQuality" value="9"/>
 				<Entry varId="useIsWeapon" value="true"/>
@@ -195,8 +192,6 @@
 		</PresetsArray>
 		<VisibleVars>
 			<Var id="useFilters" displayName="ahdal_filterToggle" displayType="TOGGLE" />
-			<Var id="Separator" displayName="" displayType="SUBTLE_SEPARATOR"/>
-			<Var id="useIsHerb" displayName="ahdal_herbToggle" displayType="TOGGLE" />
 			<Var id="Separator" displayName="" displayType="SUBTLE_SEPARATOR"/>
 			<Var id="useIsArmor" displayName="ahdal_armorToggle" displayType="TOGGLE" />
 			<Var id="chosenArmorQuality" displayName="generalQuality" displayType="OPTIONS" >

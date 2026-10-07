@@ -27,7 +27,6 @@ class CAHDAutoLootConfig
 					useIsDropped,
 					useQuantity,
 					useFilters,
-					useIsHerb,
 					useIsArmor,
 					useIsWeapon,
 					useIsIngredient,
@@ -166,7 +165,6 @@ class CAHDAutoLootConfig
 		UserSettings.SetVarValue( 'AHDAutoLoot_settings', 'interactionKey_lootLogic', 0 );
 		
 		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'useFilters', "false" );
-		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'useIsHerb', "false" );
 		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'useIsArmor', "false" );
 		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'chosenArmorQuality', 0 );
 		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'useIsWeapon', "false" );
@@ -335,7 +333,7 @@ class CAHDAutoLootConfig
 					&& ( !useIsDropped || !filters.IsDropped(container) )
 					&& !useQuantity )
 				{
-					return ( (( filters.IsHerb(container, itemID) && useIsHerb )
+					return ( (( filters.IsHerb(container, itemID) )
 						|| ( filters.IsArmorQ(container, itemID) && useIsArmor )
 						|| ( filters.IsWeaponQ(container, itemID) && useIsWeapon )
 						|| ( filters.IsIngredientQ(container, itemID) && useIsIngredient )
@@ -358,7 +356,7 @@ class CAHDAutoLootConfig
 					&& !useQuantity )
 				{
 					return ( ( GetContainerLogic(container)
-						|| ( filters.IsHerb(container, itemID) && useIsHerb )
+						|| ( filters.IsHerb(container, itemID) )
 						|| ( filters.IsArmorQ(container, itemID) && useIsArmor )
 						|| ( filters.IsWeaponQ(container, itemID) && useIsWeapon )
 						|| ( filters.IsIngredientQ(container, itemID) && useIsIngredient )
@@ -382,7 +380,7 @@ class CAHDAutoLootConfig
 				{
 					return ( ( GetContainerLogic(container)
 						|| GetQuantityLogic(count)
-						|| ( filters.IsHerb(container, itemID) && useIsHerb )
+						|| ( filters.IsHerb(container, itemID) )
 						|| ( filters.IsArmorQ(container, itemID) && useIsArmor )
 						|| ( filters.IsWeaponQ(container, itemID) && useIsWeapon )
 						|| ( filters.IsIngredientQ(container, itemID) && useIsIngredient )
@@ -405,7 +403,7 @@ class CAHDAutoLootConfig
 					&& useQuantity )
 				{
 					return ( ( GetQuantityLogic(count)
-						|| ( filters.IsHerb(container, itemID) && useIsHerb )
+						|| ( filters.IsHerb(container, itemID) )
 						|| ( filters.IsArmorQ(container, itemID) && useIsArmor )
 						|| ( filters.IsWeaponQ(container, itemID) && useIsWeapon )
 						|| ( filters.IsIngredientQ(container, itemID) && useIsIngredient )
@@ -449,7 +447,6 @@ class CAHDAutoLootConfig
 		quantityAmount				= StringToInt(UserSettings.GetVarValue( 'AHDAutoLoot_containers', 'quantityAmount' ));
 		
 		useFilters					= UserSettings.GetVarValue( 'AHDAutoLoot_filters', 'useFilters' );
-		useIsHerb					= UserSettings.GetVarValue( 'AHDAutoLoot_filters', 'useIsHerb' );
 		useIsArmor					= UserSettings.GetVarValue( 'AHDAutoLoot_filters', 'useIsArmor' );
 		useIsWeapon					= UserSettings.GetVarValue( 'AHDAutoLoot_filters', 'useIsWeapon' );
 		useIsIngredient				= UserSettings.GetVarValue( 'AHDAutoLoot_filters', 'useIsIngredient' );
@@ -520,7 +517,6 @@ class CAHDAutoLootConfig
 	}
 	
 	public function FiltersEnabled() : bool { return SettingEnabled( 'AHDAutoLoot_filters', 'useFilters' ); }
-	public function UseHerbFilter() : bool { return SettingEnabled( 'AHDAutoLoot_filters', 'useIsHerb' ); }
 	public function UseArmorFilter() : bool { return SettingEnabled( 'AHDAutoLoot_filters', 'useIsArmor' ); }
 	public function ChosenArmorQuality() : int { return GetSettingAsInt( 'AHDAutoLoot_filters', 'chosenArmorQuality' ); }
 	public function UseWeaponFilter() : bool { return SettingEnabled( 'AHDAutoLoot_filters', 'useIsWeapon' ); }
