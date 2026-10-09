@@ -3,6 +3,7 @@
 	<Group id="AHDAutoLoot_settings" displayName="Mods.ahdal_modName.ahdal_settings">
 		<PresetsArray>
 			<Preset id="0" displayName="ahdal_default">
+				<Entry varId="modVersionUserSettings" value="5001"/>
 				<Entry varId="useAutoLoot" value="true"/>
 				<Entry varId="interactionKey_lootLogic" value="2"/>
 				<Entry varId="useNoAccidentalStealing" value="true"/>
@@ -617,6 +618,7 @@
 	<Group id="AutoLoot_popups" displayName="Mods.ahdal_modName.ahdal_popups">
 		<PresetsArray>
 			<Preset id="0" displayName="ahdal_default">
+				<Entry varId="SP_E_key_Logic" value="1"/>
 				<Entry varId="NoPopH" value="false"/>
 				<Entry varId="NoPopI" value="true"/>
 				<Entry varId="IngredientQualitySPLogic" value="0"/>
