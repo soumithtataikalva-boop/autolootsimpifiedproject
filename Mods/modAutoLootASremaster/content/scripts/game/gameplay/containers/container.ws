@@ -584,8 +584,9 @@ import class W3Container extends W3LockableEntity
 		if(skipInventoryPanel || usedByCiri || ((W3Herb)this) || l_autoCorpseLoot) 
 		{
 			
-			//AutoLoot +A.S.: loot conditions
-			if( !thePlayer.IsAnyWeaponHeld() && !thePlayer.IsHoldingItemInLHand() && !GetWitcherPlayer().GetAutoLootConfig().ModEnabled() )
+			//Play the normal herb interaction animation even when AutoLoot handles collection.
+			if( !thePlayer.IsAnyWeaponHeld() && !thePlayer.IsHoldingItemInLHand() &&
+				(!GetWitcherPlayer().GetAutoLootConfig().ModEnabled() || (W3Herb)this) )
 				thePlayer.RaiseEvent('LootHerb');
 			
 			if( (W3Herb)this && !usedByCiri && GetWitcherPlayer().GetAutoLootConfig().ModEnabled() )
@@ -1042,9 +1043,6 @@ import class W3Container extends W3LockableEntity
 					{
 						TakeAllItems();
 						DisableIfEmpty();
-						
-						if( !thePlayer.IsAnyWeaponHeld() && !thePlayer.IsHoldingItemInLHand() )
-							thePlayer.RaiseEvent('LootHerb');
 					}
 					else
 					{
