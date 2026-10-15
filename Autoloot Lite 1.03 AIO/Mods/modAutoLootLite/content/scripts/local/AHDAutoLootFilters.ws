@@ -78,19 +78,9 @@ class CAHDAutoLootFilters
 			if( container.lockedByKey || container.disableLooting || !container.CanShowFocusInteractionIcon() )
 				return true;
 			
-			//containers with no loot icon
+			//Skip non-corpse containers with a disabled Loot component.
 			if( container.GetComponent('Loot').IsEnabled() == false && !IsCorpse(container) )
-			{
-				if( StrFindFirst((string)container,"\beehive")>=0 || StrFindFirst((string)container,"\bee_hive")>=0 )
-				{
-					if( AutoLootConfig.ProtectBeehives() )
-						return true;
-					else
-						return false;
-				}
-				else
-					return true;
-			}
+				return true;
 			
 			//stealing settings
 			if( !container.disableStealing && AutoLootConfig.NoAccidentalStealingEnabled() )
@@ -176,13 +166,6 @@ class CAHDAutoLootFilters
 			if( AutoLootConfig.ProtectWitcherSchematics() )
 			{
 				if( IsFormula(container, invItemList[i]) && cInv.GetItemQuality(invItemList[i]) == 5 )
-					return true;
-			}
-			
-			//bee hives
-			if( AutoLootConfig.ProtectBeehives() )
-			{
-				if( StrFindFirst((string)container,"\beehive")>=0 || StrFindFirst((string)container,"\bee_hive")>=0 )
 					return true;
 			}
 			

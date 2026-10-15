@@ -121,15 +121,6 @@ class CAHDAutoLootFeatureManager
 						}
 					}
 					
-					//Protected beehives use the unique-container path.
-					if( AutoLootConfig.ProtectBeehives() )
-					{
-						if( StrFindFirst((string)targetContainer,"\beehive")>=0 || StrFindFirst((string)targetContainer,"\bee_hive")>=0 )
-						{
-							return 3;
-						}
-					}
-					
 					//Protected player loot bags use the unique-container path.
 					if( AutoLootConfig.ProtectDroppedItems() )
 					{
