@@ -179,13 +179,6 @@ class CAHDAutoLootFilters
 					return true;
 			}
 			
-			//herbs in the garden in Corvo Bianco
-			if( AutoLootConfig.ProtectHerbsCorvoBianco() )
-			{
-				if( StrFindFirst((string)container,"quests\minor_quests\mq7024_home\entities\garden")>=0 && IsHerb(container, invItemList[i]) )
-					return true;
-			}
-			
 			//bee hives
 			if( AutoLootConfig.ProtectBeehives() )
 			{

@@ -44,7 +44,6 @@
 				<Entry varId="noWitcherSchematics" value="true"/>
 				<Entry varId="noSpecialContainers" value="false"/>
 				<Entry varId="noTrophies" value="true"/>
-				<Entry varId="noHerbsCorvoBianco" value="false"/>
 				<Entry varId="noBeehives" value="false"/>
 				<Entry varId="noDropItems" value="true"/>
 				<Entry varId="noHorseLoot" value="false"/>
@@ -56,7 +55,6 @@
 			<Var id="noTrophies" displayName="ahdal_noTrophies" displayType="TOGGLE" />
 			<Var id="noHorseLoot" displayName="ahdal_noHorseLoot" displayType="TOGGLE" />
 			<Var id="noBeehives" displayName="ahdal_noBeehives" displayType="TOGGLE" />
-			<Var id="noHerbsCorvoBianco" displayName="ahdal_noHerbsCorvoBianco" displayType="TOGGLE" />
 			<Var id="noDropItems" displayName="ahdal_noDropItems" displayType="TOGGLE" />
 		</VisibleVars>
 	</Group>

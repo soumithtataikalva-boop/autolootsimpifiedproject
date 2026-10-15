@@ -129,7 +129,6 @@ class CAHDAutoLootConfig
 		UserSettings.SetVarValue( 'AHDAutoLoot_filters_global', 'noWitcherSchematics', "true" );
 		UserSettings.SetVarValue( 'AHDAutoLoot_filters_global', 'noSpecialContainers', "false" );
 		UserSettings.SetVarValue( 'AHDAutoLoot_filters_global', 'noTrophies', "true" );
-		UserSettings.SetVarValue( 'AHDAutoLoot_filters_global', 'noHerbsCorvoBianco', "false" );
 		UserSettings.SetVarValue( 'AHDAutoLoot_filters_global', 'noBeehives', "false" );
 		UserSettings.SetVarValue( 'AHDAutoLoot_filters_global', 'noDropItems', "true" );
 		UserSettings.SetVarValue( 'AHDAutoLoot_filters_global', 'noHorseLoot', "false" );
@@ -323,7 +322,6 @@ class CAHDAutoLootConfig
 	public function ProtectWitcherSchematics() : bool { return SettingEnabled( 'AHDAutoLoot_filters_global', 'noWitcherSchematics' ); }
 	public function ProtectSpecialContainers() : bool { return SettingEnabled( 'AHDAutoLoot_filters_global', 'noSpecialContainers' ); }
 	public function ProtectTrophies() : bool { return SettingEnabled( 'AHDAutoLoot_filters_global', 'noTrophies' ); }
-	public function ProtectHerbsCorvoBianco() : bool { return SettingEnabled( 'AHDAutoLoot_filters_global', 'noHerbsCorvoBianco' ); }
 	public function ProtectBeehives() : bool { return SettingEnabled( 'AHDAutoLoot_filters_global', 'noBeehives' ); }
 	public function ProtectDroppedItems() : bool { return SettingEnabled( 'AHDAutoLoot_filters_global', 'noDropItems' ); }
 	public function NoHorseLooting() : bool { return SettingEnabled( 'AHDAutoLoot_filters_global', 'noHorseLoot' ); }
