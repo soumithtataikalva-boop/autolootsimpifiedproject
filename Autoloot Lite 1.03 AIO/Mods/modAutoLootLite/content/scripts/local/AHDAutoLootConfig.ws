@@ -121,7 +121,7 @@ class CAHDAutoLootConfig
 		UserSettings.SetVarValue( 'AHDAutoLoot_settings', 'useAutoLoot', "true" );
 		UserSettings.SetVarValue( 'AHDAutoLoot_settings', 'useNoAccidentalStealing', "true" );
 		UserSettings.SetVarValue( 'AHDAutoLoot_settings', 'enableOnKillLoot', "true" );
-		UserSettings.SetVarValue( 'AHDAutoLoot_settings', 'lootOnKillMaxDistance', 10 );
+		UserSettings.SetVarValue( 'AHDAutoLoot_settings', 'lootOnKillMaxDistance', 30 );
 		UserSettings.SetVarValue( 'AHDAutoLoot_settings', 'questItemWarningMsg', "true" );
 		UserSettings.SetVarValue( 'AHDAutoLoot_settings', 'fullReset', "false" );
 		UserSettings.SetVarValue( 'AHDAutoLoot_settings', 'modVersionUserSettings', currentModVersion );
@@ -135,22 +135,22 @@ class CAHDAutoLootConfig
 		
 		UserSettings.SetVarValue( 'AHDAutoLoot_settings', 'interactionKey_lootLogic', 2 );
 		
-		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'useFilters', "false" );
+		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'useFilters', "true" );
 		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'useIsArmor', "false" );
 		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'chosenArmorQuality', 0 );
 		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'useIsWeapon', "false" );
 		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'chosenWeaponQuality', 0 );
-		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'useIsIngredient', "false" );
+		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'useIsIngredient', "true" );
 		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'useIsJunk', "false" );
 		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'chosenJunkQuality', 0 );
 		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'useIsReadable', "false" );
 		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'useIsAlreadyRead', "false" );
-		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'useIsMoney', "false" );
-		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'useIsFood', "false" );
-		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'useIsUpgrade', "false" );
+		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'useIsMoney', "true" );
+		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'useIsFood', "true" );
+		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'useIsUpgrade', "true" );
 		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'useIsHorse', "false" );
 		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'useIsTrophy', "false" );
-		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'useIsTool', "false" );
+		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'useIsTool', "true" );
 		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'useIsOther', "false" );
 		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'useIsFormula', "false" );
 		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'useIsMask', "false" );
@@ -163,9 +163,9 @@ class CAHDAutoLootConfig
 		UserSettings.SetVarValue( 'AHDAutoLoot_notifications', 'AASpopupBlack', "true" );
 		UserSettings.SetVarValue( 'AHDAutoLoot_notifications', 'PopupOpacity', 50 );
 		UserSettings.SetVarValue( 'AHDAutoLoot_notifications', 'textOutline', 3 );
-		UserSettings.SetVarValue( 'AHDAutoLoot_notifications', 'notificationFontSize', 23 );
+		UserSettings.SetVarValue( 'AHDAutoLoot_notifications', 'notificationFontSize', 14 );
 		UserSettings.SetVarValue( 'AHDAutoLoot_notifications', 'PopupPosX', 100 );
-		UserSettings.SetVarValue( 'AHDAutoLoot_notifications', 'PopupPosY', 0 );
+		UserSettings.SetVarValue( 'AHDAutoLoot_notifications', 'PopupPosY', 500 );
 		UserSettings.SetVarValue( 'AHDAutoLoot_notifications', 'AASpopupWidthMax', 175 );
 		UserSettings.SetVarValue( 'AHDAutoLoot_notifications', 'BookPopupPosX', 0 );
 		UserSettings.SetVarValue( 'AHDAutoLoot_notifications', 'BookPopupPosY', 0 );
