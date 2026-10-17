@@ -122,6 +122,7 @@ class CAHDAutoLootConfig
 		UserSettings.SetVarValue( 'AHDAutoLoot_settings', 'useNoAccidentalStealing', "true" );
 		UserSettings.SetVarValue( 'AHDAutoLoot_settings', 'enableOnKillLoot', "true" );
 		UserSettings.SetVarValue( 'AHDAutoLoot_settings', 'lootOnKillMaxDistance', 30 );
+		UserSettings.SetVarValue( 'AHDAutoLoot_settings', 'questItemWarningMsg', "true" );
 		UserSettings.SetVarValue( 'AHDAutoLoot_settings', 'fullReset', "false" );
 		UserSettings.SetVarValue( 'AHDAutoLoot_settings', 'modVersionUserSettings', currentModVersion );
 		
@@ -129,6 +130,7 @@ class CAHDAutoLootConfig
 		UserSettings.SetVarValue( 'AHDAutoLoot_filters_global', 'noSpecialContainers', "false" );
 		UserSettings.SetVarValue( 'AHDAutoLoot_filters_global', 'noTrophies', "true" );
 		UserSettings.SetVarValue( 'AHDAutoLoot_filters_global', 'noDropItems', "true" );
+		UserSettings.SetVarValue( 'AHDAutoLoot_filters_global', 'noHorseLoot', "false" );
 		
 		
 		UserSettings.SetVarValue( 'AHDAutoLoot_settings', 'interactionKey_lootLogic', 2 );
@@ -312,6 +314,7 @@ class CAHDAutoLootConfig
 			return 10.0f;
 		return distance;
 	}
+	public function QuestItemWarningMsg() : bool { return SettingEnabled( 'AHDAutoLoot_settings', 'questItemWarningMsg' ); }
 	public function EnableFullReset() : bool { return SettingEnabled( 'AHDAutoLoot_settings', 'fullReset' ); }
 	public function ModVersionSettings() : int { return GetSettingAsInt( 'AHDAutoLoot_settings', 'modVersionUserSettings' ); }
 	
@@ -319,6 +322,7 @@ class CAHDAutoLootConfig
 	public function ProtectSpecialContainers() : bool { return SettingEnabled( 'AHDAutoLoot_filters_global', 'noSpecialContainers' ); }
 	public function ProtectTrophies() : bool { return SettingEnabled( 'AHDAutoLoot_filters_global', 'noTrophies' ); }
 	public function ProtectDroppedItems() : bool { return SettingEnabled( 'AHDAutoLoot_filters_global', 'noDropItems' ); }
+	public function NoHorseLooting() : bool { return SettingEnabled( 'AHDAutoLoot_filters_global', 'noHorseLoot' ); }
 	
 	
 	public function GetEkeyLogic() : int

@@ -8,6 +8,7 @@
 2111383004|bde9af95||Enable Autoloot
 2111383005|f8648e15||No Accidental Stealing
 2111383006|803081f5||Loot on Kill
+2111383007|f4ca5b19||Warning if Autoloot Looted Quest/Protected Container
 2111383008|b90652df||Reset All Settings (Close Menu/Load Game to Take Effect)
 2111383009|ff47a2d9||Global Protections
 2111383010|938736b5||Global Filters Presets
@@ -15,6 +16,7 @@
 2111383012|c891b1e9||<font size="22">Exclude Special Containers<font size="18"> (Bandit Camp/Treasure/Smugglers' Cache/Spoils of War)</font>
 2111383013|085b48b0||Exclude Trophies
 2111383014|bed9f48f||Exclude Dropped Items
+2111383015|7bdd8a63||Disable AutoLoot While Mounted
 2111383016|35a4f875||<font color="#7F7F7F">Off</font>
 2111383017|a6e44a19||On
 2111383018|5f140470||Behaviour of Interaction Key ('E')
@@ -153,6 +155,7 @@
 2111383151|a3ce6192||AutoLoot: Default Settings Loaded
 2111383152|4881c3af||<font size="22">AutoLoot ERROR: Missing/outdated mod menu!<br/><br/><font size="20">>> check if the file below exists/isn't outdated or renamed:<br/><font size="18">...\The Witcher 3\bin\config\r4game\user_config_matrix\pc\<br/>AHDAutoLootConfig.xml<br/><br/><font size="19">>> run Menu Filelist Updater to add the following line to<br/>dx11filelist.txt/dx12filelist.txt<br/><font color="#073D1D">AHDAutoLootConfig.xml;</font>
 2111383153|4f50ca9f||AutoLoot ERROR: Font size not set!
+2111383154|3369b943||<font color="#FF0000">WARNING</font>: Autoloot looted quest/protected container!
 2111383155|218aed4d||The current position of Autoloot popup window...
 2111383156|265299cc||Received:
 2111383157|10f20fc0||Received During Combat:

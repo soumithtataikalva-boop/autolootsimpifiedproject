@@ -84,6 +84,15 @@ class CAHDAutoLootActions
 				if( !skipNotificationSP(container, invItemList[i]) || AutoLootConfig.GetFilters().isQuestContainer(container) || cInv.ItemHasTag(invItemList[i], 'GwintCard') )
 					AutoLootConfig.GetNotifications().AddItem( container, invItemList[i] );
 				
+				if( AutoLootConfig.QuestItemWarningMsg() )
+				{
+					if( AutoLootConfig.GetFilters().isQuestContainer(container) || cInv.ItemHasTag(invItemList[i], 'GwintCard') )
+					{
+						GetWitcherPlayer().DisplayHudMessage( GetLocStringByKeyExt("ahdal_questItemMsg") );
+						theSound.SoundEvent( 'gui_enchanting_socket_add' );
+					}
+				}
+				
 				LootItem( container, invItemList[i] );
 				looted = true;
 			}
