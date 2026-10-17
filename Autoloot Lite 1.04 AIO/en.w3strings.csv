@@ -8,161 +8,161 @@
 2111383004|bde9af95||Enable Autoloot
 2111383005|f8648e15||No Accidental Stealing
 2111383006|803081f5||Loot on Kill
-2111383008|b90652df||Reset All Settings (Close Menu/Load Game to Take Effect)
-2111383009|ff47a2d9||Global Protections
-2111383010|938736b5||Global Filters Presets
-2111383011|ae609cd8||Exclude Witcher Diagrams (Scavenger Hunt Missions)
-2111383012|c891b1e9||<font size="22">Exclude Special Containers<font size="18"> (Bandit Camp/Treasure/Smugglers' Cache/Spoils of War)</font>
-2111383013|085b48b0||Exclude Trophies
-2111383014|bed9f48f||Exclude Dropped Items
-2111383016|35a4f875||<font color="#7F7F7F">Off</font>
-2111383017|a6e44a19||On
-2111383018|5f140470||Behaviour of Interaction Key ('E')
-2111383019|31a3dc2b||<font size="22"><font color="#7F7F7F">Vanilla Popup</font>
-2111383020|a98ba167||<font size="22">Vanilla Popup for Unique Containers Only</font>
-2111383021|963f17a3||<font size="22">Autoloot Containers</font>
-2111383022|978c5c56||Item Filters
-2111383023|dc0cb5fa||Item Filters Presets
-2111383024|cec180bd||Select All
-2111383025|51b3c026||Skip White Items
-2111383026|99d009ad||<font color="#FF8F00">Use Filters</font> <font size="21">(Off Loots Everything)</font>
-2111383027|b0b25452||Loot Armor
-2111383028|d3dab021||Select Quality
-2111383029|592febe4||= Common (White)
-2111383030|697dec5b||= Master (Blue)
-2111383031|a8904494||= Magic (Yellow)
-2111383032|a8d89e5a||= Relic (Orange)
-2111383033|e4eb1bdb||= Witcher (Green)
-2111383034|ca23ca7a||&lt;= Master (Blue)
-2111383035|ccb6a695||&lt;= Magic (Yellow)
-2111383036|ccff005b||&lt;= Relic (Orange)
-2111383037|e76355d5||>= Master (Blue)
-2111383038|17fac3da||>= Magic (Yellow)
-2111383039|18431da0||>= Relic (Orange)
-2111383040|34027551||Loot Weapons
-2111383041|00b470c6||Loot Ingredients (Crafting, Alchemy, Dyes)
-2111383042|d7b71abd||Loot Junk
-2111383043|508983e5||Loot Books, Notes and Maps (UNREAD)
-2111383044|fc021681||Loot Books, Notes and Maps (READ)
-2111383045|c652af13||Loot Currency (Crowns, Florens, Orens)
-2111383046|828c4a53||Loot Food and Drink
-2111383047|eec8efaf||Loot Upgrades (Glyphs, Runes, Mutagens)
-2111383048|bb40c070||Loot Horse Equipment (Blinders, Saddles, Saddlebags)
-2111383049|774b1a65||Loot Trophies
-2111383050|85c2540d||Loot Tools (Repair Kits)
-2111383051|c9a51163||Loot Other Items ("Quest Items/Other" Tab)
-2111383052|8e978779||Loot Diagrams and Recipes
-2111383053|26a0a261||Loot Masks
-2111383054|dd77ed32||Loot Keys
-2111383055|337764f1||Light Mode
-2111383056|3f38886c||Normal Mode
-2111383057|54895836||Notifications
-2111383058|7a59d8da||Notification Presets
-2111383059|1aee0bc3||<font color="#FF8F00">*</font>Vanilla
-2111383060|8372a910||<font color="#FF8F00">*</font>Mod's Default
-2111383061|143ff948||<font color="#FF8F00">*</font>No Backgr. 2
-2111383062|465b11b9||<font color="#FF8F00">*</font>With Frame
-2111383063|48eff63b||Enable Loot Notifications
-2111383064|87234bd7||Black Background Color of Default Popup Window
-2111383065|2c70b6a5||<font color="#FF8F00">*</font>Black Background Color of Loot Popup Window
-2111383066|99e6aac0||<font color="#FF8F00">*</font>Background Opacity of Loot Popup Window (0% = Hidden)
-2111383067|1f926974||<font color="#FF8F00">*</font>Add Font Outline
-2111383068|7c5926f2||No Outline
-2111383069|ca8259d9||Light Outline
-2111383070|925aea34||Strong Outline
-2111383071|7c58f32c||Alternative Outline
-2111383072|2b2749f7||Notification Font Size
-2111383073|f748ea0f||Horizontal Move of Loot Popup Window (X-axis)
-2111383074|f748ea10||Vertical Move of Loot Popup Window (Y-axis)
-2111383075|7d6ae978||Width of Loot Popup Window
-2111383076|9adc6dc6||Horizontal Move of Book Popup Window (X-axis)
-2111383077|9adc6dc7||Vertical Move of Book Popup Window (Y-axis)
-2111383078|ad7e76eb||<font color="#FF8F00">*</font>Color of Header/Suffixes (Read, Known)
-2111383079|32fb5d45||<font color="#FFFFFF">Color 1</font>
-2111383080|2c704bc4||<font color="#D8D8D8">Color 2</font>
-2111383081|61992d25||<font color="#FFF8D1">Color 3</font>
-2111383082|2c704bd1||<font color="#D5FFF2">Color 4</font>
-2111383083|32fb5d52||<font color="#95FFDB">Color 5</font>
-2111383084|2c704d57||<font color="#FFCDBD">Color 6</font>
-2111383085|61995df2||<font color="#FBD9FB">Color 7</font>
-2111383086|d19260b7||<font color="#BBE5FF">Color 8</font>
-2111383087|2c704bd3||<font color="#B0B000">Color 9</font>
-2111383088|32fb5d54||<font color="#FFFF00">Color 10</font>
-2111383089|2c704d95||<font color="#FF9F24">Color 11</font>
-2111383090|61996574||<font color="#FF4500">Color 12</font>
-2111383091|d1934975||<font color="#FF008E">Color 13</font>
-2111383092|61996581||<font color="#FEA9FE">Color 14</font>
-2111383093|2c704da2||<font color="#7E61FF">Color 15</font>
-2111383094|61996707||<font color="#5F29FE">Color 16</font>
-2111383095|d1937a42||<font color="#C800FF">Color 17</font>
-2111383096|60dbce67||<font color="#00FFE7">Color 18</font>
-2111383097|61996583||<font color="#64F387">Color 19</font>
-2111383098|2c704da4||<font color="#00FF0C">Color 20</font>
-2111383099|61996745||<font color="#17CAFF">Color 21</font>
-2111383100|d19381c4||<font color="#4682B4">Color 22</font>
-2111383101|60dcb725||<font color="#006D6C">Color 23</font>
-2111383102|d19381d1||<font color="#A1A1A1">Color 24</font>
-2111383103|61996752||<font color="#666666">Color 25</font>
-2111383104|d1938357||<font color="#666666">C26=Black (Use With No Outline)</font>
-2111383105|8447e357||<font color="#FF8F00">*</font>Common Quality Items Color (Main)
-2111383106|07ee09b0||<font color="#3661dc">Color 1 (Vanilla)</font>
-2111383107|f5d32cb9||<font color="#367CDC">Color 2</font>
-2111383108|c4926ad0||<font color="#00BFFF">Color 3</font>
-2111383109|f373e23c||<font color="#909000">Color 1 (Vanilla)</font>
-2111383110|7b0865ad||<font color="#C4C92D">Color 2</font>
-2111383111|e604505c||<font color="#D8F135">Color 3</font>
-2111383112|d6faeab6||<font color="#934913">Color 1 (Vanilla)</font>
-2111383113|08626c73||<font color="#B25817">Color 2</font>
-2111383114|03eb2256||<font color="#FF7510">Color 3</font>
-2111383115|4d0c0b08||<font color="#197319">Color 1 (Vanilla)</font>
-2111383116|54755661||<font color="#019A01">Color 2</font>
-2111383117|3a357628||<font color="#00AA00">Color 3</font>
-2111383118|3fca9540||<font color="#FF8F00">*</font>Master Quality Items Color (Blue)
-2111383119|c09e4af7||<font color="#FF8F00">*</font>Magic Quality Items Color (Yellow)
-2111383120|de851cf1||<font color="#FF8F00">*</font>Relic Quality Items Color (Orange)
-2111383121|6a3f9e10||<font color="#FF8F00">*</font>Witcher Quality Items Color (Green)
-2111383122|4adc5da0||Use Notification Header
-2111383123|10aaca91||Use Item Descriptions
-2111383124|6e41a048||Show Item Numbers
-2111383125|dae3379f||Maximum Items in Each Loot Popup Window
-2111383126|491e308b||Show Quantities
-2111383127|a195a022||Use Loot Sound
-2111383128|695af776||Use Item Colors
-2111383129|04f85d5b||Use Item Images
-2111383130|479ce714||Hide Notifications Until Combat Ends
-2111383131|bbdb7331||Show Loot in Action Log
-2111383132|e9f71b74||Display Time (seconds)
-2111383133|9dc27063||Extra Display Time Per Item (milliseconds)
-2111383134|f853ddb9||Silent Popup
-2111383135|10630d95||Silent Popup Presets
-2111383136|b9e3815a||Autoloot Popup With Interaction Key ('E') for Selections Below
-2111383137|b5696c8f||Gathered Herbs Only
-2111383138|f7452158||Disable Loot Popup for: Herbs
-2111383139|fd40b477||Disable Loot Popup for: Ingredients (Quality Selection)
-2111383140|4062dcec||Hide White
-2111383141|d6397ad1||Hide Blue-
-2111383142|01bad1eb||Hide Yellow-
-2111383143|8ff30d25||Hide Orange-
-2111383144|f749ab01||Disable Loot Popup for: Readable - READ
-2111383145|f7445dc9||Disable Loot Popup for: Food and Drink
-2111383146|f74645b3||Disable Loot Popup for: Junk (not "Sea Shell")
-2111383147|eab393fc||Disable Loot Popup for: Currency (Crowns/Florens/Orens)
-2111383148|8feda66f||Disable Loot Popup for: Armors (Quality Selection)
-2111383149|3c920d05||Disable Loot Popup for: Weapons (Quality Selection)
-2111383150|4d5f8b0c||Mods
-2111383151|a3ce6192||AutoLoot: Default Settings Loaded
-2111383152|4881c3af||<font size="22">AutoLoot ERROR: Missing/outdated mod menu!<br/><br/><font size="20">>> check if the file below exists/isn't outdated or renamed:<br/><font size="18">...\The Witcher 3\bin\config\r4game\user_config_matrix\pc\<br/>AHDAutoLootConfig.xml<br/><br/><font size="19">>> run Menu Filelist Updater to add the following line to<br/>dx11filelist.txt/dx12filelist.txt<br/><font color="#073D1D">AHDAutoLootConfig.xml;</font>
-2111383153|4f50ca9f||AutoLoot ERROR: Font size not set!
-2111383155|218aed4d||The current position of Autoloot popup window...
-2111383156|265299cc||Received:
-2111383157|10f20fc0||Received During Combat:
-2111383158|92cec70d|| (Read)
-2111383159|e4e719ce|| (Known)
-2111383160|1f7974c4||Filters
-2111383161|288a7085||INFO
-2111383162|0ad782d3||Disabled
-2111383163|f2785c0a||Enabled
-2111383164|9e8488b1||Use Filters
-2111383165|29baddc8||Disabled (Loots Everything)
-2111383166|9bb93476||Current (Press) / Toggle (Hold): "Use Filters" Settings
-2111383167|e8ce2156||Loot-on-Kill Distance
+2111383007|b90652df||Reset All Settings (Close Menu/Load Game to Take Effect)
+2111383008|ff47a2d9||Global Protections
+2111383009|938736b5||Global Filters Presets
+2111383010|ae609cd8||Exclude Witcher Diagrams (Scavenger Hunt Missions)
+2111383011|c891b1e9||<font size="22">Exclude Special Containers<font size="18"> (Bandit Camp/Treasure/Smugglers' Cache/Spoils of War)</font>
+2111383012|085b48b0||Exclude Trophies
+2111383013|bed9f48f||Exclude Dropped Items
+2111383014|35a4f875||<font color="#7F7F7F">Off</font>
+2111383015|a6e44a19||On
+2111383016|5f140470||Behaviour of Interaction Key ('E')
+2111383017|31a3dc2b||<font size="22"><font color="#7F7F7F">Vanilla Popup</font>
+2111383018|a98ba167||<font size="22">Vanilla Popup for Unique Containers Only</font>
+2111383019|963f17a3||<font size="22">Autoloot Containers</font>
+2111383020|978c5c56||Item Filters
+2111383021|dc0cb5fa||Item Filters Presets
+2111383022|cec180bd||Select All
+2111383023|51b3c026||Skip White Items
+2111383024|99d009ad||<font color="#FF8F00">Use Filters</font> <font size="21">(Off Loots Everything)</font>
+2111383025|b0b25452||Loot Armor
+2111383026|d3dab021||Select Quality
+2111383027|592febe4||= Common (White)
+2111383028|697dec5b||= Master (Blue)
+2111383029|a8904494||= Magic (Yellow)
+2111383030|a8d89e5a||= Relic (Orange)
+2111383031|e4eb1bdb||= Witcher (Green)
+2111383032|ca23ca7a||&lt;= Master (Blue)
+2111383033|ccb6a695||&lt;= Magic (Yellow)
+2111383034|ccff005b||&lt;= Relic (Orange)
+2111383035|e76355d5||>= Master (Blue)
+2111383036|17fac3da||>= Magic (Yellow)
+2111383037|18431da0||>= Relic (Orange)
+2111383038|34027551||Loot Weapons
+2111383039|00b470c6||Loot Ingredients (Crafting, Alchemy, Dyes)
+2111383040|d7b71abd||Loot Junk
+2111383041|508983e5||Loot Books, Notes and Maps (UNREAD)
+2111383042|fc021681||Loot Books, Notes and Maps (READ)
+2111383043|c652af13||Loot Currency (Crowns, Florens, Orens)
+2111383044|828c4a53||Loot Food and Drink
+2111383045|eec8efaf||Loot Upgrades (Glyphs, Runes, Mutagens)
+2111383046|bb40c070||Loot Horse Equipment (Blinders, Saddles, Saddlebags)
+2111383047|774b1a65||Loot Trophies
+2111383048|85c2540d||Loot Tools (Repair Kits)
+2111383049|c9a51163||Loot Other Items ("Quest Items/Other" Tab)
+2111383050|8e978779||Loot Diagrams and Recipes
+2111383051|26a0a261||Loot Masks
+2111383052|dd77ed32||Loot Keys
+2111383053|337764f1||Light Mode
+2111383054|3f38886c||Normal Mode
+2111383055|54895836||Notifications
+2111383056|7a59d8da||Notification Presets
+2111383057|1aee0bc3||<font color="#FF8F00">*</font>Vanilla
+2111383058|8372a910||<font color="#FF8F00">*</font>Mod's Default
+2111383059|143ff948||<font color="#FF8F00">*</font>No Backgr. 2
+2111383060|465b11b9||<font color="#FF8F00">*</font>With Frame
+2111383061|48eff63b||Enable Loot Notifications
+2111383062|87234bd7||Black Background Color of Default Popup Window
+2111383063|2c70b6a5||<font color="#FF8F00">*</font>Black Background Color of Loot Popup Window
+2111383064|99e6aac0||<font color="#FF8F00">*</font>Background Opacity of Loot Popup Window (0% = Hidden)
+2111383065|1f926974||<font color="#FF8F00">*</font>Add Font Outline
+2111383066|7c5926f2||No Outline
+2111383067|ca8259d9||Light Outline
+2111383068|925aea34||Strong Outline
+2111383069|7c58f32c||Alternative Outline
+2111383070|2b2749f7||Notification Font Size
+2111383071|f748ea0f||Horizontal Move of Loot Popup Window (X-axis)
+2111383072|f748ea10||Vertical Move of Loot Popup Window (Y-axis)
+2111383073|7d6ae978||Width of Loot Popup Window
+2111383074|9adc6dc6||Horizontal Move of Book Popup Window (X-axis)
+2111383075|9adc6dc7||Vertical Move of Book Popup Window (Y-axis)
+2111383076|ad7e76eb||<font color="#FF8F00">*</font>Color of Header/Suffixes (Read, Known)
+2111383077|32fb5d45||<font color="#FFFFFF">Color 1</font>
+2111383078|2c704bc4||<font color="#D8D8D8">Color 2</font>
+2111383079|61992d25||<font color="#FFF8D1">Color 3</font>
+2111383080|2c704bd1||<font color="#D5FFF2">Color 4</font>
+2111383081|32fb5d52||<font color="#95FFDB">Color 5</font>
+2111383082|2c704d57||<font color="#FFCDBD">Color 6</font>
+2111383083|61995df2||<font color="#FBD9FB">Color 7</font>
+2111383084|d19260b7||<font color="#BBE5FF">Color 8</font>
+2111383085|2c704bd3||<font color="#B0B000">Color 9</font>
+2111383086|32fb5d54||<font color="#FFFF00">Color 10</font>
+2111383087|2c704d95||<font color="#FF9F24">Color 11</font>
+2111383088|61996574||<font color="#FF4500">Color 12</font>
+2111383089|d1934975||<font color="#FF008E">Color 13</font>
+2111383090|61996581||<font color="#FEA9FE">Color 14</font>
+2111383091|2c704da2||<font color="#7E61FF">Color 15</font>
+2111383092|61996707||<font color="#5F29FE">Color 16</font>
+2111383093|d1937a42||<font color="#C800FF">Color 17</font>
+2111383094|60dbce67||<font color="#00FFE7">Color 18</font>
+2111383095|61996583||<font color="#64F387">Color 19</font>
+2111383096|2c704da4||<font color="#00FF0C">Color 20</font>
+2111383097|61996745||<font color="#17CAFF">Color 21</font>
+2111383098|d19381c4||<font color="#4682B4">Color 22</font>
+2111383099|60dcb725||<font color="#006D6C">Color 23</font>
+2111383100|d19381d1||<font color="#A1A1A1">Color 24</font>
+2111383101|61996752||<font color="#666666">Color 25</font>
+2111383102|d1938357||<font color="#666666">C26=Black (Use With No Outline)</font>
+2111383103|8447e357||<font color="#FF8F00">*</font>Common Quality Items Color (Main)
+2111383104|07ee09b0||<font color="#3661dc">Color 1 (Vanilla)</font>
+2111383105|f5d32cb9||<font color="#367CDC">Color 2</font>
+2111383106|c4926ad0||<font color="#00BFFF">Color 3</font>
+2111383107|f373e23c||<font color="#909000">Color 1 (Vanilla)</font>
+2111383108|7b0865ad||<font color="#C4C92D">Color 2</font>
+2111383109|e604505c||<font color="#D8F135">Color 3</font>
+2111383110|d6faeab6||<font color="#934913">Color 1 (Vanilla)</font>
+2111383111|08626c73||<font color="#B25817">Color 2</font>
+2111383112|03eb2256||<font color="#FF7510">Color 3</font>
+2111383113|4d0c0b08||<font color="#197319">Color 1 (Vanilla)</font>
+2111383114|54755661||<font color="#019A01">Color 2</font>
+2111383115|3a357628||<font color="#00AA00">Color 3</font>
+2111383116|3fca9540||<font color="#FF8F00">*</font>Master Quality Items Color (Blue)
+2111383117|c09e4af7||<font color="#FF8F00">*</font>Magic Quality Items Color (Yellow)
+2111383118|de851cf1||<font color="#FF8F00">*</font>Relic Quality Items Color (Orange)
+2111383119|6a3f9e10||<font color="#FF8F00">*</font>Witcher Quality Items Color (Green)
+2111383120|4adc5da0||Use Notification Header
+2111383121|10aaca91||Use Item Descriptions
+2111383122|6e41a048||Show Item Numbers
+2111383123|dae3379f||Maximum Items in Each Loot Popup Window
+2111383124|491e308b||Show Quantities
+2111383125|a195a022||Use Loot Sound
+2111383126|695af776||Use Item Colors
+2111383127|04f85d5b||Use Item Images
+2111383128|479ce714||Hide Notifications Until Combat Ends
+2111383129|bbdb7331||Show Loot in Action Log
+2111383130|e9f71b74||Display Time (seconds)
+2111383131|9dc27063||Extra Display Time Per Item (milliseconds)
+2111383132|f853ddb9||Silent Popup
+2111383133|10630d95||Silent Popup Presets
+2111383134|b9e3815a||Autoloot Popup With Interaction Key ('E') for Selections Below
+2111383135|b5696c8f||Gathered Herbs Only
+2111383136|f7452158||Disable Loot Popup for: Herbs
+2111383137|fd40b477||Disable Loot Popup for: Ingredients (Quality Selection)
+2111383138|4062dcec||Hide White
+2111383139|d6397ad1||Hide Blue-
+2111383140|01bad1eb||Hide Yellow-
+2111383141|8ff30d25||Hide Orange-
+2111383142|f749ab01||Disable Loot Popup for: Readable - READ
+2111383143|f7445dc9||Disable Loot Popup for: Food and Drink
+2111383144|f74645b3||Disable Loot Popup for: Junk (not "Sea Shell")
+2111383145|eab393fc||Disable Loot Popup for: Currency (Crowns/Florens/Orens)
+2111383146|8feda66f||Disable Loot Popup for: Armors (Quality Selection)
+2111383147|3c920d05||Disable Loot Popup for: Weapons (Quality Selection)
+2111383148|4d5f8b0c||Mods
+2111383149|a3ce6192||AutoLoot: Default Settings Loaded
+2111383150|4881c3af||<font size="22">AutoLoot ERROR: Missing/outdated mod menu!<br/><br/><font size="20">>> check if the file below exists/isn't outdated or renamed:<br/><font size="18">...\The Witcher 3\bin\config\r4game\user_config_matrix\pc\<br/>AHDAutoLootConfig.xml<br/><br/><font size="19">>> run Menu Filelist Updater to add the following line to<br/>dx11filelist.txt/dx12filelist.txt<br/><font color="#073D1D">AHDAutoLootConfig.xml;</font>
+2111383151|4f50ca9f||AutoLoot ERROR: Font size not set!
+2111383152|218aed4d||The current position of Autoloot popup window...
+2111383153|265299cc||Received:
+2111383154|10f20fc0||Received During Combat:
+2111383155|92cec70d|| (Read)
+2111383156|e4e719ce|| (Known)
+2111383157|1f7974c4||Filters
+2111383158|288a7085||INFO
+2111383159|0ad782d3||Disabled
+2111383160|f2785c0a||Enabled
+2111383161|9e8488b1||Use Filters
+2111383162|29baddc8||Disabled (Loots Everything)
+2111383163|9bb93476||Current (Press) / Toggle (Hold): "Use Filters" Settings
+2111383164|e8ce2156||Loot-on-Kill Distance
