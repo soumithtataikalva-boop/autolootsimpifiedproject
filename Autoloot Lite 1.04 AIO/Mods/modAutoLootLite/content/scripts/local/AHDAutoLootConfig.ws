@@ -1,0 +1,410 @@
+/***********************************************************************/
+/** 	AHDAutoLootConfig.ws
+/** 	by AeroHD
+/**		Original AutoLoot code by JupiterTheGod
+/**		mod: AutoLoot Advanced Settings (AutoLoot +A.S.) by jerry18
+/***********************************************************************/
+
+
+
+class CAHDAutoLootConfig
+{
+	private var UserSettings : CInGameConfigWrapper;
+	private var actions : CAHDAutoLootActions;
+	private var features : CAHDAutoLootFeatureManager;
+	private var filters : CAHDAutoLootFilters;
+	private var notifications : CAHDAutoLootNotificationManager;
+	private	var shortcuts : AutoLootShortcuts;
+	
+	private const var 	currentModVersion : int;
+	
+	private var		modEnabled,
+					useNoAccidentalStealing,
+					useFilters,
+					useIsArmor,
+					useIsWeapon,
+					useIsIngredient,
+					useIsJunk,
+					useIsReadable,
+					useIsAlreadyRead,
+					useIsMoney,
+					useIsFood,
+					useIsUpgrade,
+					useIsHorse,
+					useIsTrophy,
+					useIsTool,
+					useIsOther,
+					useIsFormula,
+					useIsMask,
+					useIsKey : bool;
+					
+	
+	private var		chosenArmorQuality,
+					chosenWeaponQuality,
+					chosenJunkQuality : int;
+	
+	
+	private var		modInitalized,
+					modLoaded_base				: bool;
+			
+			default modInitalized = false;
+			default modLoaded_base = false;
+	
+	//Initializes all parts of the mod, with listeners and some error checking
+	public function Init() : void
+	{
+		var displayMsg : bool;
+		
+		displayMsg = false;
+		UserSettings = theGame.GetInGameConfigWrapper();
+		
+		actions = new CAHDAutoLootActions in this;
+		actions.Init();
+		features = new CAHDAutoLootFeatureManager in this;
+		features.Init();
+		filters = new CAHDAutoLootFilters in this;
+		filters.Init();
+		notifications = new CAHDAutoLootNotificationManager in this;
+		notifications.Init();
+		notifications.Reset();
+		shortcuts = new AutoLootShortcuts in this;
+		shortcuts.Init();
+		shortcuts.InitRange();
+		
+		TryFullReset();
+		
+		//AutoLoot mod resets to default setting if the mod was updated
+		if( ModVersionSettings() != currentModVersion )
+		{
+			LoadDefaultSettings();
+			displayMsg = true;
+		}
+		
+		GetAutoLootSettings();
+		
+		modInitalized = true;
+		
+		if( displayMsg )
+			DisplayWelcomeMsg();
+		
+		GetWitcherPlayer().UpdateEncumbrance();
+	}
+	
+	//Determines if the menu settings were saved, and that it matches the current version
+	public function IsModLoaded() : bool
+	{
+		//The loaded flag starts false and is set when the saved mod version matches.
+		if( ModVersionSettings() == currentModVersion )
+			modLoaded_base = true;
+		
+		return ( modInitalized && modLoaded_base );
+	}
+	
+	//Displays the appropriate welcome (or error) message when the mod is loaded/reset
+	private function DisplayWelcomeMsg()
+	{
+		if( !IsModLoaded() )
+		{
+			GetWitcherPlayer().DisplayHudMessage( GetLocStringByKeyExt("ahdal_menuErrorMsg") );
+			theGame.GetGuiManager().ShowNotification(( GetLocStringByKeyExt("ahdal_menuErrorMsg") ), 15000);
+		}
+		else
+		{
+			//Report that default settings were loaded through the HUD message.
+			GetWitcherPlayer().DisplayHudMessage( GetLocStringByKeyExt("ahdal_defaultLoadedMsg") );
+		}
+	}
+	
+	//Sets all default values in user.settings and saves it
+	private function LoadDefaultSettings()
+	{
+		UserSettings.SetVarValue( 'AHDAutoLoot_settings', 'useAutoLoot', "true" );
+		UserSettings.SetVarValue( 'AHDAutoLoot_settings', 'useNoAccidentalStealing', "true" );
+		UserSettings.SetVarValue( 'AHDAutoLoot_settings', 'enableOnKillLoot', "true" );
+		UserSettings.SetVarValue( 'AHDAutoLoot_settings', 'lootOnKillMaxDistance', 30 );
+		UserSettings.SetVarValue( 'AHDAutoLoot_settings', 'fullReset', "false" );
+		UserSettings.SetVarValue( 'AHDAutoLoot_settings', 'modVersionUserSettings', currentModVersion );
+		
+		UserSettings.SetVarValue( 'AHDAutoLoot_filters_global', 'noWitcherSchematics', "true" );
+		UserSettings.SetVarValue( 'AHDAutoLoot_filters_global', 'noSpecialContainers', "false" );
+		UserSettings.SetVarValue( 'AHDAutoLoot_filters_global', 'noTrophies', "true" );
+		UserSettings.SetVarValue( 'AHDAutoLoot_filters_global', 'noDropItems', "true" );
+		
+		
+		UserSettings.SetVarValue( 'AHDAutoLoot_settings', 'interactionKey_lootLogic', 2 );
+		
+		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'useFilters', "true" );
+		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'useIsArmor', "false" );
+		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'chosenArmorQuality', 0 );
+		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'useIsWeapon', "false" );
+		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'chosenWeaponQuality', 0 );
+		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'useIsIngredient', "true" );
+		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'useIsJunk', "false" );
+		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'chosenJunkQuality', 0 );
+		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'useIsReadable', "false" );
+		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'useIsAlreadyRead', "false" );
+		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'useIsMoney', "true" );
+		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'useIsFood', "true" );
+		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'useIsUpgrade', "true" );
+		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'useIsHorse', "false" );
+		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'useIsTrophy', "false" );
+		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'useIsTool', "true" );
+		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'useIsOther', "false" );
+		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'useIsFormula', "false" );
+		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'useIsMask', "false" );
+		UserSettings.SetVarValue( 'AHDAutoLoot_filters', 'useIsKey', "false" );
+		
+		
+		
+		UserSettings.SetVarValue( 'AHDAutoLoot_notifications', 'enableNotification', "true" );
+		UserSettings.SetVarValue( 'AHDAutoLoot_notifications', 'DEFpopupBlack', "false" );
+		UserSettings.SetVarValue( 'AHDAutoLoot_notifications', 'AASpopupBlack', "true" );
+		UserSettings.SetVarValue( 'AHDAutoLoot_notifications', 'PopupOpacity', 50 );
+		UserSettings.SetVarValue( 'AHDAutoLoot_notifications', 'textOutline', 3 );
+		UserSettings.SetVarValue( 'AHDAutoLoot_notifications', 'notificationFontSize', 14 );
+		UserSettings.SetVarValue( 'AHDAutoLoot_notifications', 'PopupPosX', 100 );
+		UserSettings.SetVarValue( 'AHDAutoLoot_notifications', 'PopupPosY', 500 );
+		UserSettings.SetVarValue( 'AHDAutoLoot_notifications', 'AASpopupWidthMax', 175 );
+		UserSettings.SetVarValue( 'AHDAutoLoot_notifications', 'BookPopupPosX', 0 );
+		UserSettings.SetVarValue( 'AHDAutoLoot_notifications', 'BookPopupPosY', 0 );
+		UserSettings.SetVarValue( 'AHDAutoLoot_notifications', 'multiColor', 18 );
+		UserSettings.SetVarValue( 'AHDAutoLoot_notifications', 'commonColor', 7 );
+		UserSettings.SetVarValue( 'AHDAutoLoot_notifications', 'masterColor', 1 );
+		UserSettings.SetVarValue( 'AHDAutoLoot_notifications', 'magicColor', 1 );
+		UserSettings.SetVarValue( 'AHDAutoLoot_notifications', 'relicColor', 1 );
+		UserSettings.SetVarValue( 'AHDAutoLoot_notifications', 'witcherColor', 1 );
+		UserSettings.SetVarValue( 'AHDAutoLoot_notifications', 'useNewNotification', "false" );
+		UserSettings.SetVarValue( 'AHDAutoLoot_notifications', 'useNotificationDesc', "false" );
+		UserSettings.SetVarValue( 'AHDAutoLoot_notifications', 'useNotificationItemCounts', "false" );
+		UserSettings.SetVarValue( 'AHDAutoLoot_notifications', 'lootPopupMaxItems', 30 );
+		UserSettings.SetVarValue( 'AHDAutoLoot_notifications', 'useNotificationQuantity', "true" );
+		UserSettings.SetVarValue( 'AHDAutoLoot_notifications', 'enableLootSound', "true" );
+		UserSettings.SetVarValue( 'AHDAutoLoot_notifications', 'enableColors', "true" );
+		UserSettings.SetVarValue( 'AHDAutoLoot_notifications', 'useNotificationImage', "true" );
+		UserSettings.SetVarValue( 'AHDAutoLoot_notifications', 'hideNotificationCombat', "true" );
+		UserSettings.SetVarValue( 'AHDAutoLoot_notifications', 'showLootAL', "false" );
+		UserSettings.SetVarValue( 'AHDAutoLoot_notifications', 'notificationTime', 5 );
+		UserSettings.SetVarValue( 'AHDAutoLoot_notifications', 'notificationTimeAddPerItem', 150 );
+		
+		
+		UserSettings.SetVarValue( 'AutoLoot_popups', 'SP_E_key_Logic', 1 );
+		UserSettings.SetVarValue( 'AutoLoot_popups', 'NoPopH', "false" );
+		UserSettings.SetVarValue( 'AutoLoot_popups', 'NoPopI', "true" );
+		UserSettings.SetVarValue( 'AutoLoot_popups', 'IngredientQualitySPLogic', 0 );
+		UserSettings.SetVarValue( 'AutoLoot_popups', 'NoPopR', "false" );
+		UserSettings.SetVarValue( 'AutoLoot_popups', 'NoPopF', "false" );
+		UserSettings.SetVarValue( 'AutoLoot_popups', 'NoPopJ', "false" );
+		UserSettings.SetVarValue( 'AutoLoot_popups', 'NoPopC', "false" );
+		UserSettings.SetVarValue( 'AutoLoot_popups', 'NoPopA', "true" );
+		UserSettings.SetVarValue( 'AutoLoot_popups', 'AQualitySPLogic', 0 );
+		UserSettings.SetVarValue( 'AutoLoot_popups', 'NoPopW', "true" );
+		UserSettings.SetVarValue( 'AutoLoot_popups', 'WQualitySPLogic', 0 );
+		
+		theGame.SaveUserSettings();
+	}
+	
+	//Does a full reset of all settings if the option is enabled (from closing the menu)
+	public function TryFullReset() : void
+	{
+		if( EnableFullReset() )
+		{
+			UserSettings.SetVarValue( 'AHDAutoLoot_settings', 'fullReset', "false" );
+			
+			UserSettings.SetVarValue( 'AHDAutoLoot_settings', 'modVersionUserSettings', 0 );
+			
+			theGame.SaveUserSettings();
+			
+			thePlayer.AddTimer('InitAHDAutoLoot', 1.0);
+		}
+	}
+	
+	//Checks if we can loot the container based on stealing options
+	private function GetStealingLogic(container : W3Container) : bool
+	{
+		if( useNoAccidentalStealing )	{ return filters.IsNotStealing(container); }
+		
+		return true;
+	}
+	
+	
+	
+	//Returns if the specified item can be looted from the container based on menu configuration
+	public function AutoLootLogic(container : W3Container, itemID : SItemUniqueId) : bool
+	{
+		
+		
+		GetAutoLootSettings();
+		
+		if( modEnabled )
+		{
+			if( useFilters
+				&& (GetFeatureManager().GetInteractionKeyContainerType() <= 0 || GetEkeyLogic() == 2) ) //Mode 2 applies filters to interaction loot; modes 0/1 retain their bypass.
+			{
+				return ( (( filters.IsHerb(container, itemID) )
+					|| ( filters.IsArmorQ(container, itemID) && useIsArmor )
+					|| ( filters.IsWeaponQ(container, itemID) && useIsWeapon )
+					|| ( filters.IsIngredient(container, itemID) && useIsIngredient )
+					|| ( filters.IsJunkQ(container, itemID) && useIsJunk )
+					|| ( (filters.IsReadable(container, itemID) && useIsReadable) || (filters.IsAlreadyRead(container, itemID) && useIsAlreadyRead) )
+					|| ( filters.IsCurrency(container, itemID) && useIsMoney )
+					|| ( filters.IsFood(container, itemID) && useIsFood )
+					|| ( filters.IsUpgrade(container, itemID) && useIsUpgrade )
+					|| ( filters.IsHorse(container, itemID) && useIsHorse )
+					|| ( filters.IsTrophy(container, itemID) && useIsTrophy )
+					|| ( filters.IsTool(container, itemID) && useIsTool )
+					|| ( filters.IsOther(container, itemID) && useIsOther )
+					|| ( filters.IsFormula(container, itemID) && useIsFormula )
+					|| ( filters.IsMask(container, itemID) && useIsMask )
+					|| ( filters.IsKey(container, itemID) && useIsKey ))
+					&& GetStealingLogic(container) );
+			}
+			
+			return GetStealingLogic(container);
+		}
+		
+		return false;
+	}
+	
+	//Loads all relevant menu settings into local variables
+	private function GetAutoLootSettings()
+	{
+		modEnabled					= UserSettings.GetVarValue( 'AHDAutoLoot_settings', 'useAutoLoot' );
+		useNoAccidentalStealing		= UserSettings.GetVarValue( 'AHDAutoLoot_settings', 'useNoAccidentalStealing' );
+		
+		
+		
+		useFilters					= UserSettings.GetVarValue( 'AHDAutoLoot_filters', 'useFilters' );
+		useIsArmor					= UserSettings.GetVarValue( 'AHDAutoLoot_filters', 'useIsArmor' );
+		useIsWeapon					= UserSettings.GetVarValue( 'AHDAutoLoot_filters', 'useIsWeapon' );
+		useIsIngredient				= UserSettings.GetVarValue( 'AHDAutoLoot_filters', 'useIsIngredient' );
+		useIsJunk					= UserSettings.GetVarValue( 'AHDAutoLoot_filters', 'useIsJunk' );
+		useIsReadable				= UserSettings.GetVarValue( 'AHDAutoLoot_filters', 'useIsReadable' );
+		useIsAlreadyRead			= UserSettings.GetVarValue( 'AHDAutoLoot_filters', 'useIsAlreadyRead' );
+		useIsMoney					= UserSettings.GetVarValue( 'AHDAutoLoot_filters', 'useIsMoney' );
+		useIsFood					= UserSettings.GetVarValue( 'AHDAutoLoot_filters', 'useIsFood' );
+		useIsUpgrade				= UserSettings.GetVarValue( 'AHDAutoLoot_filters', 'useIsUpgrade' );
+		useIsHorse					= UserSettings.GetVarValue( 'AHDAutoLoot_filters', 'useIsHorse' );
+		useIsTrophy					= UserSettings.GetVarValue( 'AHDAutoLoot_filters', 'useIsTrophy' );
+		useIsTool					= UserSettings.GetVarValue( 'AHDAutoLoot_filters', 'useIsTool' );
+		useIsOther					= UserSettings.GetVarValue( 'AHDAutoLoot_filters', 'useIsOther' );
+		useIsFormula				= UserSettings.GetVarValue( 'AHDAutoLoot_filters', 'useIsFormula' );
+		useIsMask					= UserSettings.GetVarValue( 'AHDAutoLoot_filters', 'useIsMask' );
+		useIsKey					= UserSettings.GetVarValue( 'AHDAutoLoot_filters', 'useIsKey' );
+		
+	}
+	
+	//Expose the services used by game hooks and the mod processing path.
+	public function GetFeatureManager() : CAHDAutoLootFeatureManager { return features; }
+	public function GetFilters() : CAHDAutoLootFilters { return filters; }
+	public function GetActions() : CAHDAutoLootActions { return actions; }
+	public function GetNotifications() : CAHDAutoLootNotificationManager { return notifications; }
+	
+	public function ModEnabled() : bool { return SettingEnabled( 'AHDAutoLoot_settings', 'useAutoLoot' ); }
+	public function NoAccidentalStealingEnabled() : bool { return SettingEnabled( 'AHDAutoLoot_settings', 'useNoAccidentalStealing' ); }
+	public function LootOnKillEnabled() : bool { return SettingEnabled( 'AHDAutoLoot_settings', 'enableOnKillLoot' ); }
+	//Loot-on-kill has its own range after removal of the radius-looting feature.
+	//Missing or invalid settings use the default of 30 metres.
+	public function GetLootOnKillDistance() : float
+	{
+		var distance : float;
+		distance = GetSettingAsFloat( 'AHDAutoLoot_settings', 'lootOnKillMaxDistance' );
+		if( distance < 1.0f || distance > 30.0f )
+			return 30.0f;
+		return distance;
+	}
+	public function EnableFullReset() : bool { return SettingEnabled( 'AHDAutoLoot_settings', 'fullReset' ); }
+	public function ModVersionSettings() : int { return GetSettingAsInt( 'AHDAutoLoot_settings', 'modVersionUserSettings' ); }
+	
+	public function ProtectWitcherSchematics() : bool { return SettingEnabled( 'AHDAutoLoot_filters_global', 'noWitcherSchematics' ); }
+	public function ProtectSpecialContainers() : bool { return SettingEnabled( 'AHDAutoLoot_filters_global', 'noSpecialContainers' ); }
+	public function ProtectTrophies() : bool { return SettingEnabled( 'AHDAutoLoot_filters_global', 'noTrophies' ); }
+	public function ProtectDroppedItems() : bool { return SettingEnabled( 'AHDAutoLoot_filters_global', 'noDropItems' ); }
+	
+	
+	public function GetEkeyLogic() : int
+	{
+		var mode : string;
+		mode = UserSettings.GetVarValue( 'AHDAutoLoot_settings', 'interactionKey_lootLogic' );
+		//Read older saved settings until a mode is stored in General Settings.
+		if( mode == "" )
+			return GetSettingAsInt( 'InteractionKey', 'interactionKey_lootLogic' );
+		return StringToInt(mode);
+	}
+	
+	public function FiltersEnabled() : bool { return SettingEnabled( 'AHDAutoLoot_filters', 'useFilters' ); }
+	public function UseArmorFilter() : bool { return SettingEnabled( 'AHDAutoLoot_filters', 'useIsArmor' ); }
+	public function ChosenArmorQuality() : int { return GetSettingAsInt( 'AHDAutoLoot_filters', 'chosenArmorQuality' ); }
+	public function UseWeaponFilter() : bool { return SettingEnabled( 'AHDAutoLoot_filters', 'useIsWeapon' ); }
+	public function ChosenWeaponQuality() : int { return GetSettingAsInt( 'AHDAutoLoot_filters', 'chosenWeaponQuality' ); }
+	public function UseIngredientFilter() : bool { return SettingEnabled( 'AHDAutoLoot_filters', 'useIsIngredient' ); }
+	public function UseJunkFilter() : bool { return SettingEnabled( 'AHDAutoLoot_filters', 'useIsJunk' ); }
+	public function ChosenJunkQuality() : int { return GetSettingAsInt( 'AHDAutoLoot_filters', 'chosenJunkQuality' ); }
+	public function UseReadableFilter() : bool { return SettingEnabled( 'AHDAutoLoot_filters', 'useIsReadable' ); }
+	public function UseAlreadyReadFilter() : bool { return SettingEnabled( 'AHDAutoLoot_filters', 'useIsAlreadyRead' ); }
+	public function UseCurrencyFilter() : bool { return SettingEnabled( 'AHDAutoLoot_filters', 'useIsMoney' ); }
+	public function UseFoodFilter() : bool { return SettingEnabled( 'AHDAutoLoot_filters', 'useIsFood' ); }
+	public function UseUpgradeFilter() : bool { return SettingEnabled( 'AHDAutoLoot_filters', 'useIsUpgrade' ); }
+	public function UseHorseFilter() : bool { return SettingEnabled( 'AHDAutoLoot_filters', 'useIsHorse' ); }
+	public function UseTrophyFilter() : bool { return SettingEnabled( 'AHDAutoLoot_filters', 'useIsTrophy' ); }
+	public function UseToolFilter() : bool { return SettingEnabled( 'AHDAutoLoot_filters', 'useIsTool' ); }
+	public function UseOtherFilter() : bool { return SettingEnabled( 'AHDAutoLoot_filters', 'useIsOther' ); }
+	public function UseFormulaFilter() : bool { return SettingEnabled( 'AHDAutoLoot_filters', 'useIsFormula' ); }
+	public function UseMaskFilter() : bool { return SettingEnabled( 'AHDAutoLoot_filters', 'useIsMask' ); }
+	public function UseKeyFilter() : bool { return SettingEnabled( 'AHDAutoLoot_filters', 'useIsKey' ); }
+	
+	public function NotificationsEnabled() : bool { return SettingEnabled( 'AHDAutoLoot_notifications', 'enableNotification' ); }
+	public function GetPopupOpacity() : int { return GetSettingAsInt( 'AHDAutoLoot_notifications', 'PopupOpacity' ); }
+	public function GetTextOutline() : int { return GetSettingAsInt( 'AHDAutoLoot_notifications', 'textOutline' ); }
+	public function GetNotificationFS() : int { return GetSettingAsInt( 'AHDAutoLoot_notifications', 'notificationFontSize' ); }
+	public function GetPopupPosX() : int { return GetSettingAsInt( 'AHDAutoLoot_notifications', 'PopupPosX' ); }
+	public function GetPopupPosY() : int { return GetSettingAsInt( 'AHDAutoLoot_notifications', 'PopupPosY' ); }
+	public function GetMultiColor() : int { return GetSettingAsInt( 'AHDAutoLoot_notifications', 'multiColor' ); }
+	public function GetCommonColor() : int { return GetSettingAsInt( 'AHDAutoLoot_notifications', 'commonColor' ); }
+	public function GetMasterColor() : int { return GetSettingAsInt( 'AHDAutoLoot_notifications', 'masterColor' ); }
+	public function GetMagicColor() : int { return GetSettingAsInt( 'AHDAutoLoot_notifications', 'magicColor' ); }
+	public function GetRelicColor() : int { return GetSettingAsInt( 'AHDAutoLoot_notifications', 'relicColor' ); }
+	public function GetWitcherColor() : int { return GetSettingAsInt( 'AHDAutoLoot_notifications', 'witcherColor' ); }
+	public function UseNewNotification() : bool { return SettingEnabled( 'AHDAutoLoot_notifications', 'useNewNotification' ); }
+	public function EnableNotificationDescription() : bool { return SettingEnabled( 'AHDAutoLoot_notifications', 'useNotificationDesc' ); }
+	public function EnableNotificationItemCounts() : bool { return SettingEnabled( 'AHDAutoLoot_notifications', 'useNotificationItemCounts' ); }
+	public function GetLootPopupMaxItems() : int { return GetSettingAsInt( 'AHDAutoLoot_notifications', 'lootPopupMaxItems' ); }
+	public function EnableNotificationQuantity() : bool { return SettingEnabled( 'AHDAutoLoot_notifications', 'useNotificationQuantity' ); }
+	public function EnableLootSound() : bool { return SettingEnabled( 'AHDAutoLoot_notifications', 'enableLootSound' ); }
+	public function EnableColors() : bool { return SettingEnabled( 'AHDAutoLoot_notifications', 'enableColors' ); }
+	public function EnableNotificationImage() : bool { return SettingEnabled( 'AHDAutoLoot_notifications', 'useNotificationImage' ); }
+	public function HideNotificationInCombat() : bool { return SettingEnabled( 'AHDAutoLoot_notifications', 'hideNotificationCombat' ); }
+	public function ActionLogNotificationsEnabled() : bool { return SettingEnabled( 'AHDAutoLoot_notifications', 'showLootAL' ); }
+	public function GetNotificationT() : float { return GetSettingAsFloat( 'AHDAutoLoot_notifications', 'notificationTime' ) * 1000.f; }
+	public function GetNotificationTApI() : float { return GetSettingAsFloat( 'AHDAutoLoot_notifications', 'notificationTimeAddPerItem' ); }
+	
+	public function GetSP_Ekey_Logic() : int { return GetSettingAsInt( 'AutoLoot_popups', 'SP_E_key_Logic' ); }
+	public function GetIQuality() : int { return GetSettingAsInt( 'AutoLoot_popups', 'IngredientQualitySPLogic' ); }
+	public function GetAQuality() : int { return GetSettingAsInt( 'AutoLoot_popups', 'AQualitySPLogic' ); }
+	public function GetWQuality() : int { return GetSettingAsInt( 'AutoLoot_popups', 'WQualitySPLogic' ); }
+	public function HideH() : bool { return SettingEnabled( 'AutoLoot_popups', 'NoPopH' ); }
+	public function HideR() : bool { return SettingEnabled( 'AutoLoot_popups', 'NoPopR' ); }
+	public function HideF() : bool { return SettingEnabled( 'AutoLoot_popups', 'NoPopF' ); }
+	public function HideJ() : bool { return SettingEnabled( 'AutoLoot_popups', 'NoPopJ' ); }
+	public function HideC() : bool { return SettingEnabled( 'AutoLoot_popups', 'NoPopC' ); }
+	public function HideI() : bool { return SettingEnabled( 'AutoLoot_popups', 'NoPopI' ); }
+	public function HideA() : bool { return SettingEnabled( 'AutoLoot_popups', 'NoPopA' ); }
+	public function HideW() : bool { return SettingEnabled( 'AutoLoot_popups', 'NoPopW' ); }
+	
+	//Returns if the specified setting is enabled (helper function)
+	public function SettingEnabled(group : name, setting : name) : bool
+	{
+		return UserSettings.GetVarValue(group, setting);
+	}
+	
+	//Returns the specified setting as a float (helper function)
+	private function GetSettingAsFloat(group : name, setting : name) : float
+	{
+		return StringToFloat( UserSettings.GetVarValue(group, setting) );
+	}
+	
+	//Returns the specified setting as an int (helper function)
+	private function GetSettingAsInt(group : name, setting : name) : int
+	{
+		return StringToInt( UserSettings.GetVarValue(group, setting) );
+	}
+}
