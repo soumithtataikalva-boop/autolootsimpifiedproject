@@ -32,7 +32,7 @@
 			<Var id="useNoAccidentalStealing" displayName="ahdal_noStealing" displayType="TOGGLE" />
 			<Var id="fullReset" displayName="ahdal_fullReset" displayType="TOGGLE" />
 <!-- [CURRENT MOD VERSION]                                                                            *****       **** -->
-			<Var id="modVersionUserSettings" displayName="modVersionUserSettings" displayType="SLIDER;5001;10000;4999" visibilityCondition="hideAlways" />
+			<Var id="modVersionUserSettings" displayName="modVersionUserSettings" displayType="SLIDER;104;10000;9896" visibilityCondition="hideAlways" />
 <!-- [CURRENT MOD VERSION]                                                                            *****       **** -->
 		</VisibleVars>
 	</Group>

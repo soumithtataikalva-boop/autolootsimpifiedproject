@@ -17,6 +17,7 @@ class CAHDAutoLootConfig
 	private	var shortcuts : AutoLootShortcuts;
 	
 	private const var 	currentModVersion : int;
+	default currentModVersion = 104; //Release 1.04; settings versions use integers.
 	
 	private var		modEnabled,
 					useNoAccidentalStealing,
