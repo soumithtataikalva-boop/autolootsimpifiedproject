@@ -40,9 +40,6 @@ class CAHDAutoLootConfig
 					useIsKey : bool;
 					
 	
-	private var		chosenArmorQuality,
-					chosenWeaponQuality,
-					chosenJunkQuality : int;
 	
 	
 	private var		modInitalized,
@@ -354,11 +351,7 @@ class CAHDAutoLootConfig
 	public function UseKeyFilter() : bool { return SettingEnabled( 'AHDAutoLoot_filters', 'useIsKey' ); }
 	
 	public function NotificationsEnabled() : bool { return SettingEnabled( 'AHDAutoLoot_notifications', 'enableNotification' ); }
-	public function GetPopupOpacity() : int { return GetSettingAsInt( 'AHDAutoLoot_notifications', 'PopupOpacity' ); }
-	public function GetTextOutline() : int { return GetSettingAsInt( 'AHDAutoLoot_notifications', 'textOutline' ); }
 	public function GetNotificationFS() : int { return GetSettingAsInt( 'AHDAutoLoot_notifications', 'notificationFontSize' ); }
-	public function GetPopupPosX() : int { return GetSettingAsInt( 'AHDAutoLoot_notifications', 'PopupPosX' ); }
-	public function GetPopupPosY() : int { return GetSettingAsInt( 'AHDAutoLoot_notifications', 'PopupPosY' ); }
 	public function GetMultiColor() : int { return GetSettingAsInt( 'AHDAutoLoot_notifications', 'multiColor' ); }
 	public function GetCommonColor() : int { return GetSettingAsInt( 'AHDAutoLoot_notifications', 'commonColor' ); }
 	public function GetMasterColor() : int { return GetSettingAsInt( 'AHDAutoLoot_notifications', 'masterColor' ); }

@@ -625,7 +625,7 @@ class CBTTaskDropLoot extends IBehTreeTask
 			if( !GetWitcherPlayer().GetAutoLootConfig().LootOnKillEnabled() ) return;
 			//Loot-on-kill processes this enemy's dropped loot, not a scan of nearby containers.
 			//Its independent distance setting replaces the removed radius-looting setting.
-			//The default is 10 metres; the enemy loot must be within that range.
+			//The default is 30 metres; the enemy loot must be within that range.
 			if( GetWitcherPlayer().GetAutoLootConfig().ModEnabled() )
 			{
 				distance = GetWitcherPlayer().GetAutoLootConfig().GetLootOnKillDistance();
