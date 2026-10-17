@@ -3939,6 +3939,12 @@ statemachine class W3PlayerWitcher extends CR4Player
 		GetAutoLootConfig().GetNotifications().ShowSecondPopupDelayed();
 	}
 
+	//Retry a loot notification deferred by the previous popup's delay.
+	timer function AutoLootRetryNotificationTimer( timeDelta : float, optional id : int )
+	{
+		GetAutoLootConfig().GetNotifications().RetryNotification();
+	}
+
 	
 	
 	

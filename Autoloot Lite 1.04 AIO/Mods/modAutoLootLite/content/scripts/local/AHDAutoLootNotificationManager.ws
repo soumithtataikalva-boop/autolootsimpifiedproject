@@ -15,6 +15,7 @@ class CAHDAutoLootNotificationManager
 	private var soundCategories : array<name>;
 	private var totalSize, helperSecond, totalItemsProcessed : int;
 	private var currentTime, lastNotificationTime, timeDelay : float;
+	private var retryNotificationCombat : bool;
 	private var AHDAL_READ_SUFFIX, AHDAL_KNOWN_SUFFIX : string;
 	private var setComColStr, setMasColStr, setMagColStr, setRelColStr, setWitchColStr, setMulColStr : string;
 	
@@ -34,6 +35,7 @@ class CAHDAutoLootNotificationManager
 		helperSecond = 0;
 		totalSize = 0;
 		totalItemsProcessed = 0;
+		retryNotificationCombat = false;
 		AHDAL_READ_SUFFIX = GetLocStringByKeyExt( "ahdal_readTag" );
 		AHDAL_KNOWN_SUFFIX = GetLocStringByKeyExt( "ahdal_knownTag" );
 	}
@@ -42,6 +44,7 @@ class CAHDAutoLootNotificationManager
 	public function ClearPendingNotifications() : void
 	{
 		GetWitcherPlayer().RemoveTimer('AutoLootShowSecondPopupTimer');
+		GetWitcherPlayer().RemoveTimer('AutoLootRetryNotificationTimer');
 		Reset();
 	}
 	
@@ -554,6 +557,12 @@ class CAHDAutoLootNotificationManager
 		}
 	}
 	
+	//Retry deferred loot through the normal notification and combat checks.
+	public function RetryNotification() : void
+	{
+		ShowNotification(retryNotificationCombat);
+	}
+
 	//Returns the total time to display the loot notification based on user.settings
 	private function GetTotalNotificationTimeForCount(count : int) : float 
 	{ 
@@ -584,6 +593,7 @@ class CAHDAutoLootNotificationManager
 			//Manual looting can bypass the previous popup delay; queued notifications retain the delay.
 			if( isManualTrigger || IsLastNotificationDelayOver() )
 			{
+				GetWitcherPlayer().RemoveTimer('AutoLootRetryNotificationTimer');
 				if( helperSecond == 0 )
 				{
 					timeDelay = 4.0f; //Keep a four-second delay between queued interaction/kill loot popups.
@@ -610,6 +620,13 @@ class CAHDAutoLootNotificationManager
 				{
 					ShowSecondPopupDelayed();
 				}
+			}
+			else
+			{
+				//Keep one retry at the end of the current delay; later loot does not extend it.
+				retryNotificationCombat = combat;
+				GetWitcherPlayer().RemoveTimer('AutoLootRetryNotificationTimer');
+				GetWitcherPlayer().AddTimer('AutoLootRetryNotificationTimer', MaxF(0.01f, lastNotificationTime + timeDelay - theGame.GetEngineTimeAsSeconds()), false);
 			}
 		}
 	}
