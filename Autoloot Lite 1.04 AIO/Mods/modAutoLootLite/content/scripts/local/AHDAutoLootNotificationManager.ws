@@ -92,7 +92,7 @@ class CAHDAutoLootNotificationManager
 		return ( AutoLootConfig.HideC() && AutoLootConfig.GetFilters().IsCurrency(container, itemID) );
 	}
 	
-	//INGREDIENT (hides I with the selected quality and Bottomless carafe (endless supply of strong alcohol))
+	//Suppress ingredient notifications up to the selected quality, except Bottomless Carafe (Soltis Vodka).
 	public function silentI(container : W3Container, itemID : SItemUniqueId) : bool
 	{
 		return ( AutoLootConfig.HideI() && AutoLootConfig.GetFilters().IsIngredient(container, itemID)
@@ -465,16 +465,6 @@ class CAHDAutoLootNotificationManager
 			if( i+1 < processedCount )
 				msg += "<br/>";
 		}
-		
-		//Enhanced TEST message for autoloot popup
-		/*
-		if( totalSize <= limit  )
-			msg = "<font color='#666666'>" + ">> Items (1-" + processedCount + ")" + "<br/>" + msg + "</font>";
-		else if( helperSecond == 0 && HasMoreItemsInQueue() )
-			msg = "<font color='#B0B000'>" + ">> Split popup: Items (1-" + processedCount + " of " + totalSize + ")" + "<br/>" + msg + "</font>";
-		else if( SecondPageInProgress() ) //same as: helperSecond == 1 && HasMoreItemsInQueue()
-			msg = "<font color='#FF4500'>" + ">> Split popup: Items (" + (totalItemsProcessed + 1) + "-" + (totalItemsProcessed + processedCount) + " of " + totalSize + ")" + "<br/>" + msg + "</font>";
-		*/
 		
 		//Erase processed items from memory
 		for ( i=0; i<processedCount; i+=1 )
