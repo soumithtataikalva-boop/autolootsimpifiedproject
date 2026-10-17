@@ -176,13 +176,6 @@ class CAHDAutoLootFilters
 					return true;
 			}
 			
-			//looting if you ride a horse
-			if( AutoLootConfig.NoHorseLooting() )
-			{
-				if( thePlayer.IsUsingHorse() )
-					return true;
-			}
-			
 			return false;
 		}
 		

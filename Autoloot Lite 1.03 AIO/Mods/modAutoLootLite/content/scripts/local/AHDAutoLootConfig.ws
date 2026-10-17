@@ -129,7 +129,6 @@ class CAHDAutoLootConfig
 		UserSettings.SetVarValue( 'AHDAutoLoot_filters_global', 'noSpecialContainers', "false" );
 		UserSettings.SetVarValue( 'AHDAutoLoot_filters_global', 'noTrophies', "true" );
 		UserSettings.SetVarValue( 'AHDAutoLoot_filters_global', 'noDropItems', "true" );
-		UserSettings.SetVarValue( 'AHDAutoLoot_filters_global', 'noHorseLoot', "false" );
 		
 		
 		UserSettings.SetVarValue( 'AHDAutoLoot_settings', 'interactionKey_lootLogic', 2 );
@@ -320,7 +319,6 @@ class CAHDAutoLootConfig
 	public function ProtectSpecialContainers() : bool { return SettingEnabled( 'AHDAutoLoot_filters_global', 'noSpecialContainers' ); }
 	public function ProtectTrophies() : bool { return SettingEnabled( 'AHDAutoLoot_filters_global', 'noTrophies' ); }
 	public function ProtectDroppedItems() : bool { return SettingEnabled( 'AHDAutoLoot_filters_global', 'noDropItems' ); }
-	public function NoHorseLooting() : bool { return SettingEnabled( 'AHDAutoLoot_filters_global', 'noHorseLoot' ); }
 	
 	
 	public function GetEkeyLogic() : int

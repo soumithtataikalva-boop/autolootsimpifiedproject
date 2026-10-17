@@ -43,14 +43,12 @@
 				<Entry varId="noSpecialContainers" value="false"/>
 				<Entry varId="noTrophies" value="true"/>
 				<Entry varId="noDropItems" value="true"/>
-				<Entry varId="noHorseLoot" value="false"/>
 			</Preset>
 		</PresetsArray>
 		<VisibleVars>
 			<Var id="noWitcherSchematics" displayName="ahdal_noWitcherSchematics" displayType="TOGGLE" />
 			<Var id="noSpecialContainers" displayName="ahdal_noSpecialContainers" displayType="TOGGLE" />
 			<Var id="noTrophies" displayName="ahdal_noTrophies" displayType="TOGGLE" />
-			<Var id="noHorseLoot" displayName="ahdal_noHorseLoot" displayType="TOGGLE" />
 			<Var id="noDropItems" displayName="ahdal_noDropItems" displayType="TOGGLE" />
 		</VisibleVars>
 	</Group>
