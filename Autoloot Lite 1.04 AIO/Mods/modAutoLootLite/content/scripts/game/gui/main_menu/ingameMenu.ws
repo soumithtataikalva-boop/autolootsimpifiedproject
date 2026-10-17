@@ -2383,6 +2383,13 @@ class CR4IngameMenu extends CR4MenuBase
 			theGame.UpdateCrossProgressionValue( optionValue );
 		}
 
+		//Turning loot notifications off discards pending pages immediately.
+		if( groupName == 'AHDAutoLoot_notifications' && optionName == 'enableNotification' && optionValue == "false" )
+		{
+			if( GetWitcherPlayer() && GetWitcherPlayer().GetAutoLootConfig() && GetWitcherPlayer().GetAutoLootConfig().GetNotifications() )
+				GetWitcherPlayer().GetAutoLootConfig().GetNotifications().ClearPendingNotifications();
+		}
+
 		if ( optionName == 'AASpopupBlack' || optionName == 'PopupOpacity' || optionName == 'textOutline' || optionName == 'notificationFontSize' || optionName == 'PopupPosX' || optionName == 'PopupPosY' )
 		{
 			theGame.GetGuiManager().ShowAASNotification( "<font size='" + StringToInt(theGame.GetInGameConfigWrapper().GetVarValue('AHDAutoLoot_notifications', 'notificationFontSize')) + "'><font color =\"#00CDFF\">" + GetLocStringByKeyExt("ahdal_popupCurrentPosition") + "</font>" );

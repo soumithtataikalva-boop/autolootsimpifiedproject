@@ -37,6 +37,13 @@ class CAHDAutoLootNotificationManager
 		AHDAL_READ_SUFFIX = GetLocStringByKeyExt( "ahdal_readTag" );
 		AHDAL_KNOWN_SUFFIX = GetLocStringByKeyExt( "ahdal_knownTag" );
 	}
+
+	//Discard pending loot notifications and cancel any scheduled popup page.
+	public function ClearPendingNotifications() : void
+	{
+		GetWitcherPlayer().RemoveTimer('AutoLootShowSecondPopupTimer');
+		Reset();
+	}
 	
 	//Returns the index of the first occurence of the specified item (string), -1 if not found
 	private function GetIndexByString(itemName : string) : int
@@ -113,6 +120,12 @@ class CAHDAutoLootNotificationManager
 		var itemIndex, count : int;
 		var itemName : string;
 		var soundName : name;
+
+		if( !AutoLootConfig.NotificationsEnabled() )
+		{
+			ClearPendingNotifications();
+			return;
+		}
 		
 		//Exclude hidden or non-droppable items from notifications unless explicitly marked Lootable.
 		if( container.GetInventory().ItemHasTag(itemID, 'Lootable' )
@@ -521,6 +534,12 @@ class CAHDAutoLootNotificationManager
 		var chunkMsg : string;
 		var countDisplayed : int;
 		
+		if( !AutoLootConfig.NotificationsEnabled() )
+		{
+			ClearPendingNotifications();
+			return;
+		}
+
 		//Enforce time delay check before displaying subsequent popup chunk
 		if( SecondPageInProgress() && IsLastNotificationDelayOver() )
 		{
@@ -559,44 +578,47 @@ class CAHDAutoLootNotificationManager
 		var isManualTrigger : bool;
 		
 		
+		if( !AutoLootConfig.NotificationsEnabled() )
+		{
+			ClearPendingNotifications();
+			return;
+		}
+
 		if( ( !thePlayer.IsInCombat() || !AutoLootConfig.HideNotificationInCombat() )
 			&& itemNames.Size() > 0 )
 		{
-			if( AutoLootConfig.NotificationsEnabled() )
+
+			//Interaction-key looting can override the previous notification delay.
+			isManualTrigger = (AutoLootConfig.GetFeatureManager().GetInteractionKeyContainerType() > 0);
+
+			//Manual looting can bypass the previous popup delay; queued notifications retain the delay.
+			if( isManualTrigger || IsLastNotificationDelayOver() )
 			{
-				
-				//Interaction-key looting can override the previous notification delay.
-				isManualTrigger = (AutoLootConfig.GetFeatureManager().GetInteractionKeyContainerType() > 0);
-				
-				//Manual looting can bypass the previous popup delay; queued notifications retain the delay.
-				if( isManualTrigger || IsLastNotificationDelayOver() )
+				if( helperSecond == 0 )
 				{
-					if( helperSecond == 0 )
+					timeDelay = 4.0f; //Keep a four-second delay between queued interaction/kill loot popups.
+
+					chunkMsg = FormatNotification(combat, countDisplayed);
+					theGame.GetGuiManager().ShowAASNotification( chunkMsg, GetTotalNotificationTimeForCount(countDisplayed) );
+
+					lastNotificationTime = theGame.GetEngineTimeAsSeconds();
+					PlayAutoLootSound();
+
+					if( HasMoreItemsInQueue() )
 					{
-						timeDelay = 4.0f; //Keep a four-second delay between queued interaction/kill loot popups.
-						
-						chunkMsg = FormatNotification(combat, countDisplayed);
-						theGame.GetGuiManager().ShowAASNotification( chunkMsg, GetTotalNotificationTimeForCount(countDisplayed) );
-						
-						lastNotificationTime = theGame.GetEngineTimeAsSeconds();
-						PlayAutoLootSound();
-						
-						if( HasMoreItemsInQueue() )
-						{
-							helperSecond = 1;
-							GetWitcherPlayer().AddTimer('AutoLootShowSecondPopupTimer', timeDelay, false); //trigger timer for next loot popup
-						}
-						else
-						{
-							helperSecond = 0;
-							totalSize = 0;
-							totalItemsProcessed = 0;
-						}
+						helperSecond = 1;
+						GetWitcherPlayer().AddTimer('AutoLootShowSecondPopupTimer', timeDelay, false); //trigger timer for next loot popup
 					}
 					else
 					{
-						ShowSecondPopupDelayed();
+						helperSecond = 0;
+						totalSize = 0;
+						totalItemsProcessed = 0;
 					}
+				}
+				else
+				{
+					ShowSecondPopupDelayed();
 				}
 			}
 		}
